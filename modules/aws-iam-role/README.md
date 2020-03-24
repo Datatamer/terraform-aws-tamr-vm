@@ -17,12 +17,12 @@ module "aws-tamr-user-role" {
 This modules creates:
 * an IAM role for use by the Tamr VM
 
-# Varibles
+# Variables
 ## Inputs
 * `aws_role_name` (optional): The name to give the IAM Role. Defaults to `tamr-instance-role`
 
 ## Outputs
-* `tamr_emr_iam_role_arn`: ARN for the IAM role created
+* `tamr_instance_profile_id`: ID for the IAM instance profile created.
 
 # References
 This repo is based on:
