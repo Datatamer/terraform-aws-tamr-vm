@@ -1,4 +1,4 @@
-output "tamr_emr_iam_role_arn" {
-  value = aws_iam_role.tamr_user_iam_role.arn
-  description = "ARN of the IAM role created"
+output "tamr_instance_profile_id" {
+  value = aws_iam_role.tamr_user_instance_profile.id
+  description = "ID of the IAM instance profile created"
 }
