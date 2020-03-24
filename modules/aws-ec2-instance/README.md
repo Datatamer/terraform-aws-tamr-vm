@@ -20,7 +20,7 @@ module "aws-vm-sg" {
 This modules creates:
 * an EC2 instance with attached roles and security groups in order to run Tamr and EMR
 
-# Varibles
+# Variables
 ## Inputs
 * `ami` (required): The AMI to use to spin up the EC2 instance.
 * `availability_zone` (optional): The availability zone in which to place the instance. Defaults to `us-east-1`.

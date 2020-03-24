@@ -1,6 +1,6 @@
 # Tamr VM Security Groups Module
 This is a terraform module for security groups for the EC2 instance where Tamr is running. These groups will allow port openings, SSH access, and related networking permissions for EC2.
-This repo is layed out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
+This repo is laid out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
 
 # Examples
 An inline example implementation of the module is implemented in the examples folder.

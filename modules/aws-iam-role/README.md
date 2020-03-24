@@ -1,6 +1,6 @@
 # Tamr User IAM Role Module
 This is a terraform module for an IAM role for the EC2 instance where Tamr is running. This role will have permissions attached to it using the`aws-emr-tamr-user-policies` module.
-This repo is layed out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
+This repo is laid out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
 
 # Examples
 An inline example implementation of the module is implemented in the examples folder.
