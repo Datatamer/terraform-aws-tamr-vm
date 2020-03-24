@@ -1,6 +1,6 @@
 # Tamr VM IAM Policies Module
 This is a terraform module for creating a policy role in AWS with permissions to create a new EMR cluster.
-This repo is layed out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
+This repo is laid out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
 
 # Examples
 A minimal example implementation of the module is implemented in the examples folder.
@@ -28,7 +28,7 @@ This modules creates:
 * an iam policy with permissions for creating a cluster
 * an iam role policy attachment resource, to attach the newly created policy to an existing IAM role
 
-# Varibles
+# Variables
 ## Inputs
 * `aws_role_name` : The name of the existing IAM role that the policy will be attached to
 * `aws_account_id` : The ARN of the AWS account where the cluster is created
