@@ -8,7 +8,7 @@ This is the most basic example of what it would look like to use this module.
 
 ```
 module "aws-tamr-user-role" {
-  source = "git::https://github.com/Datatamer/aws-emr-tamr-user-role?ref=0.1.0"
+  source = "../"
   aws_role_name = "iam-role-name"
 }
 ```

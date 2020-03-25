@@ -8,9 +8,10 @@ This is the most basic example of what it would look like to use this module.
 
 ```
 module "aws-vm-sg" {
-  source = "git::https://github.com/Datatamer/aws-tamr-vm?ref=0.1.0"
+  source = "../"
   ami = "ami-123456789"
   iam_instance_profile = "iam-profile-id"
+  key_name = "my-key"
   security_group_ids = ["security-group-1-id", "security-group-2-id"]
   subnet_id = "subnet-123"
 }
@@ -26,7 +27,7 @@ This modules creates:
 * `availability_zone` (optional): The availability zone in which to place the instance. Defaults to `us-east-1`.
 * `iam_instance_profile` (required): The iam instance profile to attach to the EC2 instance.
 * `instance_type` (optional): The type of instance to use. Defaults to `c5.9xlarge`.
-* `key_name` (optional): The SSH key to attach to the instance. Defaults to `""`. Should be added if you wish to SSH to the machine using public keys.
+* `key_name` (required): The SSH key to attach to the instance.
 * `security_group_ids` (required): A list of security groups to attach to the instance.
 * `subnet_id` (required): The VPC Subnet ID to launch in.
 * `volume_type` (optional): What type of volume to attach to the instance, if attaching a root block volume. Defaults to `gp2`.

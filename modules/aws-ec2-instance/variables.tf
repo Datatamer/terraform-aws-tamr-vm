@@ -6,7 +6,7 @@ variable "ami" {
 variable "availability_zone" {
   type = string
   description = "The availability zone to use for the EC2 instance"
-  default = "us-east-1"
+  default = "us-east-1a"
 }
 
 variable "iam_instance_profile" {
@@ -23,7 +23,6 @@ variable "instance_type" {
 variable "key_name" {
   type = string
   description = "The key name to attach to the EC2 instance for SSH access"
-  default = ""
 }
 
 variable "security_group_ids" {

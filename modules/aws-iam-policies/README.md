@@ -30,8 +30,11 @@ This modules creates:
 
 # Variables
 ## Inputs
-* `aws_role_name` : The name of the existing IAM role that the policy will be attached to
-* `aws_account_id` : The ARN of the AWS account where the cluster is created
+* `aws_role_name` (required) : The name of the existing IAM role that the policy will be attached to
+* `aws_account_id` (required): The ARN of the AWS account where the cluster is created
+* `aws_emrfs_hbase_bucket_name` (required): The name of the S3 bucket where HBase stores files.
+* `aws_emrfs_hbase_logs_bucket_name` (required): The name of the S3 bucket where HBase stores logs.
+* `aws_emrfs_spark_logs_bucket_name` (required): The name of the S3 bucket where Spark stores logs.
 
 
 # References

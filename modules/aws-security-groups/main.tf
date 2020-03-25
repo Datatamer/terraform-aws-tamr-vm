@@ -93,7 +93,7 @@ resource "aws_security_group_rule" "http_access"{
 resource "aws_security_group_rule" "default_egress"{
   security_group_id = aws_security_group.tamr-vm-sg.id
   type = "egress"
-  description = "Egress opening, needed for Tamr services to talk to themselves. Recreates AWS's ALLOW ALL egress rule"
+  description = "Egress opening, needed for Tamr services to talk to themselves. Recreates AWS ALLOW ALL egress rule"
   from_port   = 0
   to_port     = 0
   protocol    = "-1"
