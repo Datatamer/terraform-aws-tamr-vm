@@ -8,7 +8,7 @@ This is the most basic example of what it would look like to use this module.
 
 ```
 module "aws-vm-sg" {
-  source = "../"
+  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm/modules/aws-security-groups?ref=0.1.0"
   vpc_id = "vpc-123456789"
   ingress_cidr_blocks = [
     "1.2.3.4/32",

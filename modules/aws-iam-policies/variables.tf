@@ -25,11 +25,3 @@ variable "aws_emrfs_spark_logs_bucket_name" {
   description = "AWS account in which the cluster will be created"
   default = ""
 }
-
-/*
-,
-"arn:aws:s3:::${var.aws_emrfs_hbase_logs_bucket_name}",
-"arn:aws:s3:::${var.aws_emrfs_hbase_logs_bucket_name}/*"
-"arn:aws:s3:::${var.aws_emrfs_spark_logs_bucket_name}",
-"arn:aws:s3:::${var.aws_emrfs_spark_logs_bucket_name}/*"
-*/

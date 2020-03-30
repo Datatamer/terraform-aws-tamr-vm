@@ -17,7 +17,7 @@ provider "template" {
 }
 
 module "aws-emr-creator-iam" {
-  source = "../"
+  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm/modules/aws-iam-policies?ref=0.1.0"
   aws_role_name = "iam-role-name"
   aws_account_id = "12-digit-ARN"
 }

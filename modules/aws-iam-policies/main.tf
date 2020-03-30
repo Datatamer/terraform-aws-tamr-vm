@@ -69,7 +69,9 @@ resource "aws_iam_policy" "emrfs_user_minimal_policy" {
             "arn:aws:s3:::${var.aws_emrfs_hbase_bucket_name}/*",
             "arn:aws:s3:::${var.aws_emrfs_hbase_bucket_name}",
             "arn:aws:s3:::${var.aws_emrfs_hbase_logs_bucket_name}",
-            "arn:aws:s3:::${var.aws_emrfs_hbase_logs_bucket_name}/*"
+            "arn:aws:s3:::${var.aws_emrfs_hbase_logs_bucket_name}/*",
+            "arn:aws:s3:::${var.aws_emrfs_spark_bucket_name}",
+            "arn:aws:s3:::${var.aws_emrfs_spark_bucket_name}/*",
             "arn:aws:s3:::${var.aws_emrfs_spark_logs_bucket_name}",
             "arn:aws:s3:::${var.aws_emrfs_spark_logs_bucket_name}/*"
         ]

@@ -7,8 +7,8 @@ An inline example implementation of the module is implemented in the examples fo
 This is the most basic example of what it would look like to use this module.
 
 ```
-module "aws-vm-sg" {
-  source = "../"
+module "aws-tamr-instance" {
+  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm/modules/aws-ec2-instance?ref=0.1.0"
   ami = "ami-123456789"
   iam_instance_profile = "iam-profile-id"
   key_name = "my-key"
