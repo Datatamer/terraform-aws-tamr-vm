@@ -48,7 +48,6 @@ resource "aws_security_group_rule" "grafana_access"{
 }
 
 resource "aws_security_group_rule" "tls_access"{
-  count = var.enable_tls ? 1 : 0
   security_group_id = aws_security_group.tamr-vm-sg.id
   type = "ingress"
   description = "TLS from allowed CIDR blocks"
