@@ -39,12 +39,6 @@ variable "enable_grafana_port" {
   default = true
 }
 
-variable "enable_tls" {
-  type = bool
-  description = "If set to true, enables TLS"
-  default = true
-}
-
 variable "enable_ssh" {
   type = bool
   description = "If set to true, enables SSH"
