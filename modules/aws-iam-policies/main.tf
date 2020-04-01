@@ -14,7 +14,6 @@ resource "aws_iam_policy" "emr_creator_minimal_policy" {
         "Action": [
           "elasticmapreduce:AddInstanceGroups",
           "elasticmapreduce:AddJobFlowSteps",
-          "elasticmapreduce:DescribeCluster",
           "elasticmapreduce:ListBootstrapActions",
           "elasticmapreduce:ListInstances",
           "elasticmapreduce:ListInstanceGroups",
@@ -36,6 +35,13 @@ resource "aws_iam_policy" "emr_creator_minimal_policy" {
         "Resource": [
             "arn:aws:elasticmapreduce:*"
         ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "elasticmapreduce:Describe*"
+        ],
+        "Resource": "*"
       }
     ]
 }
@@ -70,8 +76,6 @@ resource "aws_iam_policy" "emrfs_user_minimal_policy" {
             "arn:aws:s3:::${var.aws_emrfs_hbase_bucket_name}",
             "arn:aws:s3:::${var.aws_emrfs_hbase_logs_bucket_name}",
             "arn:aws:s3:::${var.aws_emrfs_hbase_logs_bucket_name}/*",
-            "arn:aws:s3:::${var.aws_emrfs_spark_bucket_name}",
-            "arn:aws:s3:::${var.aws_emrfs_spark_bucket_name}/*",
             "arn:aws:s3:::${var.aws_emrfs_spark_logs_bucket_name}",
             "arn:aws:s3:::${var.aws_emrfs_spark_logs_bucket_name}/*"
         ]
