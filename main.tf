@@ -10,7 +10,7 @@ module "aws-iam-policies" {
   aws_account_id = "${var.aws_account_id}"
   aws_emrfs_hbase_bucket_name = "${var.aws_emrfs_hbase_bucket_name}"
   aws_emrfs_hbase_logs_bucket_name = "${var.aws_emrfs_hbase_logs_bucket_name}"
-  aws_emrfs_spark_logs_bucket_name = "${aws_emrfs_spark_logs_bucket_name}"
+  aws_emrfs_spark_logs_bucket_name = "${var.aws_emrfs_spark_logs_bucket_name}"
 }
 
 module "aws-security-groups" {
@@ -21,8 +21,8 @@ module "aws-security-groups" {
 
 module "tamr_instance" {
   source = "./modules/aws-ec2-instance"
-  ami = "${var.ami}"
-  instance_type = "${var.instance_type = ""}"
+  ami = var.ami
+  instance_type = "${var.instance_type}"
   iam_instance_profile = module.aws-iam-role.tamr_instance_profile_id
   key_name = "${var.key_name}"
   security_group_ids = ["${module.aws-security-groups.tamr_security_group_id}"]
