@@ -25,6 +25,16 @@ resource "aws_security_group_rule" "UI_access"{
   cidr_blocks = "${var.ingress_cidr_blocks}"
 }
 
+resource "aws_security_group_rule" "zk_access"{
+  description = "Zookeeper access from allowed CIDR blocks"
+  security_group_id = aws_security_group.tamr-vm-sg.id
+  type = "ingress"
+  from_port = var.zk_port
+  to_port   = var.zk_port
+  protocol  = "tcp"
+  cidr_blocks = "${var.ingress_cidr_blocks}"
+}
+
 resource "aws_security_group_rule" "kibana_access"{
   count = var.enable_kibana_port ? 1 : 0
   security_group_id = aws_security_group.tamr-vm-sg.id

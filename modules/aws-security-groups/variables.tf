@@ -15,6 +15,12 @@ variable "tamr_port" {
   default = 9100
 }
 
+variable "zk_port" {
+  type = number
+  description = "Port for accessing Zookeeper on the Tamr instance"
+  default = 21281
+}
+
 variable "kibana_port" {
   type = number
   description = "Default Kibana port"

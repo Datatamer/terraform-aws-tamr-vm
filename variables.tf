@@ -1,6 +1,21 @@
+variable "aws_emr_creator_policy_name" {
+  type = string
+  description = "The name to give to the policy regarding EMR permissions"
+}
+
+variable "aws_emrfs_user_policy_name" {
+  type = string
+  description = "The name to give to the policy regarding S3 permissions"
+}
+
 variable "aws_role_name" {
   type = string
   description = "IAM Role to which the policy will be attached"
+}
+
+variable "aws_instance_profile_name" {
+  type = string
+  description = "IAM Instance Profile to create"
 }
 
 variable "aws_account_id" {
@@ -11,19 +26,16 @@ variable "aws_account_id" {
 variable "aws_emrfs_hbase_bucket_name" {
   type = string
   description = "AWS account in which the cluster will be created"
-  default = ""
 }
 
 variable "aws_emrfs_hbase_logs_bucket_name" {
   type = string
   description = "AWS account in which the cluster will be created"
-  default = ""
 }
 
 variable "aws_emrfs_spark_logs_bucket_name" {
   type = string
   description = "AWS account in which the cluster will be created"
-  default = ""
 }
 
 variable "vpc_id" {
@@ -39,12 +51,16 @@ variable "ami" {
 variable "instance_type" {
   type = string
   description = "The instance type to use for the EC2 instance"
-  default = "c5.9xlarge"
 }
 
 variable "key_name" {
   type = string
   description = "The key name to attach to the EC2 instance for SSH access"
+}
+
+variable "sg_name" {
+  type = string
+  description = "Security Group to create"
 }
 
 variable "subnet_id" {
