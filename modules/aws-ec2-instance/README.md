@@ -18,7 +18,7 @@ module "aws-tamr-instance" {
 ```
 
 # Resources Created
-This modules creates:
+This module creates:
 * an EC2 instance with attached roles and security groups in order to run Tamr and EMR
 
 # Variables
