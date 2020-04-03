@@ -50,8 +50,5 @@ variable "volume_size" {
 variable "additional_tags" {
   type = map(string)
   description = "Additional tags to be attached to the resources created"
-  default = (
-    {Author :"Tamr"},
-    {Name: "Tamr VM"},
-  )
+  default = {Author: "Tamr", Name: "Tamr VM"}
 }

@@ -59,10 +59,7 @@ variable "instance_type" {
 variable "tamr_instance_tags" {
   type = map(string)
   description = "Additional tags to be attached to the Tamr EC2 instance"
-  default = (
-    {Author :"Tamr"},
-    {Name: "Tamr VM"},
-  )
+  default = {Author: "Tamr", Name: "Tamr VM"}
 }
 
 variable "key_name" {
