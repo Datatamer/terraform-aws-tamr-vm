@@ -1,11 +1,13 @@
 variable "aws_emr_creator_policy_name" {
   type = string
   description = "The name to give to the policy regarding EMR permissions"
+  default = "emrCreatorMinimalPolicy"
 }
 
 variable "aws_emrfs_user_policy_name" {
   type = string
   description = "The name to give to the policy regarding S3 permissions"
+  default = "emrfsUserMinimalPolicy"
 }
 
 variable "aws_role_name" {
@@ -61,6 +63,7 @@ variable "key_name" {
 variable "sg_name" {
   type = string
   description = "Security Group to create"
+  default = "tamr-instance-security-group"
 }
 
 variable "subnet_id" {

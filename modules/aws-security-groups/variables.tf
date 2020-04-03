@@ -9,10 +9,28 @@ variable "sg_name" {
   default = "tamr-instance-security-group"
 }
 
-variable "tamr_port" {
+variable "tamr_ui_port" {
   type = number
   description = "Port for Tamr UI and proxying Tamr services"
   default = 9100
+}
+
+variable "tamr_es_port" {
+  type = number
+  description = "Port for Tamr elasticsearch"
+  default = 9200
+}
+
+variable "tamr_auth_port" {
+  type = number
+  description = "Port for Tamr auth"
+  default = 9020
+}
+
+variable "tamr_persistence_port" {
+  type = number
+  description = "Port for Tamr persistence"
+  default = 9080
 }
 
 variable "zk_port" {

@@ -19,8 +19,38 @@ resource "aws_security_group_rule" "UI_access"{
   description = "Tamr UI and API access from allowed CIDR blocks"
   security_group_id = aws_security_group.tamr-vm-sg.id
   type = "ingress"
-  from_port = var.tamr_port
-  to_port   = var.tamr_port
+  from_port = var.tamr_ui_port
+  to_port   = var.tamr_ui_port
+  protocol  = "tcp"
+  cidr_blocks = "${var.ingress_cidr_blocks}"
+}
+
+resource "aws_security_group_rule" "ES_access"{
+  description = "Tamr elasticsearch access from allowed CIDR blocks"
+  security_group_id = aws_security_group.tamr-vm-sg.id
+  type = "ingress"
+  from_port = var.tamr_es_port
+  to_port   = var.tamr_es_port
+  protocol  = "tcp"
+  cidr_blocks = "${var.ingress_cidr_blocks}"
+}
+
+resource "aws_security_group_rule" "auth_access"{
+  description = "Tamr auth access from allowed CIDR blocks"
+  security_group_id = aws_security_group.tamr-vm-sg.id
+  type = "ingress"
+  from_port = var.tamr_auth_port
+  to_port   = var.tamr_auth_port
+  protocol  = "tcp"
+  cidr_blocks = "${var.ingress_cidr_blocks}"
+}
+
+resource "aws_security_group_rule" "persistence_access"{
+  description = "Tamr persistence access from allowed CIDR blocks"
+  security_group_id = aws_security_group.tamr-vm-sg.id
+  type = "ingress"
+  from_port = var.tamr_persistence_port
+  to_port   = var.tamr_persistence_port
   protocol  = "tcp"
   cidr_blocks = "${var.ingress_cidr_blocks}"
 }
