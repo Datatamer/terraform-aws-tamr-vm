@@ -12,7 +12,7 @@ variable "aws_emrfs_user_policy_name" {
 
 variable "aws_role_name" {
   type = string
-  description = "IAM Role to which the policy will be attached"
+  description = "IAM Role to create, and to which the policies will be attached"
 }
 
 variable "aws_instance_profile_name" {
@@ -53,6 +53,7 @@ variable "ami" {
 variable "instance_type" {
   type = string
   description = "The instance type to use for the EC2 instance"
+  default = "c5.9xlarge"
 }
 
 variable "key_name" {

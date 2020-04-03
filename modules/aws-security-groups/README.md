@@ -20,10 +20,10 @@ module "aws-vm-sg" {
 # Resources Created
 This modules creates:
 * a security group for EC2 allowing access to the Tamr VM.
-* additonal security group rules By default, opens the UI and API port for Tamr,
-enables HTTP on port `80`, and opens egress, which allows Tamr to operate and recreates
+* additonal security group rules. By default, opens required Tamr ports,
+enables HTTP on port `80` and TLS on `443`, and opens egress, which allows Tamr to operate and recreates
 AWS's default ALLOW ALL egress rules. These ports can be changed if desired. Additional
-ports for basic monitoring (Kibana and Grafana), as well as TLS, SSH, and ping,
+ports for basic monitoring (Kibana and Grafana), as well as SSH, and ping,
 can be enabled using boolean variables. Additional rules can be added manually.
 
 # Variables
@@ -49,12 +49,6 @@ can be enabled using boolean variables. Additional rules can be added manually.
 This repo is based on:
 * [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure)
 * [templated terraform module](https://github.com/tmknom/template-terraform-module)
-
-# Development
-## Releasing new versions
-* Update version contained in `VERSION`
-* Document changes in `CHANGELOG.md`
-* Create a tag in github for the commit associated with the version
 
 # License
 Apache 2 Licensed. See LICENSE for full details.
