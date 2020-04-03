@@ -41,7 +41,9 @@ can be enabled using boolean variables. Additional rules can be added manually.
 * `enable_ssh` (optional): A boolean for whether to enable SSH access on port `22`. Defaults to `true`.
 * `enable_ping` (optional): A boolean for whether to enable ping using `ICMP`. Defaults to `true`.
 * `ingress_cidr_blocks` (optional): A list of CIDR blocks to allow for inbound access. Defaults to `[]`, but must include a CIDR block that describes your VPC or local IP or Tamr will be inaccessible to you.
+* `ingress_security_groups` (optional): A list of security groups to allow for inbound access. Defaults to `[]`.
 * `egress_cidr_blocks` (optional): A list of CIDR blocks to allow for outbound access. Defaults to `["0.0.0.0/0"]` to allow services to talk to one another via the network loopback interface.
+* `egress_security_groups` (optional): A list of security groups to allow for outbound access. Defaults to `[]`.
 * `additional_tags` (optional): Additional tags for the security.
 
 ## Outputs

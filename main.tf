@@ -20,7 +20,21 @@ module "aws-security-groups" {
   source = "./modules/aws-security-groups"
   sg_name = "${var.sg_name}"
   vpc_id = "${var.vpc_id}"
+  tamr_ui_port = var.tamr_ui_port
+  tamr_es_port = var.tamr_es_port
+  tamr_auth_port = var.tamr_auth_port
+  tamr_persistence_port = var.tamr_persistence_port
+  zk_port = var.zk_port
+  kibana_port = var.kibana_port
+  enable_kibana_port = var.enable_kibana_port
+  grafana_port = var.grafana_port
+  enable_grafana_port = var.enable_grafana_port
+  enable_ssh = var.enable_ssh
+  enable_ping = var.enable_ping
   ingress_cidr_blocks = var.ingress_cidr_blocks
+  ingress_security_groups = var.ingress_security_groups
+  egress_cidr_blocks = var.egress_cidr_blocks
+  egress_security_groups = var.egress_security_groups
   additional_tags = var.security_group_tags
 }
 

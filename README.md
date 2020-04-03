@@ -42,7 +42,6 @@ can be enabled using boolean variables. Additional rules can be added manually.
 ## Inputs
 ### IAM Policy
 * `aws_role_name` (required): The IAM Role to attach the IAM policies to. By default sources from the IAM role created in this module.
-* `aws_instance_profile_name` (required): The name to give to the IAM instance profile.
 * `aws_account_id` (required): The ARN of the AWS account where the cluster is created
 * `aws_emrfs_hbase_bucket_name` (required): The name of the S3 bucket where HBase stores files.
 * `aws_emrfs_hbase_logs_bucket_name` (required): The name of the S3 bucket where HBase stores logs.
@@ -61,6 +60,7 @@ can be enabled using boolean variables. Additional rules can be added manually.
 * `tamr_es_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9200`.
 * `tamr_auth_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9020`.
 * `tamr_persistence_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9080`.
+* `zk_port` (optional): Port for accessing Zookeeper on the Tamr instance. Defaults to `21281`
 * `kibana_port` (optional): The port for Kibana acess. Defaults to `5601`.
 * `enable_kibana_port` (optional): A boolean for whether to open the Kibana port. Defaults to `true`.
 * `grafana_port` (optional): The port for Grafana acess. Defaults to `31101`.
@@ -68,7 +68,9 @@ can be enabled using boolean variables. Additional rules can be added manually.
 * `enable_ssh` (optional): A boolean for whether to enable SSH access on port `22`. Defaults to `true`.
 * `enable_ping` (optional): A boolean for whether to enable ping using `ICMP`. Defaults to `true`.
 * `ingress_cidr_blocks` (optional): A list of CIDR blocks to allow for inbound access. Defaults to `[]`, but must include a CIDR block that describes your VPC or local IP or Tamr will be inaccessible to you.
+* `ingress_security_groups` (optional): A list of security groups to allow for inbound access. Defaults to `[]`.
 * `egress_cidr_blocks` (optional): A list of CIDR blocks to allow for outbound access. Defaults to `["0.0.0.0/0"]` to allow services to talk to one another via the network loopback interface.
+* `egress_security_groups` (optional): A list of security groups to allow for outbound access. Defaults to `[]`.
 * `security_group_tags` (optional): Additional tags for the security. Defaults to `{Author :"Tamr"}`.
 
 ### EC2 Instance

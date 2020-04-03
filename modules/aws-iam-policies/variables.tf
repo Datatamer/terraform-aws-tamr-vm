@@ -17,6 +17,11 @@ variable "aws_emrfs_hbase_bucket_name" {
 variable "aws_emrfs_hbase_logs_bucket_name" {
   type = string
   description = "AWS account in which the cluster will be created"
+}
+
+variable "aws_emrfs_hbase_logs_bucket_name" {
+  type = string
+  description = "AWS account in which the cluster will be created"
   default = ""
 }
 

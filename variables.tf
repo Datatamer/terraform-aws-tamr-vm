@@ -168,10 +168,22 @@ variable "ingress_cidr_blocks" {
   default = []
 }
 
+variable "ingress_security_groups" {
+  type = list(string)
+  description = "Existing security groups to attch to new security groups for ingress"
+  default = []
+}
+
 variable "egress_cidr_blocks" {
   type = list(string)
   description = "CIDR blocks to attach to security groups for egress"
   default = ["0.0.0.0/0"]
+}
+
+variable "egress_security_groups" {
+  type = list(string)
+  description = "Existing security groups to attch to new security groups for egress"
+  default = []
 }
 
 variable "security_group_tags" {
