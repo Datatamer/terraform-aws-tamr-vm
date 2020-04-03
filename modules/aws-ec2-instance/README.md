@@ -30,9 +30,13 @@ This module creates:
 * `key_name` (required): The SSH key to attach to the instance.
 * `security_group_ids` (required): A list of security groups to attach to the instance.
 * `subnet_id` (required): The VPC Subnet ID to launch in.
-* `volume_type` (optional): What type of volume to attach to the instance, if attaching a root block volume. Defaults to `gp2`.
-* `volume_size` (optional): How big of a volume to attach to the instance, if attaching a root block volume. Defaults to `100`.
+* `volume_type` (optional): What type of volume to attach to the instance. Defaults to `gp2`.
+* `volume_size` (optional): How big of a volume to attach to the instance. Defaults to `100`.
 * `additional_tags` (optional): Additional tags to attach to the instance created
+
+## Outputs
+* `ec2_instance_id`: The ID of the Tamr instance.
+* `tamr_instance_ip`: The private IP address of the Tamr instance.
 
 
 # References

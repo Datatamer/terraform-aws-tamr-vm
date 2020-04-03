@@ -30,12 +30,14 @@ can be enabled using boolean variables. Additional rules can be added manually.
 ## Inputs
 * `vpc_id` (required): The ID of the VPC where the security group will be created.
 * `sg_name` (optional): The name to give the new security group. Defaults to `tamr-instance-security-group`.
-* `tamr_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9100`.
+* `tamr_ui_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9100`.
+* `tamr_es_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9200`.
+* `tamr_auth_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9020`.
+* `tamr_persistence_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9080`.
 * `kibana_port` (optional): The port for Kibana acess. Defaults to `5601`.
 * `enable_kibana_port` (optional): A boolean for whether to open the Kibana port. Defaults to `true`.
 * `grafana_port` (optional): The port for Grafana acess. Defaults to `31101`.
 * `enable_grafana_port` (optional): A boolean for whether to open the Grafana port. Defaults to `true`.
-* `enable_tls` (optional): A boolean for whether to enable TLS on port `443`. Defaults to `true`.
 * `enable_ssh` (optional): A boolean for whether to enable SSH access on port `22`. Defaults to `true`.
 * `enable_ping` (optional): A boolean for whether to enable ping using `ICMP`. Defaults to `true`.
 * `ingress_cidr_blocks` (optional): A list of CIDR blocks to allow for inbound access. Defaults to `[]`, but must include a CIDR block that describes your VPC or local IP or Tamr will be inaccessible to you.

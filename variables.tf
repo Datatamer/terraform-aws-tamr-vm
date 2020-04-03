@@ -50,10 +50,28 @@ variable "ami" {
   description = "The AMI to use for the EC2 instance"
 }
 
+variable "availability_zone" {
+  type = string
+  description = "The availability zone to use for the EC2 instance"
+  default = "us-east-1a"
+}
+
 variable "instance_type" {
   type = string
   description = "The instance type to use for the EC2 instance"
   default = "c5.9xlarge"
+}
+
+variable "volume_type" {
+  type = string
+  description = "The type of root block volume to attach to the EC2 instance"
+  default = "gp2"
+}
+
+variable "volume_size" {
+  type = number
+  description = "The size of the root block volume to attach to the EC2 instance"
+  default =  100
 }
 
 variable "tamr_instance_tags" {
@@ -78,10 +96,82 @@ variable "subnet_id" {
   description = "The subnet to create the EC2 instance in"
 }
 
+variable "tamr_ui_port" {
+  type = number
+  description = "Port for Tamr UI and proxying Tamr services"
+  default = 9100
+}
+
+variable "tamr_es_port" {
+  type = number
+  description = "Port for Tamr elasticsearch"
+  default = 9200
+}
+
+variable "tamr_auth_port" {
+  type = number
+  description = "Port for Tamr auth"
+  default = 9020
+}
+
+variable "tamr_persistence_port" {
+  type = number
+  description = "Port for Tamr persistence"
+  default = 9080
+}
+
+variable "zk_port" {
+  type = number
+  description = "Port for accessing Zookeeper on the Tamr instance"
+  default = 21281
+}
+
+variable "kibana_port" {
+  type = number
+  description = "Default Kibana port"
+  default = 5601
+}
+
+variable "enable_kibana_port" {
+  type = bool
+  description = "If set to true, opens the kibana port for ingress"
+  default = true
+}
+
+variable "grafana_port" {
+  type = number
+  description = "Default Grafana port"
+  default = 31101
+}
+
+variable "enable_grafana_port" {
+  type = bool
+  description = "If set to true, opens the grafana port for ingress"
+  default = true
+}
+
+variable "enable_ssh" {
+  type = bool
+  description = "If set to true, enables SSH"
+  default = true
+}
+
+variable "enable_ping" {
+  type = bool
+  description = "If set to true, enables ping"
+  default = true
+}
+
 variable "ingress_cidr_blocks" {
   type = list(string)
   description = "CIDR blocks to attach to security groups for ingress"
   default = []
+}
+
+variable "egress_cidr_blocks" {
+  type = list(string)
+  description = "CIDR blocks to attach to security groups for egress"
+  default = ["0.0.0.0/0"]
 }
 
 variable "security_group_tags" {
