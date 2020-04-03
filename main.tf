@@ -18,8 +18,10 @@ module "aws-iam-policies" {
 
 module "aws-security-groups" {
   source = "./modules/aws-security-groups"
+  sg_name = "${var.sg_name}"
   vpc_id = "${var.vpc_id}"
   ingress_cidr_blocks = var.ingress_cidr_blocks
+  additional_tags = var.security_group_tags
 }
 
 module "tamr_instance" {
@@ -30,4 +32,5 @@ module "tamr_instance" {
   key_name = "${var.key_name}"
   security_group_ids = ["${module.aws-security-groups.tamr_security_group_id}"]
   subnet_id = "${var.subnet_id}"
+  additional_tags = var.tamr_instance_tags
 }

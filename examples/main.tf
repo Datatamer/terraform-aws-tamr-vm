@@ -1,4 +1,4 @@
-module "rds_postgres" {
+module "tamr-vm" {
   source = "../"
   aws_role_name = "name-for-tamr-role"
   aws_instance_profile_name = "name-for-tamr-instance-profile"

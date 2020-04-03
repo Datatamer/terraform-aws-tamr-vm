@@ -2,15 +2,8 @@
 resource "aws_security_group" "tamr-vm-sg" {
   name        = "${var.sg_name}"
   description = "Default security group for tamr"
-
   vpc_id = "${var.vpc_id}"
-
-  tags = merge(
-    {Author :"Tamr"},
-    {Name: "Tamr VM SG"},
-    var.additional_tags
-  )
-
+  tags = var.additional_tags
 }
 
 //security group rules for the Tamr VM security group created above

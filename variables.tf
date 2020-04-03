@@ -56,6 +56,15 @@ variable "instance_type" {
   default = "c5.9xlarge"
 }
 
+variable "tamr_instance_tags" {
+  type = map(string)
+  description = "Additional tags to be attached to the Tamr EC2 instance"
+  default = (
+    {Author :"Tamr"},
+    {Name: "Tamr VM"},
+  )
+}
+
 variable "key_name" {
   type = string
   description = "The key name to attach to the EC2 instance for SSH access"
@@ -76,4 +85,10 @@ variable "ingress_cidr_blocks" {
   type = list(string)
   description = "CIDR blocks to attach to security groups for ingress"
   default = []
+}
+
+variable "security_group_tags" {
+  type = map(string)
+  description = "Additional tags to be attached to the security group created"
+  default = {Author :"Tamr"}
 }
