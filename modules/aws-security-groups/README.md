@@ -34,6 +34,7 @@ can be enabled using boolean variables. Additional rules can be added manually.
 * `tamr_es_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9200`.
 * `tamr_auth_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9020`.
 * `tamr_persistence_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9080`.
+* `zk_port` (optional): Port for accessing Zookeeper on the Tamr instance. Defaults to `21281`
 * `kibana_port` (optional): The port for Kibana acess. Defaults to `5601`.
 * `enable_kibana_port` (optional): A boolean for whether to open the Kibana port. Defaults to `true`.
 * `grafana_port` (optional): The port for Grafana acess. Defaults to `31101`.
