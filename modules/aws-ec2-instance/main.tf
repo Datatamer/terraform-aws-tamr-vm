@@ -12,9 +12,5 @@ resource "aws_instance" "tamr-instance" {
     volume_size = var.volume_size
   }
 
-  tags = merge(
-    {Author :"Tamr"},
-    {Name: "Tamr VM"},
-    var.additional_tags
-  )
+  tags = var.additional_tags
 }

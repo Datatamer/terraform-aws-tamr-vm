@@ -19,21 +19,17 @@ This modules creates:
 
 # Variables
 ## Inputs
-* `aws_role_name` (optional): The name to give the IAM Role. Defaults to `tamr-instance-role`
+* `aws_role_name` (optional): The name to give the IAM Role. Defaults to `tamr-instance-role`.
+* `aws_instance_profile_name` (optional): The name to give to the IAM instance profile. Defaults to `tamr-instance-profile`.
 
 ## Outputs
 * `tamr_instance_profile_id`: ID for the IAM instance profile created.
+* `tamr_instance_role_name`: The name of the IAM instance role created.
 
 # References
 This repo is based on:
 * [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure)
 * [templated terraform module](https://github.com/tmknom/template-terraform-module)
-
-# Development
-## Releasing new versions
-* Update version contained in `VERSION`
-* Document changes in `CHANGELOG.md`
-* Create a tag in github for the commit associated with the version
 
 # License
 Apache 2 Licensed. See LICENSE for full details.
