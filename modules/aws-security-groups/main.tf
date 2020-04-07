@@ -127,7 +127,7 @@ resource "aws_security_group_rule" "zk_access_sg"{
 }
 
 resource "aws_security_group_rule" "kibana_access_cidr"{
-  count = var.enable_ssh && (local.cidr_block_ingress_rule > 0 ? true : false ) ? 1 : 0
+  count = var.enable_kibana_port && (local.cidr_block_ingress_rule > 0 ? true : false ) ? 1 : 0
   security_group_id = aws_security_group.tamr-vm-sg.id
   type = "ingress"
   description = "Kibana port"
@@ -138,7 +138,7 @@ resource "aws_security_group_rule" "kibana_access_cidr"{
 }
 
 resource "aws_security_group_rule" "kibana_access_sg"{
-  count = var.enable_ssh && (local.security_group_ingress_rule > 0 ? true : false ) ? 1 : 0
+  count = var.enable_kibana_port && (local.security_group_ingress_rule > 0 ? true : false ) ? 1 : 0
   security_group_id = aws_security_group.tamr-vm-sg.id
   type = "ingress"
   description = "Kibana port"
@@ -149,7 +149,7 @@ resource "aws_security_group_rule" "kibana_access_sg"{
 }
 
 resource "aws_security_group_rule" "grafana_access_cidr"{
-  count = var.enable_ssh && (local.cidr_block_ingress_rule > 0 ? true : false ) ? 1 : 0
+  count = var.enable_grafana_port && (local.cidr_block_ingress_rule > 0 ? true : false ) ? 1 : 0
   security_group_id = aws_security_group.tamr-vm-sg.id
   type = "ingress"
   description = "Grafana port"
@@ -160,7 +160,7 @@ resource "aws_security_group_rule" "grafana_access_cidr"{
 }
 
 resource "aws_security_group_rule" "grafana_access_sg"{
-  count = var.enable_ssh && (local.security_group_ingress_rule > 0 ? true : false ) ? 1 : 0
+  count = var.enable_grafana_port && (local.security_group_ingress_rule > 0 ? true : false ) ? 1 : 0
   security_group_id = aws_security_group.tamr-vm-sg.id
   type = "ingress"
   description = "Grafana port"
@@ -215,7 +215,7 @@ resource "aws_security_group_rule" "ssh_access_sg"{
 }
 
 resource "aws_security_group_rule" "ping_access_cidr"{
-  count = var.enable_ssh && (local.cidr_block_ingress_rule > 0 ? true : false ) ? 1 : 0
+  count = var.enable_ping && (local.cidr_block_ingress_rule > 0 ? true : false ) ? 1 : 0
   security_group_id = aws_security_group.tamr-vm-sg.id
   type = "ingress"
   description = "Ping from allowed CIDR blocks"
@@ -226,7 +226,7 @@ resource "aws_security_group_rule" "ping_access_cidr"{
 }
 
 resource "aws_security_group_rule" "ping_access_sg"{
-  count = var.enable_ssh && (local.security_group_ingress_rule > 0 ? true : false ) ? 1 : 0
+  count = var.enable_ping && (local.security_group_ingress_rule > 0 ? true : false ) ? 1 : 0
   security_group_id = aws_security_group.tamr-vm-sg.id
   type = "ingress"
   description = "Ping from allowed CIDR blocks"
