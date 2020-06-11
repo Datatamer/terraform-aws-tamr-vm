@@ -29,7 +29,6 @@ data "aws_iam_policy_document" "emr_creator_policy" {
   statement {
     effect = "Allow"
     actions = [
-      "elasticmapreduce:ListClusters",
       "elasticmapreduce:RunJobFlow"
     ]
     resources = [
@@ -39,7 +38,8 @@ data "aws_iam_policy_document" "emr_creator_policy" {
   statement {
     effect = "Allow"
     actions = [
-      "elasticmapreduce:Describe*"
+      "elasticmapreduce:Describe*",
+      "elasticmapreduce:ListClusters"
     ]
     resources = ["*"]
   }

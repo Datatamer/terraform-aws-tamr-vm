@@ -1,3 +1,6 @@
+# Tamr VM Terraform Module  - v0.2.1 - June 11th 2020
+* Updates the policy to support both static and ephemeral EMR clusters
+
 # Tamr VM Terraform Module  - v0.1.0 - March 23rd 2020
 * Initing project
 * Create role policy with minimal permissions needed to spin up an EMR cluster and submit jobs, S3 permissions for primary and backup filesystem

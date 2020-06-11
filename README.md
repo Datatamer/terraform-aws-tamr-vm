@@ -7,7 +7,7 @@ This repo follows the [terraform standard module structure](https://www.terrafor
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "basic" {
-  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm?ref=0.2.0"
+  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm?ref=0.2.1"
   aws_role_name = "name-for-tamr-role"
   aws_instance_profile_name = "name-for-tamr-instance-profile"
   aws_account_id = "123456789012"
