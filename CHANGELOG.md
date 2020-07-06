@@ -1,7 +1,12 @@
-# Tamr VM Terraform Module  - v0.2.1 - June 11th 2020
+# Tamr VM Terraform Module
+
+## v0.2.2 - July 6th 2020
+* Adds ListObjects to the s3 policy
+
+## v0.2.1 - June 11th 2020
 * Updates the policy to support both static and ephemeral EMR clusters
 
-# Tamr VM Terraform Module  - v0.1.0 - March 23rd 2020
+## v0.1.0 - March 23rd 2020
 * Initing project
 * Create role policy with minimal permissions needed to spin up an EMR cluster and submit jobs, S3 permissions for primary and backup filesystem
 * Resource to attach role policy to existing user (assumption that IAM role already exists)

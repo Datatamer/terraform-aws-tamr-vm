@@ -7,7 +7,7 @@ A minimal example implementation of the module is implemented in the examples fo
 This is the most basic example of what it would look like to use this module.
 ```
 module "aws-emr-creator-iam" {
-  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm/modules/aws-iam-policies?ref=0.1.0"
+  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm/modules/aws-iam-policies?ref=0.2.2"
   aws_role_name = "iam-role-name"
   aws_account_id = "12-digit-ARN"
 }
