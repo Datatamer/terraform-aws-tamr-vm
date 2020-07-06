@@ -66,7 +66,8 @@ data "aws_iam_policy_document" "emrfs_user_policy" {
       "s3:GetObject",
       "s3:DeleteObject",
       "s3:AbortMultipartUpload",
-      "s3:ListBucket"
+      "s3:ListBucket",
+      "s3:ListObjects"
     ]
     resources = [
       "arn:aws:s3:::${var.aws_emrfs_hbase_bucket_name}/*",
