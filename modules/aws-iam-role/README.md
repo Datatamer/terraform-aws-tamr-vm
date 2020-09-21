@@ -8,7 +8,7 @@ This is the most basic example of what it would look like to use this module.
 
 ```
 module "aws-tamr-user-role" {
-  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm/modules/aws-iam-role?ref=0.2.2"
+  source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm/modules/aws-iam-role?ref=0.2.2"
   aws_role_name = "iam-role-name"
 }
 ```

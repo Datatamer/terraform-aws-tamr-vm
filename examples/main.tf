@@ -1,5 +1,5 @@
 module "tamr-vm" {
-  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm"
+  source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm"
   aws_role_name = "name-for-tamr-role"
   aws_instance_profile_name = "name-for-tamr-instance-profile"
   aws_account_id = "123456789012"
