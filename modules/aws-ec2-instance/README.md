@@ -8,7 +8,7 @@ This is the most basic example of what it would look like to use this module.
 
 ```
 module "aws-tamr-instance" {
-  source = "git::https://github.com/Datatamer/terraform-emr-tamr-vm/modules/aws-ec2-instance?ref=0.2.2"
+  source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm/modules/aws-ec2-instance?ref=0.2.2"
   ami = "ami-123456789"
   iam_instance_profile = "iam-profile-id"
   key_name = "my-key"
