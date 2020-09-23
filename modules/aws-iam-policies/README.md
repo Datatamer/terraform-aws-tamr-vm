@@ -1,42 +1,57 @@
 # Tamr VM IAM Policies Module
-This is a terraform module for creating a policy role in AWS with permissions to create a new EMR cluster.
-This repo is laid out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
+This terraform modules creates a policy role in AWS with permissions to create a new EMR cluster.
 
 # Examples
-A minimal example implementation of the module is implemented in the examples folder.
-This is the most basic example of what it would look like to use this module.
+## Basic
+Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "aws-emr-creator-iam" {
-  source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm/modules/aws-iam-policies?ref=0.2.2"
-  aws_role_name = "iam-role-name"
+  source         = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-policies?ref=0.2.2"
+  aws_role_name  = "iam-role-name"
   aws_account_id = "12-digit-ARN"
 }
 ```
 
 # Resources Created
 This modules creates:
-* an iam policy with permissions for creating a cluster
-* an iam role policy attachment resource, to attach the newly created policy to an existing IAM role
+* an IAM policy with permissions for creating a cluster
+* an IAM role policy attachment resource, to attach the newly created policy to an existing IAM role
 
-# Variables
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+| aws | >= 2.45.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | >= 2.45.0 |
+
 ## Inputs
-* `aws_role_name` (required) : The name of the existing IAM role that the policy will be attached to
-* `aws_account_id` (required): The ARN of the AWS account where the cluster is created
-* `aws_emrfs_hbase_bucket_name` (required): The name of the S3 bucket where HBase stores files.
-* `aws_emrfs_hbase_logs_bucket_name` (required): The name of the S3 bucket where HBase stores logs.
-* `aws_emrfs_spark_logs_bucket_name` (required): The name of the S3 bucket where Spark stores logs.
-* `aws_emr_creator_policy_name` (optional): The name of the IAM policy giving EMR permissions. Defaults to `emrCreatorMinimalPolicy`.
-* `aws_emrfs_user_policy_name` (optional): The name of the IAM policy giving S3 permissions. Defaults to `emrfsUserMinimalPolicy`.
 
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| aws\_account\_id | AWS account in which the cluster will be created | `string` | n/a | yes |
+| aws\_emrfs\_hbase\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
+| aws\_emrfs\_hbase\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
+| aws\_emrfs\_spark\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
+| aws\_role\_name | IAM Role to which the policy will be attached | `string` | n/a | yes |
+| aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
+| aws\_emrfs\_user\_policy\_name | The name to give to the policy regarding S3 permissions | `string` | `"emrfsUserMinimalPolicy"` | no |
+
+## Outputs
+
+No output.
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 # References
 This repo is based on:
-* [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure)
-* [templated terraform module](https://github.com/tmknom/template-terraform-module)
-
-The permissions were scoped according to resource types as described in: https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonelasticmapreduce.html#amazonelasticmapreduce-cluster
-* Minimal permissions were built based on Tamr user needs
-
+* [EMR Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonelasticmapreduce.html#amazonelasticmapreduce-cluster)
 
 # License
 Apache 2 Licensed. See LICENSE for full details.

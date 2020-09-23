@@ -1,35 +1,36 @@
-# Terraform Tamr EC2 Instance Template
-This is a github repo for a terraform module to spin up an EC2 instance for Tamr, as well as additional dependencies.
-This repo follows the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
+# Terraform AWS Tamr EC2 Instance Template
+This terraform module spins up an EC2 instance for Tamr, as well as additional dependencies.
 
 # Examples
 ## Basic
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "basic" {
-  source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.2.2"
-  aws_role_name = "name-for-tamr-role"
-  aws_instance_profile_name = "name-for-tamr-instance-profile"
-  aws_account_id = "123456789012"
-  aws_emrfs_hbase_bucket_name = "hbase-root-bucket-name"
+  source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.2.2"
+  aws_role_name                    = "name-for-tamr-role"
+  aws_instance_profile_name        = "name-for-tamr-instance-profile"
+  aws_account_id                   = "123456789012"
+  aws_emrfs_hbase_bucket_name      = "hbase-root-bucket-name"
   aws_emrfs_hbase_logs_bucket_name = "hbase-logs-bucket-name"
   aws_emrfs_spark_logs_bucket_name = "spark-logs-bucket-name"
-  vpc_id = "vpc-12345abcde"
-  ami = "ami-abcde12345"
-  key_name = "ssh-key-name"
-  subnet_id = "subnet-123456789"
+  vpc_id                           = "vpc-12345abcde"
+  ami                              = "ami-abcde12345"
+  key_name                         = "ssh-key-name"
+  subnet_id                        = "subnet-123456789"
   ingress_cidr_blocks = [
     "1.2.3.4/16"
   ]
 }
 ```
-An additional example is available in the `examples` folder.
+## Minimal
+Smallest complete fully working example. This example might require extra resources to run the example.
+- [Minimal](https://github.com/Datatamer/terraform-aws-tamr-vm/tree/master/examples/minimal)
 
 # Resources Created
 This modules creates:
 * an EC2 instance with attached roles and security groups in order to run Tamr and EMR
-* an iam policy with permissions for creating a cluster
-* an iam role policy attachment resource, to attach the newly created policy to an existing IAM role
+* an IAM policy with permissions for creating a cluster
+* an IAM role policy attachment resource, to attach the newly created policy to an existing IAM role
 * an IAM role for use by the Tamr VM
 * a security group for EC2 allowing access to the Tamr VM.
 * additonal security group rules. By default, opens required Tamr ports,
@@ -38,56 +39,65 @@ AWS's default ALLOW ALL egress rules. These ports can be changed if desired. Add
 ports for basic monitoring (Kibana and Grafana), as well as SSH, and ping,
 can be enabled using boolean variables. Additional rules can be added manually.
 
-# Variables
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+| aws | >= 2.45.0 |
+
+## Providers
+
+No provider.
+
 ## Inputs
-### IAM Policy
-* `aws_role_name` (required): The IAM Role to attach the IAM policies to. By default sources from the IAM role created in this module.
-* `aws_account_id` (required): The ARN of the AWS account where the cluster is created
-* `aws_emrfs_hbase_bucket_name` (required): The name of the S3 bucket where HBase stores files.
-* `aws_emrfs_hbase_logs_bucket_name` (required): The name of the S3 bucket where HBase stores logs.
-* `aws_emrfs_spark_logs_bucket_name` (required): The name of the S3 bucket where Spark stores logs.
-* `aws_emr_creator_policy_name` (optional): The name of the IAM policy giving EMR permissions. Defaults to `emrCreatorMinimalPolicy`.
-* `aws_emrfs_user_policy_name` (optional): The name of the IAM policy giving S3 permissions. Defaults to  `emrfsUserMinimalPolicy`.
 
-### IAM Role
-* `aws_role_name` (optional): The name to give the IAM Role. Defaults to `tamr-instance-role`.
-* `aws_instance_profile_name` (optional): The name to give to the IAM instance profile. Defaults to `tamr-instance-profile`.
-
-### Security Group
-* `vpc_id` (required): The ID of the VPC where the security group will be created.
-* `sg_name` (optional): The name to give the new security group. Defaults to `tamr-instance-security-group`.
-* `tamr_ui_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9100`.
-* `tamr_es_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9200`.
-* `tamr_auth_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9020`.
-* `tamr_persistence_port` (optional): The port that Tamr is using for UI access and API proxying. Defaults to `9080`.
-* `zk_port` (optional): Port for accessing Zookeeper on the Tamr instance. Defaults to `21281`
-* `kibana_port` (optional): The port for Kibana acess. Defaults to `5601`.
-* `enable_kibana_port` (optional): A boolean for whether to open the Kibana port. Defaults to `true`.
-* `grafana_port` (optional): The port for Grafana acess. Defaults to `31101`.
-* `enable_grafana_port` (optional): A boolean for whether to open the Grafana port. Defaults to `true`.
-* `enable_ssh` (optional): A boolean for whether to enable SSH access on port `22`. Defaults to `true`.
-* `enable_ping` (optional): A boolean for whether to enable ping using `ICMP`. Defaults to `true`.
-* `ingress_cidr_blocks` (optional): A list of CIDR blocks to allow for inbound access. Defaults to `[]`, but must include a CIDR block that describes your VPC or local IP or Tamr will be inaccessible to you.
-* `ingress_security_groups` (optional): A list of security groups to allow for inbound access. Defaults to `[]`.
-* `egress_cidr_blocks` (optional): A list of CIDR blocks to allow for outbound access. Defaults to `["0.0.0.0/0"]` to allow services to talk to one another via the network loopback interface.
-* `egress_security_groups` (optional): A list of security groups to allow for outbound access. Defaults to `[]`.
-* `security_group_tags` (optional): Additional tags for the security. Defaults to `{Author :"Tamr"}`.
-
-### EC2 Instance
-* `ami` (required): The AMI to use to spin up the EC2 instance.
-* `iam_instance_profile` (required): The iam instance profile to attach to the EC2 instance. Defaults to the instance profile created in this module.
-* `key_name` (required): The SSH key to attach to the instance.
-* `security_group_ids` (required): A list of security groups to attach to the instance. By default sources from the security group created in this module.
-* `subnet_id` (required): The VPC Subnet ID to launch in.
-* `availability_zone` (optional): The availability zone in which to place the EC2 instance. Defaults to `us-east-1`.
-* `instance_type` (optional): The type of instance to use. Defaults to `c5.9xlarge`.
-* `volume_type` (optional): What type of volume to attach to the instance. Defaults to `gp2`.
-* `volume_size` (optional): How big of a volume to attach to the instance. Defaults to `100`.
-* `tamr_instance_tags` (optional): Additional tags to attach to the instance created. Defaults to `{Author: "Tamr", Name: "Tamr VM"}`.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| ami | The AMI to use for the EC2 instance | `string` | n/a | yes |
+| aws\_account\_id | AWS account in which the cluster will be created | `string` | n/a | yes |
+| aws\_emrfs\_hbase\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
+| aws\_emrfs\_hbase\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
+| aws\_emrfs\_spark\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
+| aws\_instance\_profile\_name | IAM Instance Profile to create | `string` | n/a | yes |
+| aws\_role\_name | IAM Role to create, and to which the policies will be attached | `string` | n/a | yes |
+| key\_name | The key name to attach to the EC2 instance for SSH access | `string` | n/a | yes |
+| subnet\_id | The subnet to create the EC2 instance in | `string` | n/a | yes |
+| vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
+| availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
+| aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
+| aws\_emrfs\_user\_policy\_name | The name to give to the policy regarding S3 permissions | `string` | `"emrfsUserMinimalPolicy"` | no |
+| egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
+| enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |
+| enable\_kibana\_port | If set to true, opens the kibana port for ingress | `bool` | `true` | no |
+| enable\_ping | If set to true, enables ping | `bool` | `true` | no |
+| enable\_ssh | If set to true, enables SSH | `bool` | `true` | no |
+| grafana\_port | Default Grafana port | `number` | `31101` | no |
+| ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
+| ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
+| instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
+| kibana\_port | Default Kibana port | `number` | `5601` | no |
+| security\_group\_tags | Additional tags to be attached to the security group created | `map(string)` | <pre>{<br>  "Author": "Tamr"<br>}</pre> | no |
+| sg\_name | Security Group to create | `string` | `"tamr-instance-security-group"` | no |
+| tamr\_auth\_port | Port for Tamr auth | `number` | `9020` | no |
+| tamr\_es\_port | Port for Tamr elasticsearch | `number` | `9200` | no |
+| tamr\_instance\_tags | Additional tags to be attached to the Tamr EC2 instance | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Name": "Tamr VM"<br>}</pre> | no |
+| tamr\_persistence\_port | Port for Tamr persistence | `number` | `9080` | no |
+| tamr\_ui\_port | Port for Tamr UI and proxying Tamr services | `number` | `9100` | no |
+| volume\_size | The size of the root block volume to attach to the EC2 instance | `number` | `100` | no |
+| volume\_type | The type of root block volume to attach to the EC2 instance | `string` | `"gp2"` | no |
+| zk\_port | Port for accessing Zookeeper on the Tamr instance | `number` | `21281` | no |
 
 ## Outputs
-* `tamr_security_group_id`: The ID of the security group created by the `aws-security-group` submodule, and that is attached to the Tamr EC2 instance.
-* `tamr_instance_ip`: The private IP address of the Tamr instance.
+
+| Name | Description |
+|------|-------------|
+| tamr\_instance\_ip | Private IP address of the Tamr instance |
+| tamr\_security\_group\_id | ID of the security group created |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 # References
 This repo is based on:
@@ -95,6 +105,13 @@ This repo is based on:
 * [templated terraform module](https://github.com/tmknom/template-terraform-module)
 
 # Development
+## Generating Docs
+Run `make terraform/docs` to generate the section of docs around terraform inputs, outputs and requirements.
+
+## Checkstyles
+Run `make lint`, this will run terraform fmt, in addition to a few other checks to detect whitespace issues.
+NOTE: this requires having docker working on the machine running the test
+
 ## Releasing new versions
 * Update version contained in `VERSION`
 * Document changes in `CHANGELOG.md`

@@ -1,19 +1,17 @@
-# EMR Creator Permissions Module
-This is a terraform module for an EC2 instance on which Tamr will run.
-This repo is laid out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
+# Tamr EMR Creator Permissions Module
+This terraform module creates an EC2 instance on which Tamr will run.
 
 # Examples
-An inline example implementation of the module is implemented in the examples folder.
-This is the most basic example of what it would look like to use this module.
-
+## Basic
+Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "aws-tamr-instance" {
-  source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm/modules/aws-ec2-instance?ref=0.2.2"
-  ami = "ami-123456789"
+  source               = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-ec2-instance?ref=0.2.2"
+  ami                  = "ami-123456789"
   iam_instance_profile = "iam-profile-id"
-  key_name = "my-key"
-  security_group_ids = ["security-group-1-id", "security-group-2-id"]
-  subnet_id = "subnet-123"
+  key_name             = "my-key"
+  security_group_ids   = ["security-group-1-id", "security-group-2-id"]
+  subnet_id            = "subnet-123"
 }
 ```
 
@@ -21,23 +19,43 @@ module "aws-tamr-instance" {
 This module creates:
 * an EC2 instance with attached roles and security groups in order to run Tamr and EMR
 
-# Variables
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+| aws | >= 2.45.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | >= 2.45.0 |
+
 ## Inputs
-* `ami` (required): The AMI to use to spin up the EC2 instance.
-* `availability_zone` (optional): The availability zone in which to place the instance. Defaults to `us-east-1`.
-* `iam_instance_profile` (required): The iam instance profile to attach to the EC2 instance.
-* `instance_type` (optional): The type of instance to use. Defaults to `c5.9xlarge`.
-* `key_name` (required): The SSH key to attach to the instance.
-* `security_group_ids` (required): A list of security groups to attach to the instance.
-* `subnet_id` (required): The VPC Subnet ID to launch in.
-* `volume_type` (optional): What type of volume to attach to the instance. Defaults to `gp2`.
-* `volume_size` (optional): How big of a volume to attach to the instance. Defaults to `100`.
-* `additional_tags` (optional): Additional tags to attach to the instance created
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| ami | The AMI to use for the EC2 instance | `string` | n/a | yes |
+| iam\_instance\_profile | The iam instance profile to attach to the EC2 instance | `string` | n/a | yes |
+| key\_name | The key name to attach to the EC2 instance for SSH access | `string` | n/a | yes |
+| security\_group\_ids | A list of security groups to attach to the EC2 instance | `list(string)` | n/a | yes |
+| subnet\_id | The subnet to create the EC2 instance in | `string` | n/a | yes |
+| additional\_tags | Additional tags to be attached to the resources created | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Name": "Tamr VM"<br>}</pre> | no |
+| availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
+| instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
+| volume\_size | The size of the root block volume to attach to the EC2 instance | `number` | `100` | no |
+| volume\_type | The type of root block volume to attach to the EC2 instance | `string` | `"gp2"` | no |
 
 ## Outputs
-* `ec2_instance_id`: The ID of the Tamr instance.
-* `tamr_instance_ip`: The private IP address of the Tamr instance.
 
+| Name | Description |
+|------|-------------|
+| ec2\_instance\_id | The ID of the instance created |
+| tamr\_instance\_ip | The private IP address of the EC2 instance created |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 # References
 This repo is based on:

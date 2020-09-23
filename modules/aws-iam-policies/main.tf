@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "emr_creator_policy" {
       "elasticmapreduce:RunJobFlow"
     ]
     resources = [
-        "arn:aws:elasticmapreduce:*"
+      "arn:aws:elasticmapreduce:*"
     ]
   }
   statement {
