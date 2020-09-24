@@ -1,17 +1,6 @@
-variable "aws_emr_creator_policy_name" {
+variable "name_prefix" {
   type        = string
-  description = "The name to give to the policy regarding EMR permissions"
-  default     = "emrCreatorMinimalPolicy"
-}
-
-variable "aws_role_name" {
-  type        = string
-  description = "IAM Role to create, and to which the policies will be attached"
-}
-
-variable "aws_instance_profile_name" {
-  type        = string
-  description = "IAM Instance Profile to create"
+  description = "A prefix to add to the names of all created resources"
 }
 
 variable "s3_policy_arns" {
@@ -63,17 +52,6 @@ variable "tamr_instance_tags" {
   type        = map(string)
   description = "Additional tags to be attached to the Tamr EC2 instance"
   default     = { Author : "Tamr", Name : "Tamr VM" }
-}
-
-variable "key_name" {
-  type        = string
-  description = "The key name to attach to the EC2 instance for SSH access"
-}
-
-variable "sg_name" {
-  type        = string
-  description = "Security Group to create"
-  default     = "tamr-instance-security-group"
 }
 
 variable "subnet_id" {

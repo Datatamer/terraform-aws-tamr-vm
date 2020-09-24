@@ -1,20 +1,20 @@
 //working example for Tamr EMR account
 module "aws-iam-role" {
   source                    = "./modules/aws-iam-role"
-  aws_role_name             = var.aws_role_name
-  aws_instance_profile_name = var.aws_instance_profile_name
+  aws_role_name             = "${var.name_prefix}_aws_role"
+  aws_instance_profile_name = "${var.name_prefix}_aws_instance_profile"
 }
 
 module "aws-iam-policies" {
   source                      = "./modules/aws-iam-policies"
   aws_role_name               = module.aws-iam-role.tamr_instance_role_name
-  aws_emr_creator_policy_name = var.aws_emr_creator_policy_name
+  aws_emr_creator_policy_name = "${var.name_prefix}_aws_emr_creator_policy"
   s3_policy_arns              = var.s3_policy_arns
 }
 
 module "aws-security-groups" {
   source                  = "./modules/aws-security-groups"
-  sg_name                 = var.sg_name
+  sg_name                 = "${var.name_prefix}_security_group"
   vpc_id                  = var.vpc_id
   tamr_ui_port            = var.tamr_ui_port
   tamr_es_port            = var.tamr_es_port
