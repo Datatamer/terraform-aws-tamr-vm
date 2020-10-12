@@ -266,7 +266,7 @@ resource "aws_security_group_rule" "default_egress_cidr" {
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
-  cidr_blocks       = "${var.egress_cidr_blocks}"
+  cidr_blocks       = "${var.egress_cidr_blocks}" #tfsec:ignore:AWS007
 }
 
 resource "aws_security_group_rule" "default_egress_sg" {
