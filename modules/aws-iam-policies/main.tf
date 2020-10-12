@@ -49,8 +49,8 @@ data "aws_iam_policy_document" "emr_creator_policy" {
 
 //Attach the above policy to an existing user
 resource "aws_iam_role_policy_attachment" "emr_creator_policy_attachment" {
-  role       = "${var.aws_role_name}"
-  policy_arn = "${aws_iam_policy.emr_creator_minimal_policy.arn}"
+  role       = var.aws_role_name
+  policy_arn = aws_iam_policy.emr_creator_minimal_policy.arn
 }
 
 // reduced permissions policy for Tamr user to be able to access EMRFS
@@ -92,6 +92,6 @@ data "aws_iam_policy_document" "emrfs_user_policy" {
 
 //Attach the above policy to an existing user
 resource "aws_iam_role_policy_attachment" "emrfs_user_policy_attachment" {
-  role       = "${var.aws_role_name}"
-  policy_arn = "${aws_iam_policy.emrfs_user_minimal_policy.arn}"
+  role       = var.aws_role_name
+  policy_arn = aws_iam_policy.emrfs_user_minimal_policy.arn
 }

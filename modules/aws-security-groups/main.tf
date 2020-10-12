@@ -1,8 +1,8 @@
 //Security group for the Tamr EC2 instance
 resource "aws_security_group" "tamr-vm-sg" {
-  name        = "${var.sg_name}"
+  name        = var.sg_name
   description = "Default security group for tamr"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
   tags        = var.additional_tags
 }
 
@@ -24,7 +24,7 @@ resource "aws_security_group_rule" "UI_access_cidr" {
   from_port         = var.tamr_ui_port
   to_port           = var.tamr_ui_port
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "UI_access_sg" {
@@ -46,7 +46,7 @@ resource "aws_security_group_rule" "ES_access_cidr" {
   from_port         = var.tamr_es_port
   to_port           = var.tamr_es_port
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "ES_access_sg" {
@@ -68,7 +68,7 @@ resource "aws_security_group_rule" "auth_access_cidr" {
   from_port         = var.tamr_auth_port
   to_port           = var.tamr_auth_port
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "auth_access_sg" {
@@ -90,7 +90,7 @@ resource "aws_security_group_rule" "persistence_access_cidr" {
   from_port         = var.tamr_persistence_port
   to_port           = var.tamr_persistence_port
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "persistence_access_sg" {
@@ -112,7 +112,7 @@ resource "aws_security_group_rule" "zk_access_cidr" {
   from_port         = var.zk_port
   to_port           = var.zk_port
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "zk_access_sg" {
@@ -134,7 +134,7 @@ resource "aws_security_group_rule" "kibana_access_cidr" {
   from_port         = var.kibana_port
   to_port           = var.kibana_port
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "kibana_access_sg" {
@@ -156,7 +156,7 @@ resource "aws_security_group_rule" "grafana_access_cidr" {
   from_port         = var.grafana_port
   to_port           = var.grafana_port
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "grafana_access_sg" {
@@ -178,7 +178,7 @@ resource "aws_security_group_rule" "tls_access_cidr" {
   from_port         = 443
   to_port           = 443
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "tls_access_sg" {
@@ -200,7 +200,7 @@ resource "aws_security_group_rule" "ssh_access_cidr" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "ssh_access_sg" {
@@ -222,7 +222,7 @@ resource "aws_security_group_rule" "ping_access_cidr" {
   from_port         = -1
   to_port           = -1
   protocol          = "icmp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "ping_access_sg" {
@@ -244,7 +244,7 @@ resource "aws_security_group_rule" "http_access_cidr" {
   from_port         = 80
   to_port           = 80
   protocol          = "tcp"
-  cidr_blocks       = "${var.ingress_cidr_blocks}"
+  cidr_blocks       = var.ingress_cidr_blocks
 }
 
 resource "aws_security_group_rule" "http_access_sg" {
@@ -266,7 +266,7 @@ resource "aws_security_group_rule" "default_egress_cidr" {
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
-  cidr_blocks       = "${var.egress_cidr_blocks}" #tfsec:ignore:AWS007
+  cidr_blocks       = var.egress_cidr_blocks #tfsec:ignore:AWS007
 }
 
 resource "aws_security_group_rule" "default_egress_sg" {
