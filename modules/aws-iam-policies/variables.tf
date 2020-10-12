@@ -15,18 +15,17 @@ variable "aws_role_name" {
   description = "IAM Role to which the policy will be attached"
 }
 
-
 variable "aws_emrfs_hbase_bucket_name" {
   type        = string
-  description = "AWS account in which the cluster will be created"
+  description = "Name of HBase root directory S3 bucket"
 }
 
 variable "aws_emrfs_hbase_logs_bucket_name" {
   type        = string
-  description = "AWS account in which the cluster will be created"
+  description = "Name of HBase logs S3 bucket"
 }
 
 variable "aws_emrfs_spark_logs_bucket_name" {
   type        = string
-  description = "AWS account in which the cluster will be created"
+  description = "Name of Spark logs S3 bucket"
 }

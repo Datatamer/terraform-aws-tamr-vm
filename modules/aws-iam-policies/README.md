@@ -34,9 +34,9 @@ This modules creates:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| aws\_emrfs\_hbase\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
-| aws\_emrfs\_hbase\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
-| aws\_emrfs\_spark\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
+| aws\_emrfs\_hbase\_bucket\_name | Name of HBase root directory S3 bucket | `string` | n/a | yes |
+| aws\_emrfs\_hbase\_logs\_bucket\_name | Name of HBase logs S3 bucket | `string` | n/a | yes |
+| aws\_emrfs\_spark\_logs\_bucket\_name | Name of Spark logs S3 bucket | `string` | n/a | yes |
 | aws\_role\_name | IAM Role to which the policy will be attached | `string` | n/a | yes |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
 | aws\_emrfs\_user\_policy\_name | The name to give to the policy regarding S3 permissions | `string` | `"emrfsUserMinimalPolicy"` | no |
