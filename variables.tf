@@ -20,11 +20,6 @@ variable "aws_instance_profile_name" {
   description = "IAM Instance Profile to create"
 }
 
-variable "aws_account_id" {
-  type        = string
-  description = "AWS account in which the cluster will be created"
-}
-
 variable "aws_emrfs_hbase_bucket_name" {
   type        = string
   description = "AWS account in which the cluster will be created"

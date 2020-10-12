@@ -7,6 +7,8 @@ resource "aws_iam_policy" "emr_creator_minimal_policy" {
   policy = data.aws_iam_policy_document.emr_creator_policy.json
 }
 
+data "aws_caller_identity" "current" {}
+
 data "aws_iam_policy_document" "emr_creator_policy" {
   version = "2012-10-17"
   statement {
@@ -22,8 +24,8 @@ data "aws_iam_policy_document" "emr_creator_policy" {
       "iam:PassRole"
     ]
     resources = [
-      "arn:aws:iam::${var.aws_account_id}:role/*",
-      "arn:aws:elasticmapreduce:*:${var.aws_account_id}:cluster/*"
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/*",
+      "arn:aws:elasticmapreduce:*:${data.aws_caller_identity.current.account_id}:cluster/*"
     ]
   }
   statement {

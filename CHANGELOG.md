@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v0.3.0 - October 12th 2020
+* Remove `aws_account_id` input variable
+
 ## v0.2.2 - July 6th 2020
 * Adds ListObjects to the s3 policy
 

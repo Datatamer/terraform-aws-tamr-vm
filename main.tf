@@ -10,7 +10,6 @@ module "aws-iam-policies" {
   aws_role_name                    = module.aws-iam-role.tamr_instance_role_name
   aws_emr_creator_policy_name      = "${var.aws_emr_creator_policy_name}"
   aws_emrfs_user_policy_name       = "${var.aws_emrfs_user_policy_name}"
-  aws_account_id                   = "${var.aws_account_id}"
   aws_emrfs_hbase_bucket_name      = "${var.aws_emrfs_hbase_bucket_name}"
   aws_emrfs_hbase_logs_bucket_name = "${var.aws_emrfs_hbase_logs_bucket_name}"
   aws_emrfs_spark_logs_bucket_name = "${var.aws_emrfs_spark_logs_bucket_name}"

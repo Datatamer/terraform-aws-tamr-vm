@@ -6,9 +6,8 @@ This terraform modules creates a policy role in AWS with permissions to create a
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "aws-emr-creator-iam" {
-  source         = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-policies?ref=0.2.2"
+  source         = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-policies?ref=0.3.0"
   aws_role_name  = "iam-role-name"
-  aws_account_id = "12-digit-ARN"
 }
 ```
 
@@ -35,7 +34,6 @@ This modules creates:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| aws\_account\_id | AWS account in which the cluster will be created | `string` | n/a | yes |
 | aws\_emrfs\_hbase\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
 | aws\_emrfs\_hbase\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
 | aws\_emrfs\_spark\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |

@@ -6,10 +6,9 @@ This terraform module spins up an EC2 instance for Tamr, as well as additional d
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "basic" {
-  source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.2.2"
+source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.3.0"
   aws_role_name                    = "name-for-tamr-role"
   aws_instance_profile_name        = "name-for-tamr-instance-profile"
-  aws_account_id                   = "123456789012"
   aws_emrfs_hbase_bucket_name      = "hbase-root-bucket-name"
   aws_emrfs_hbase_logs_bucket_name = "hbase-logs-bucket-name"
   aws_emrfs_spark_logs_bucket_name = "spark-logs-bucket-name"
@@ -56,7 +55,6 @@ No provider.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | ami | The AMI to use for the EC2 instance | `string` | n/a | yes |
-| aws\_account\_id | AWS account in which the cluster will be created | `string` | n/a | yes |
 | aws\_emrfs\_hbase\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
 | aws\_emrfs\_hbase\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |
 | aws\_emrfs\_spark\_logs\_bucket\_name | AWS account in which the cluster will be created | `string` | n/a | yes |

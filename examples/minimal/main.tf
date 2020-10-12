@@ -1,8 +1,7 @@
 module "tamr-vm" {
-  source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm"
+  source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.3.0"
   aws_role_name                    = "name-for-tamr-role"
   aws_instance_profile_name        = "name-for-tamr-instance-profile"
-  aws_account_id                   = "123456789012"
   aws_emr_creator_policy_name      = "name-for-emr-permissions-policy"
   aws_emrfs_user_policy_name       = "name-for-s3-permissions-policy"
   aws_emrfs_hbase_bucket_name      = "hbase-root-bucket-name"
