@@ -10,6 +10,7 @@ resource "aws_instance" "tamr-instance" {
   root_block_device {
     volume_type = var.volume_type
     volume_size = var.volume_size
+    encrypted   = var.enable_volume_encryption
   }
 
   tags = var.additional_tags

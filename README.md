@@ -81,6 +81,7 @@ No provider.
 | enable\_kibana\_port | If set to true, opens the kibana port for ingress | `bool` | `true` | no |
 | enable\_ping | If set to true, enables ping | `bool` | `true` | no |
 | enable\_ssh | If set to true, enables SSH | `bool` | `true` | no |
+| enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
 | grafana\_port | Default Grafana port | `number` | `31101` | no |
 | ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
 | ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
