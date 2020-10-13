@@ -1,5 +1,10 @@
 # Tamr VM Terraform Module
 
+## v0.3.0 - October 12th 2020
+* Removes `aws_account_id` input variable
+* Updates minimal example to create required resources
+* Adds `s3_policy_arns` input variable to pass S3 bucket access policies to Tamr user IAM role.
+
 ## v0.2.2 - July 6th 2020
 * Adds ListObjects to the s3 policy
 

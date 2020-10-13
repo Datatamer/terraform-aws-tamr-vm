@@ -16,10 +16,10 @@ data "aws_iam_policy_document" "instance-assume-role-policy" {
 
 resource "aws_iam_role" "tamr_user_iam_role" {
   name               = var.aws_role_name
-  assume_role_policy = "${data.aws_iam_policy_document.instance-assume-role-policy.json}"
+  assume_role_policy = data.aws_iam_policy_document.instance-assume-role-policy.json
 }
 
 resource "aws_iam_instance_profile" "tamr_user_instance_profile" {
   name = var.aws_instance_profile_name
-  role = "${aws_iam_role.tamr_user_iam_role.name}"
+  role = aws_iam_role.tamr_user_iam_role.name
 }

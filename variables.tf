@@ -20,24 +20,24 @@ variable "aws_instance_profile_name" {
   description = "IAM Instance Profile to create"
 }
 
-variable "aws_account_id" {
-  type        = string
-  description = "AWS account in which the cluster will be created"
-}
-
 variable "aws_emrfs_hbase_bucket_name" {
   type        = string
-  description = "AWS account in which the cluster will be created"
+  description = "Name of HBase root directory S3 bucket"
 }
 
 variable "aws_emrfs_hbase_logs_bucket_name" {
   type        = string
-  description = "AWS account in which the cluster will be created"
+  description = "Name of HBase logs S3 bucket"
 }
 
 variable "aws_emrfs_spark_logs_bucket_name" {
   type        = string
-  description = "AWS account in which the cluster will be created"
+  description = "Name of Spark logs S3 bucket"
+}
+
+variable "s3_policy_arns" {
+  type        = list(string)
+  description = "List of S3 policy ARNs to attach to Tamr role."
 }
 
 variable "vpc_id" {
@@ -177,7 +177,7 @@ variable "ingress_security_groups" {
 variable "egress_cidr_blocks" {
   type        = list(string)
   description = "CIDR blocks to attach to security groups for egress"
-  default     = ["0.0.0.0/0"]
+  default     = []
 }
 
 variable "egress_security_groups" {
