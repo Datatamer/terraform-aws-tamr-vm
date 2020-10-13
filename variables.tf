@@ -35,6 +35,11 @@ variable "aws_emrfs_spark_logs_bucket_name" {
   description = "Name of Spark logs S3 bucket"
 }
 
+variable "s3_policy_arns" {
+  type        = list(string)
+  description = "List of S3 policy ARNs to attach to Tamr role."
+}
+
 variable "vpc_id" {
   type        = string
   description = "The ID of the VPC in which to attach the security group"
@@ -172,7 +177,7 @@ variable "ingress_security_groups" {
 variable "egress_cidr_blocks" {
   type        = list(string)
   description = "CIDR blocks to attach to security groups for egress"
-  default     = ["0.0.0.0/0"]
+  default     = []
 }
 
 variable "egress_security_groups" {

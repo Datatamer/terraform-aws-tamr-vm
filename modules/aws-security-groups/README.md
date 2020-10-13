@@ -9,7 +9,9 @@ module "aws-vm-sg" {
   source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-security-groups?ref=0.3.0"
   vpc_id = "vpc-123456789"
   ingress_cidr_blocks = [
-    "1.2.3.4/32",
+    "1.2.3.4/32"
+  ]
+  egress_cidr_blocks  = [
     "0.0.0.0/0"
   ]
 }
@@ -41,7 +43,7 @@ enables HTTP on port `80` and TLS on `443`, and opens egress, which allows Tamr 
 |------|-------------|------|---------|:--------:|
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | additional\_tags | Additional tags to be attached to the resources created | `map(string)` | <pre>{<br>  "Author": "Tamr"<br>}</pre> | no |
-| egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
 | egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
 | enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |
 | enable\_kibana\_port | If set to true, opens the kibana port for ingress | `bool` | `true` | no |

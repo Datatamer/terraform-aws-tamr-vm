@@ -29,3 +29,8 @@ variable "aws_emrfs_spark_logs_bucket_name" {
   type        = string
   description = "Name of Spark logs S3 bucket"
 }
+
+variable "s3_policy_arns" {
+  type        = list(string)
+  description = "List of S3 policy ARNs to attach to Tamr role."
+}

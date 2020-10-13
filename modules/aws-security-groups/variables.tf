@@ -90,7 +90,7 @@ variable "ingress_security_groups" {
 variable "egress_cidr_blocks" {
   type        = list(string)
   description = "CIDR blocks to attach to security groups for egress"
-  default     = ["0.0.0.0/0"]
+  default     = []
 }
 
 variable "egress_security_groups" {

@@ -12,12 +12,20 @@ source                           = "git::https://github.com/Datatamer/terraform-
   aws_emrfs_hbase_bucket_name      = "hbase-root-bucket-name"
   aws_emrfs_hbase_logs_bucket_name = "hbase-logs-bucket-name"
   aws_emrfs_spark_logs_bucket_name = "spark-logs-bucket-name"
+  s3_policy_arns = [
+    arn:aws:iam::aws:policy/HBaseRootDirReadWrite,
+    arn:aws:iam::aws:policy/HBaseLogsReadWrite,
+    arn:aws:iam::aws:policy/SparkLogsReadWrite
+  ]
   vpc_id                           = "vpc-12345abcde"
   ami                              = "ami-abcde12345"
   key_name                         = "ssh-key-name"
   subnet_id                        = "subnet-123456789"
   ingress_cidr_blocks = [
     "1.2.3.4/16"
+  ]
+  egress_cidr_blocks  = [
+    "0.0.0.0/0"
   ]
 }
 ```
@@ -61,12 +69,13 @@ No provider.
 | aws\_instance\_profile\_name | IAM Instance Profile to create | `string` | n/a | yes |
 | aws\_role\_name | IAM Role to create, and to which the policies will be attached | `string` | n/a | yes |
 | key\_name | The key name to attach to the EC2 instance for SSH access | `string` | n/a | yes |
+| s3\_policy\_arns | List of S3 policy ARNs to attach to Tamr role. | `list(string)` | n/a | yes |
 | subnet\_id | The subnet to create the EC2 instance in | `string` | n/a | yes |
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
 | aws\_emrfs\_user\_policy\_name | The name to give to the policy regarding S3 permissions | `string` | `"emrfsUserMinimalPolicy"` | no |
-| egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
 | egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
 | enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |
 | enable\_kibana\_port | If set to true, opens the kibana port for ingress | `bool` | `true` | no |
