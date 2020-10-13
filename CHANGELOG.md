@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v0.3.1 - October 13th 2020
+* Add `enable_volume_encryption` input variable for encrypting root block device
+
 ## v0.3.0 - October 12th 2020
 * Removes `aws_account_id` input variable
 * Updates minimal example to create required resources

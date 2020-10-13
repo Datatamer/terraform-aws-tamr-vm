@@ -74,6 +74,12 @@ variable "volume_size" {
   default     = 100
 }
 
+variable "enable_volume_encryption" {
+  type        = bool
+  description = "Whether to encrypt the root block device"
+  default     = true
+}
+
 variable "tamr_instance_tags" {
   type        = map(string)
   description = "Additional tags to be attached to the Tamr EC2 instance"

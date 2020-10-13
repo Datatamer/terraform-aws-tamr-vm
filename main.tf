@@ -39,15 +39,16 @@ module "aws-security-groups" {
 }
 
 module "tamr_instance" {
-  source               = "./modules/aws-ec2-instance"
-  ami                  = var.ami
-  availability_zone    = var.availability_zone
-  instance_type        = var.instance_type
-  iam_instance_profile = module.aws-iam-role.tamr_instance_profile_id
-  key_name             = var.key_name
-  security_group_ids   = [module.aws-security-groups.tamr_security_group_id]
-  subnet_id            = var.subnet_id
-  volume_type          = var.volume_type
-  volume_size          = var.volume_size
-  additional_tags      = var.tamr_instance_tags
+  source                   = "./modules/aws-ec2-instance"
+  ami                      = var.ami
+  availability_zone        = var.availability_zone
+  instance_type            = var.instance_type
+  iam_instance_profile     = module.aws-iam-role.tamr_instance_profile_id
+  key_name                 = var.key_name
+  security_group_ids       = [module.aws-security-groups.tamr_security_group_id]
+  subnet_id                = var.subnet_id
+  volume_type              = var.volume_type
+  volume_size              = var.volume_size
+  enable_volume_encryption = var.enable_volume_encryption
+  additional_tags          = var.tamr_instance_tags
 }
