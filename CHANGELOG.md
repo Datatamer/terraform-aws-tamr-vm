@@ -1,5 +1,9 @@
 # Tamr VM Terraform Module
 
+## v0.3.2 - October 14th 2020
+* Removes `aws_emrfs_user_policy_name` input variable
+  * Modifies minimal example accordingly to show dependency on [terraform-aws-s3](https://github.com/Datatamer/terraform-aws-s3) module for creating S3 buckets and S3 IAM policies
+
 ## v0.3.1 - October 13th 2020
 * Add `enable_volume_encryption` input variable for encrypting root block device
 
