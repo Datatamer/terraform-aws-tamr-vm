@@ -53,33 +53,9 @@ resource "aws_iam_role_policy_attachment" "emr_creator_policy_attachment" {
   policy_arn = aws_iam_policy.emr_creator_minimal_policy.arn
 }
 
-data "aws_iam_policy_document" "emrfs_user_policy" {
-  version = "2012-10-17"
-  statement {
-    effect = "Allow"
-    actions = [
-      "s3:CreateJob",
-      "s3:HeadBucket"
-    ]
-    resources = ["*"]
-  }
-}
-
-// reduced permissions policy for Tamr user to be able to access EMRFS
-resource "aws_iam_policy" "emrfs_user_minimal_policy" {
-  name   = var.aws_emrfs_user_policy_name
-  policy = data.aws_iam_policy_document.emrfs_user_policy.json
-}
-
 // IAM role policy attachment(s) that attach s3 policy ARNs to Tamr user IAM role
 resource "aws_iam_role_policy_attachment" "emrfs_user_s3_policy" {
   count      = length(var.s3_policy_arns)
   role       = var.aws_role_name
   policy_arn = element(var.s3_policy_arns, count.index)
-}
-
-//Attach the above policy to an existing user
-resource "aws_iam_role_policy_attachment" "emrfs_user_policy_attachment" {
-  role       = var.aws_role_name
-  policy_arn = aws_iam_policy.emrfs_user_minimal_policy.arn
 }

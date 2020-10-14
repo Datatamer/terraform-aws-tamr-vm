@@ -6,7 +6,7 @@ This terraform module spins up an EC2 instance for Tamr, as well as additional d
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "basic" {
-source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.3.0"
+source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.3.2"
   aws_role_name                    = "name-for-tamr-role"
   aws_instance_profile_name        = "name-for-tamr-instance-profile"
   aws_emrfs_hbase_bucket_name      = "hbase-root-bucket-name"
@@ -74,7 +74,6 @@ No provider.
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
-| aws\_emrfs\_user\_policy\_name | The name to give to the policy regarding S3 permissions | `string` | `"emrfsUserMinimalPolicy"` | no |
 | egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
 | egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
 | enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |
@@ -102,7 +101,12 @@ No provider.
 
 | Name | Description |
 |------|-------------|
+| emr\_creator\_policy\_arn | ARN of the EMR creator IAM policy created. |
+| s3\_policy\_arns | List of ARNs of S3 policies attached to Tamr user IAM role |
+| tamr\_instance\_id | The ID of the Tamr instance created |
 | tamr\_instance\_ip | Private IP address of the Tamr instance |
+| tamr\_instance\_profile\_id | ID of the IAM instance profile created |
+| tamr\_instance\_role\_name | ID of the Tamr user IAM role created |
 | tamr\_security\_group\_id | ID of the security group created |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

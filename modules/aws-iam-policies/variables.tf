@@ -4,12 +4,6 @@ variable "aws_emr_creator_policy_name" {
   default     = "emrCreatorMinimalPolicy"
 }
 
-variable "aws_emrfs_user_policy_name" {
-  type        = string
-  description = "The name to give to the policy regarding S3 permissions"
-  default     = "emrfsUserMinimalPolicy"
-}
-
 variable "aws_role_name" {
   type        = string
   description = "IAM Role to which the policy will be attached"
