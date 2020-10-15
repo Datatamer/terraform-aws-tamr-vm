@@ -14,21 +14,6 @@ variable "aws_instance_profile_name" {
   description = "IAM Instance Profile to create"
 }
 
-variable "aws_emrfs_hbase_bucket_name" {
-  type        = string
-  description = "Name of HBase root directory S3 bucket"
-}
-
-variable "aws_emrfs_hbase_logs_bucket_name" {
-  type        = string
-  description = "Name of HBase logs S3 bucket"
-}
-
-variable "aws_emrfs_spark_logs_bucket_name" {
-  type        = string
-  description = "Name of Spark logs S3 bucket"
-}
-
 variable "s3_policy_arns" {
   type        = list(string)
   description = "List of S3 policy ARNs to attach to Tamr role."

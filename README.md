@@ -6,12 +6,9 @@ This terraform module spins up an EC2 instance for Tamr, as well as additional d
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "basic" {
-source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.3.2"
+source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.4.0"
   aws_role_name                    = "name-for-tamr-role"
   aws_instance_profile_name        = "name-for-tamr-instance-profile"
-  aws_emrfs_hbase_bucket_name      = "hbase-root-bucket-name"
-  aws_emrfs_hbase_logs_bucket_name = "hbase-logs-bucket-name"
-  aws_emrfs_spark_logs_bucket_name = "spark-logs-bucket-name"
   s3_policy_arns = [
     arn:aws:iam::aws:policy/HBaseRootDirReadWrite,
     arn:aws:iam::aws:policy/HBaseLogsReadWrite,
@@ -63,9 +60,6 @@ No provider.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | ami | The AMI to use for the EC2 instance | `string` | n/a | yes |
-| aws\_emrfs\_hbase\_bucket\_name | Name of HBase root directory S3 bucket | `string` | n/a | yes |
-| aws\_emrfs\_hbase\_logs\_bucket\_name | Name of HBase logs S3 bucket | `string` | n/a | yes |
-| aws\_emrfs\_spark\_logs\_bucket\_name | Name of Spark logs S3 bucket | `string` | n/a | yes |
 | aws\_instance\_profile\_name | IAM Instance Profile to create | `string` | n/a | yes |
 | aws\_role\_name | IAM Role to create, and to which the policies will be attached | `string` | n/a | yes |
 | key\_name | The key name to attach to the EC2 instance for SSH access | `string` | n/a | yes |

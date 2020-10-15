@@ -59,14 +59,11 @@ module "tamr_ec2_key_pair" {
 }
 
 module "tamr-vm" {
-  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.3.2"
-  source                           = "../.."
-  aws_role_name                    = "test-tamr-ec2-role"
-  aws_instance_profile_name        = "test-tamr-ec2-instance-profile"
-  aws_emr_creator_policy_name      = "TestEmrCreatorPolicy"
-  aws_emrfs_hbase_bucket_name      = module.hbase-rootdir-bucket.bucket_name
-  aws_emrfs_hbase_logs_bucket_name = module.hbase-logs-bucket.bucket_name
-  aws_emrfs_spark_logs_bucket_name = module.spark-logs-bucket.bucket_name
+  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.4.0"
+  source                      = "../.."
+  aws_role_name               = "test-tamr-ec2-role"
+  aws_instance_profile_name   = "test-tamr-ec2-instance-profile"
+  aws_emr_creator_policy_name = "TestEmrCreatorPolicy"
   s3_policy_arns = [
     module.hbase-rootdir-bucket.rw_policy_arn,
     module.hbase-logs-bucket.rw_policy_arn,
