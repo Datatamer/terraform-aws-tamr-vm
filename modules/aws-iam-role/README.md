@@ -6,7 +6,7 @@ This terraform module creates an IAM role for the EC2 instance where Tamr is run
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "aws-tamr-user-role" {
-  source        = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-role?ref=0.3.0"
+  source        = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-role?ref=0.4.0"
   aws_role_name = "iam-role-name"
 }
 ```

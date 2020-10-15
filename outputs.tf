@@ -1,9 +1,15 @@
-output "tamr_security_group_id" {
-  value       = module.aws-security-groups.tamr_security_group_id
-  description = "ID of the security group created"
+output "tamr_security_groups" {
+  value       = module.aws-security-groups
 }
 
-output "tamr_instance_ip" {
-  value       = module.tamr_instance.tamr_instance_ip
-  description = "Private IP address of the Tamr instance"
+output "tamr_instance" {
+  value       = module.tamr_instance
+}
+
+output "tamr_iam_role" {
+  value       = module.aws-iam-role
+}
+
+output "tamr_iam_policies" {
+  value       = module.aws-iam-policies
 }

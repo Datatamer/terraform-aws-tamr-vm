@@ -18,6 +18,11 @@ No requirements.
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| subnet\_id | n/a |
+| tamr\_key\_pair\_name | Name of EC2 key pair created for Tamr instance |
+| tamr\_vm | n/a |
+| vpc\_id | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
