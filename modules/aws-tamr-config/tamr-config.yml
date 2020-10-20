@@ -1,0 +1,45 @@
+---
+# RDS
+TAMR_PERSISTENCE_DB_USER: ${tamr_pg_user}
+TAMR_PERSISTENCE_DB_URL: jdbc:postgresql://${tamr_pg_db_hostname}:5432/${tamr_pg_db_name}
+TAMR_PERSISTENCE_DB_PASS: ${tamr_pg_password}
+
+# HBase
+TAMR_REMOTE_HBASE_ENABLED: true
+TAMR_HBASE_REMOTE_DOWNLOAD_ENABLED: true
+TAMR_CONNECTION_INFO_TYPE: hbase-site
+TAMR_HBASE_NAMESPACE: ${tamr_hbase_namespace}
+TAMR_HBASE_COMPRESSION: snappy
+TAMR_HBASE_CONFIG_URIS: s3://${tamr_data_bucket}/config/hbase/conf.dist/hbase-site.xml
+
+# HBase - Properties
+TAMR_HBASE_SORT_BATCHES_ENABLED: false
+
+# Spark
+TAMR_REMOTE_SPARK_ENABLED: true
+TAMR_JOB_SPARK_CLUSTER: emr
+TAMR_JOB_EMR_CLUSTER_ID: ${tamr_emr_cluster_id}
+TAMR_DATASET_EMR_LOG_URI: s3://${tamr_logs_bucket}/${tamr_cluster_name}/logs
+
+# Spark - Scale
+TAMR_JOB_SPARK_DRIVER_MEM: ${tamr_spark_driver_memory}
+TAMR_JOB_SPARK_EXECUTOR_INSTANCES: ${tamr_spark_executor_instances}
+TAMR_JOB_SPARK_EXECUTOR_MEM: ${tamr_spark_executor_memory}
+TAMR_JOB_SPARK_EXECUTOR_CORES: ${tamr_spark_executor_cores}
+TAMR_JOB_SPARK_PROPS: | ${tamr_spark_properties_override}
+
+# Elasticsearch
+TAMR_REMOTE_ES_ENABLED: true
+TAMR_ES_APIHOST: ${tamr_es_domain_endpoint}:443
+TAMR_ES_HEALTH_CHECK_METADATA: false
+TAMR_ES_SSL_ENABLED: true
+
+# FileSystem
+TAMR_UNIFY_DATA_DIR: s3://${tamr_data_bucket}/tamr/unify-data
+TAMR_FS_URI: s3://${tamr_data_bucket}
+
+# ESP
+TAMR_STORAGE_PROVIDERS: | '[${tamr_external_storage_providers}]'
+
+# Misc
+TAMR_BIGQUERY_ENABLED: false
