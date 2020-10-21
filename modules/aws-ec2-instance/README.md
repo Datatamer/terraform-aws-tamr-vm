@@ -6,7 +6,7 @@ This terraform module creates an EC2 instance on which Tamr will run.
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "aws-tamr-instance" {
-  source               = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-ec2-instance?ref=0.4.0"
+  source               = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-ec2-instance?ref=0.5.0"
   ami                  = "ami-123456789"
   iam_instance_profile = "iam-profile-id"
   key_name             = "my-key"

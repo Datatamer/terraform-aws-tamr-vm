@@ -1,5 +1,9 @@
 # Tamr VM Terraform Module
 
+## v0.5.0 - October 21st 2020
+* Adds `name_prefix` to standardize names of resources created as well as avoid resource naming conflicts
+* In favor of prefixing names, this version removes the following input variables: `aws_role_name`, `aws_instance_profile_name`, `aws_emr_creator_policy_name`, `sg_name`
+
 ## v0.4.0 - October 15th 2020
 * Removes input variables `aws_emrfs_hbase_bucket_name`, `aws_emrfs_hbase_logs_bucket_name`, `aws_emrfs_spark_logs_bucket_name`, and `aws_emrfs_user_policy_name`
   * Modifies minimal example accordingly to show dependency on [terraform-aws-s3](https://github.com/Datatamer/terraform-aws-s3) module for creating S3 buckets and S3 IAM policies
