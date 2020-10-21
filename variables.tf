@@ -54,6 +54,11 @@ variable "tamr_instance_tags" {
   default     = { Author : "Tamr", Name : "Tamr VM" }
 }
 
+variable "key_name" {
+  type        = string
+  description = "The key name to attach to the EC2 instance for SSH access"
+}
+
 variable "subnet_id" {
   type        = string
   description = "The subnet to create the EC2 instance in"

@@ -6,7 +6,7 @@ This terraform module spins up an EC2 instance for Tamr, as well as additional d
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "basic" {
-source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.4.0"
+source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.5.0"
   aws_role_name                    = "name-for-tamr-role"
   aws_instance_profile_name        = "name-for-tamr-instance-profile"
   s3_policy_arns = [
@@ -60,14 +60,11 @@ No provider.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | ami | The AMI to use for the EC2 instance | `string` | n/a | yes |
-| aws\_instance\_profile\_name | IAM Instance Profile to create | `string` | n/a | yes |
-| aws\_role\_name | IAM Role to create, and to which the policies will be attached | `string` | n/a | yes |
-| key\_name | The key name to attach to the EC2 instance for SSH access | `string` | n/a | yes |
+| name\_prefix | A prefix to add to the names of all created resources | `string` | n/a | yes |
 | s3\_policy\_arns | List of S3 policy ARNs to attach to Tamr role. | `list(string)` | n/a | yes |
 | subnet\_id | The subnet to create the EC2 instance in | `string` | n/a | yes |
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
-| aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
 | egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
 | egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
 | enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |
@@ -81,7 +78,6 @@ No provider.
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
 | kibana\_port | Default Kibana port | `number` | `5601` | no |
 | security\_group\_tags | Additional tags to be attached to the security group created | `map(string)` | <pre>{<br>  "Author": "Tamr"<br>}</pre> | no |
-| sg\_name | Security Group to create | `string` | `"tamr-instance-security-group"` | no |
 | tamr\_auth\_port | Port for Tamr auth | `number` | `9020` | no |
 | tamr\_es\_port | Port for Tamr elasticsearch | `number` | `9200` | no |
 | tamr\_instance\_tags | Additional tags to be attached to the Tamr EC2 instance | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Name": "Tamr VM"<br>}</pre> | no |
@@ -95,13 +91,10 @@ No provider.
 
 | Name | Description |
 |------|-------------|
-| emr\_creator\_policy\_arn | ARN of the EMR creator IAM policy created. |
-| s3\_policy\_arns | List of ARNs of S3 policies attached to Tamr user IAM role |
-| tamr\_instance\_id | The ID of the Tamr instance created |
-| tamr\_instance\_ip | Private IP address of the Tamr instance |
-| tamr\_instance\_profile\_id | ID of the IAM instance profile created |
-| tamr\_instance\_role\_name | ID of the Tamr user IAM role created |
-| tamr\_security\_group\_id | ID of the security group created |
+| tamr\_iam\_policies | n/a |
+| tamr\_iam\_role | n/a |
+| tamr\_instance | n/a |
+| tamr\_security\_groups | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

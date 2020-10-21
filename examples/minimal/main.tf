@@ -59,11 +59,9 @@ module "tamr_ec2_key_pair" {
 }
 
 module "tamr-vm" {
-  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.4.0"
-  source                      = "../.."
-  aws_role_name               = "test-tamr-ec2-role"
-  aws_instance_profile_name   = "test-tamr-ec2-instance-profile"
-  aws_emr_creator_policy_name = "TestEmrCreatorPolicy"
+  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.5.0"
+  source      = "../.."
+  name_prefix = "testing"
   s3_policy_arns = [
     module.hbase-rootdir-bucket.rw_policy_arn,
     module.hbase-logs-bucket.rw_policy_arn,
@@ -76,4 +74,5 @@ module "tamr-vm" {
   vpc_id              = aws_vpc.tamr_vm_vpc.id
   subnet_id           = aws_subnet.tamr_vm_subnet.id
   ingress_cidr_blocks = [aws_vpc.tamr_vm_vpc.cidr_block]
+  egress_cidr_blocks  = ["0.0.0.0/0"]
 }
