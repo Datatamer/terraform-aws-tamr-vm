@@ -22,6 +22,7 @@ No requirements.
 |------|-------------|
 | subnet\_id | n/a |
 | tamr\_key\_pair\_name | Name of EC2 key pair created for Tamr instance |
+| tamr\_private\_key | n/a |
 | tamr\_vm | n/a |
 | vpc\_id | n/a |
 

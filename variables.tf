@@ -176,3 +176,9 @@ variable "security_group_tags" {
   description = "Additional tags to be attached to the security group created"
   default     = { Author : "Tamr" }
 }
+
+variable "bootstrap_scripts" {
+  type        = list(string)
+  default     = []
+  description = "List of paths to bootstrap shell scripts."
+}

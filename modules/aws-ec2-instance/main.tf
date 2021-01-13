@@ -13,5 +13,20 @@ resource "aws_instance" "tamr-instance" {
     encrypted   = var.enable_volume_encryption
   }
 
+  user_data = length(var.bootstrap_scripts) == 0 ? "" : data.template_cloudinit_config.bootstrap-scripts[0].rendered
+
   tags = var.additional_tags
+}
+
+data "template_cloudinit_config" "bootstrap-scripts" {
+  count         = length(var.bootstrap_scripts)
+  base64_encode = true
+
+  dynamic "part" {
+    for_each = var.bootstrap_scripts
+    content {
+      content_type = "text/x-shellscript"
+      content      = file(part.value)
+    }
+  }
 }

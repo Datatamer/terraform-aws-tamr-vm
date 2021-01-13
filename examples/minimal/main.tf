@@ -59,7 +59,7 @@ module "tamr_ec2_key_pair" {
 }
 
 module "tamr-vm" {
-  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.4.0"
+  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.5.0"
   source                      = "../.."
   aws_role_name               = "test-tamr-ec2-role"
   aws_instance_profile_name   = "test-tamr-ec2-instance-profile"
@@ -76,4 +76,8 @@ module "tamr-vm" {
   vpc_id              = aws_vpc.tamr_vm_vpc.id
   subnet_id           = aws_subnet.tamr_vm_subnet.id
   ingress_cidr_blocks = [aws_vpc.tamr_vm_vpc.cidr_block]
+  bootstrap_scripts   = [
+    "./test-bootstrap-scripts/install-pip.sh",
+    "./test-bootstrap-scripts/check-install.sh"
+  ]
 }

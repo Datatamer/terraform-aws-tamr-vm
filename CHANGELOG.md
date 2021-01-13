@@ -1,5 +1,9 @@
 # Tamr VM Terraform Module
 
+## v0.5.0 - January 13th 2021
+* Adds ability to pass in `bootstrap_scripts` that will run during the boot cycle when you first launch an instance.
+* Adds example usage of `bootstrap_scripts`
+
 ## v0.4.0 - October 15th 2020
 * Removes input variables `aws_emrfs_hbase_bucket_name`, `aws_emrfs_hbase_logs_bucket_name`, `aws_emrfs_spark_logs_bucket_name`, and `aws_emrfs_user_policy_name`
   * Modifies minimal example accordingly to show dependency on [terraform-aws-s3](https://github.com/Datatamer/terraform-aws-s3) module for creating S3 buckets and S3 IAM policies
