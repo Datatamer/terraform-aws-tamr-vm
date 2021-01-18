@@ -26,7 +26,7 @@ data "template_cloudinit_config" "bootstrap-scripts" {
     for_each = var.bootstrap_scripts
     content {
       content_type = "text/x-shellscript"
-      content      = file(part.value)
+      content      = part.value
     }
   }
 }

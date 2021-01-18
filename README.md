@@ -68,7 +68,7 @@ No provider.
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
-| bootstrap\_scripts | List of paths to bootstrap shell scripts. | `list(string)` | `[]` | no |
+| bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
 | egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
 | egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
 | enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |

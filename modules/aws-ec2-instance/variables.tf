@@ -62,5 +62,5 @@ variable "additional_tags" {
 variable "bootstrap_scripts" {
   type        = list(string)
   default     = []
-  description = "List of paths to bootstrap shell scripts."
+  description = "List of body content of bootstrap shell scripts."
 }

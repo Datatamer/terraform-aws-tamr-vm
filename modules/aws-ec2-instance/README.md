@@ -45,7 +45,7 @@ This module creates:
 | subnet\_id | The subnet to create the EC2 instance in | `string` | n/a | yes |
 | additional\_tags | Additional tags to be attached to the resources created | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Name": "Tamr VM"<br>}</pre> | no |
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
-| bootstrap\_scripts | List of paths to bootstrap shell scripts. | `list(string)` | `[]` | no |
+| bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
 | enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
 | volume\_size | The size of the root block volume to attach to the EC2 instance | `number` | `100` | no |
