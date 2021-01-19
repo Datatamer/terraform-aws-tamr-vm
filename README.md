@@ -6,7 +6,7 @@ This terraform module spins up an EC2 instance for Tamr, as well as additional d
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "basic" {
-source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.4.0"
+source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=0.5.0"
   aws_role_name                    = "name-for-tamr-role"
   aws_instance_profile_name        = "name-for-tamr-instance-profile"
   s3_policy_arns = [
@@ -68,6 +68,7 @@ No provider.
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
+| bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
 | egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
 | egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
 | enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |
@@ -106,6 +107,7 @@ No provider.
 This repo is based on:
 * [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure)
 * [templated terraform module](https://github.com/tmknom/template-terraform-module)
+* [User Data AWS Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 
 # Development
 ## Generating Docs

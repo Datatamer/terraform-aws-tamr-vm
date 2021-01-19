@@ -47,6 +47,34 @@ module "spark-logs-bucket" {
   read_write_paths   = [""] # r/w policy permitting specified rw actions on entire bucket
 }
 
+# Upload bootstrap scripts to S3
+resource "aws_s3_bucket_object" "install_pip_bootstrap_script" {
+  bucket                 = module.hbase-rootdir-bucket.bucket_name
+  key                    = "bootstrap-script-tamr-vm/install-pip.sh"
+  source                 = "./test-bootstrap-scripts/install-pip.sh"
+  content_type           = "text/x-shellscript"
+  server_side_encryption = "AES256"
+}
+
+resource "aws_s3_bucket_object" "check_pip_install_script" {
+  bucket                 = module.hbase-rootdir-bucket.bucket_name
+  key                    = "bootstrap-script-tamr-vm/check-install.sh"
+  source                 = "./test-bootstrap-scripts/check-install.sh"
+  content_type           = "text/x-shellscript"
+  server_side_encryption = "AES256"
+}
+
+# Retrieve content of bootstrap script S3 objects
+data "aws_s3_bucket_object" "bootstrap_script" {
+  bucket = module.hbase-rootdir-bucket.bucket_name
+  key    = aws_s3_bucket_object.install_pip_bootstrap_script.id
+}
+
+data "aws_s3_bucket_object" "bootstrap_script_2" {
+  bucket = module.hbase-rootdir-bucket.bucket_name
+  key    = aws_s3_bucket_object.check_pip_install_script.id
+}
+
 # Create new EC2 key pair
 resource "tls_private_key" "tamr_ec2_private_key" {
   algorithm = "RSA"
@@ -59,7 +87,7 @@ module "tamr_ec2_key_pair" {
 }
 
 module "tamr-vm" {
-  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.4.0"
+  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.5.0"
   source                      = "../.."
   aws_role_name               = "test-tamr-ec2-role"
   aws_instance_profile_name   = "test-tamr-ec2-instance-profile"
@@ -76,4 +104,11 @@ module "tamr-vm" {
   vpc_id              = aws_vpc.tamr_vm_vpc.id
   subnet_id           = aws_subnet.tamr_vm_subnet.id
   ingress_cidr_blocks = [aws_vpc.tamr_vm_vpc.cidr_block]
+  bootstrap_scripts = [
+    # NOTE: If you would like to use local scripts, you can use terraform's file() function
+    # file("./test-bootstrap-scripts/install-pip.sh"),
+    # file("./test-bootstrap-scripts/check-install.sh"),
+    data.aws_s3_bucket_object.bootstrap_script.body,
+    data.aws_s3_bucket_object.bootstrap_script_2.body
+  ]
 }

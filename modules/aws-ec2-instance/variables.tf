@@ -58,3 +58,9 @@ variable "additional_tags" {
   description = "Additional tags to be attached to the resources created"
   default     = { Author : "Tamr", Name : "Tamr VM" }
 }
+
+variable "bootstrap_scripts" {
+  type        = list(string)
+  default     = []
+  description = "List of body content of bootstrap shell scripts."
+}

@@ -46,5 +46,6 @@ module "tamr_instance" {
   volume_type              = var.volume_type
   volume_size              = var.volume_size
   enable_volume_encryption = var.enable_volume_encryption
+  bootstrap_scripts        = var.bootstrap_scripts
   additional_tags          = var.tamr_instance_tags
 }
