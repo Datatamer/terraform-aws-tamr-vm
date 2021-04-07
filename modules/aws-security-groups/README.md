@@ -6,7 +6,7 @@ This module creates security groups for the EC2 instance where Tamr is running. 
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "aws-vm-sg" {
-  source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-security-groups?ref=0.5.0"
+  source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-security-groups?ref=0.6.0"
   vpc_id = "vpc-123456789"
   ingress_cidr_blocks = [
     "1.2.3.4/32"
