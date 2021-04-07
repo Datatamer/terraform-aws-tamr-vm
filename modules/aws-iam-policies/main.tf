@@ -24,8 +24,8 @@ data "aws_iam_policy_document" "emr_creator_policy" {
       "iam:PassRole"
     ]
     resources = [
-      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/*",
-      "arn:aws:elasticmapreduce:*:${data.aws_caller_identity.current.account_id}:cluster/*"
+      "arn:${var.arn_partition}:iam::${data.aws_caller_identity.current.account_id}:role/*",
+      "arn:${var.arn_partition}:elasticmapreduce:*:${data.aws_caller_identity.current.account_id}:cluster/*"
     ]
   }
   statement {
@@ -34,7 +34,7 @@ data "aws_iam_policy_document" "emr_creator_policy" {
       "elasticmapreduce:RunJobFlow"
     ]
     resources = [
-      "arn:aws:elasticmapreduce:*"
+      "arn:${var.arn_partition}:elasticmapreduce:*"
     ]
   }
   statement {
