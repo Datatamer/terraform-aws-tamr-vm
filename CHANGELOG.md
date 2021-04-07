@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v0.6.0 - April 7th 2021
+*  Adds new variable `arn_partition` to set the partition of any ARNs referenced in this module
+
 ## v0.5.0 - January 13th 2021
 * Adds ability to pass in `bootstrap_scripts` that will run during the boot cycle when you first launch an instance.
 * Adds example usage of `bootstrap_scripts`
