@@ -75,17 +75,6 @@ data "aws_s3_bucket_object" "bootstrap_script_2" {
   key    = aws_s3_bucket_object.check_pip_install_script.id
 }
 
-# Create new EC2 key pair
-resource "tls_private_key" "tamr_ec2_private_key" {
-  algorithm = "RSA"
-}
-
-module "tamr_ec2_key_pair" {
-  source     = "terraform-aws-modules/key-pair/aws"
-  key_name   = "tamr-ec2-test-key"
-  public_key = tls_private_key.tamr_ec2_private_key.public_key_openssh
-}
-
 ## Nested modules (minus the VM)
 
 module "aws-iam-role" {
