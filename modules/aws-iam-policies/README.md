@@ -6,7 +6,7 @@ This terraform modules creates a policy role in AWS with permissions to create a
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "aws-emr-creator-iam" {
-  source         = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-policies?ref=0.6.0"
+  source         = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-policies?ref=1.0.0"
   aws_role_name  = "iam-role-name"
   s3_policy_arns = [
     arn:aws:iam::aws:policy/HBaseRootDirReadWrite,

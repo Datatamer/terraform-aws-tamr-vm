@@ -87,7 +87,7 @@ module "tamr_ec2_key_pair" {
 }
 
 module "tamr-vm" {
-  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=0.6.0"
+  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=1.0.0"
   source                      = "../.."
   aws_role_name               = "test-tamr-ec2-role"
   aws_instance_profile_name   = "test-tamr-ec2-instance-profile"
