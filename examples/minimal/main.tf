@@ -24,32 +24,16 @@ resource "aws_subnet" "tamr_vm_subnet" {
 }
 
 # Set up HBase logs bucket
-module "hbase-logs-bucket" {
+module "s3-bucket" {
   source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.0.0"
-  bucket_name        = "test-hbase-logs-bucket"
-  read_write_actions = local.tamr_vm_s3_actions
-  read_write_paths   = [""] # r/w policy permitting specified rw actions on entire bucket
-}
-
-# Set up HBase root directory bucket
-module "hbase-rootdir-bucket" {
-  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.0.0"
-  bucket_name        = "test-hbase-root-directory-bucket"
-  read_write_actions = local.tamr_vm_s3_actions
-  read_write_paths   = [""] # r/w policy permitting default rw actions on entire bucket
-}
-
-# Set up Spark logs bucket
-module "spark-logs-bucket" {
-  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.0.0"
-  bucket_name        = "test-spark-logs-bucket"
+  bucket_name        = format("%s-tamr-module-test-bucket", var.name-prefix)
   read_write_actions = local.tamr_vm_s3_actions
   read_write_paths   = [""] # r/w policy permitting specified rw actions on entire bucket
 }
 
 # Upload bootstrap scripts to S3
 resource "aws_s3_bucket_object" "install_pip_bootstrap_script" {
-  bucket                 = module.hbase-rootdir-bucket.bucket_name
+  bucket                 = module.s3-bucket.bucket_name
   key                    = "bootstrap-script-tamr-vm/install-pip.sh"
   source                 = "./test-bootstrap-scripts/install-pip.sh"
   content_type           = "text/x-shellscript"
@@ -57,7 +41,7 @@ resource "aws_s3_bucket_object" "install_pip_bootstrap_script" {
 }
 
 resource "aws_s3_bucket_object" "check_pip_install_script" {
-  bucket                 = module.hbase-rootdir-bucket.bucket_name
+  bucket                 = module.s3-bucket.bucket_name
   key                    = "bootstrap-script-tamr-vm/check-install.sh"
   source                 = "./test-bootstrap-scripts/check-install.sh"
   content_type           = "text/x-shellscript"
@@ -66,12 +50,12 @@ resource "aws_s3_bucket_object" "check_pip_install_script" {
 
 # Retrieve content of bootstrap script S3 objects
 data "aws_s3_bucket_object" "bootstrap_script" {
-  bucket = module.hbase-rootdir-bucket.bucket_name
+  bucket = module.s3-bucket.bucket_name
   key    = aws_s3_bucket_object.install_pip_bootstrap_script.id
 }
 
 data "aws_s3_bucket_object" "bootstrap_script_2" {
-  bucket = module.hbase-rootdir-bucket.bucket_name
+  bucket = module.s3-bucket.bucket_name
   key    = aws_s3_bucket_object.check_pip_install_script.id
 }
 
@@ -82,20 +66,18 @@ resource "tls_private_key" "tamr_ec2_private_key" {
 
 module "tamr_ec2_key_pair" {
   source     = "terraform-aws-modules/key-pair/aws"
-  key_name   = "tamr-ec2-test-key"
+  key_name   = format("%s-tamr-ec2-test-key", var.name-prefix)
   public_key = tls_private_key.tamr_ec2_private_key.public_key_openssh
 }
 
 module "tamr-vm" {
   # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=1.0.1"
   source                      = "../.."
-  aws_role_name               = "test-tamr-ec2-role"
-  aws_instance_profile_name   = "test-tamr-ec2-instance-profile"
-  aws_emr_creator_policy_name = "TestEmrCreatorPolicy"
+  aws_role_name               = format("%s-tamr-ec2-role", var.name-prefix)
+  aws_instance_profile_name   = format("%s-tamr-ec2-instance-profile", var.name-prefix)
+  aws_emr_creator_policy_name = format("%sEmrCreatorPolicy", var.name-prefix)
   s3_policy_arns = [
-    module.hbase-rootdir-bucket.rw_policy_arn,
-    module.hbase-logs-bucket.rw_policy_arn,
-    module.spark-logs-bucket.rw_policy_arn
+    module.s3-bucket.rw_policy_arn,
   ]
   ami                 = var.ami_id
   instance_type       = "m4.2xlarge"
