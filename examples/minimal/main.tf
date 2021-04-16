@@ -25,7 +25,7 @@ resource "aws_subnet" "tamr_vm_subnet" {
 
 # Set up HBase logs bucket
 module "hbase-logs-bucket" {
-  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=0.1.0"
+  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.0.0"
   bucket_name        = "test-hbase-logs-bucket"
   read_write_actions = local.tamr_vm_s3_actions
   read_write_paths   = [""] # r/w policy permitting specified rw actions on entire bucket
@@ -33,7 +33,7 @@ module "hbase-logs-bucket" {
 
 # Set up HBase root directory bucket
 module "hbase-rootdir-bucket" {
-  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=0.1.0"
+  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.0.0"
   bucket_name        = "test-hbase-root-directory-bucket"
   read_write_actions = local.tamr_vm_s3_actions
   read_write_paths   = [""] # r/w policy permitting default rw actions on entire bucket
@@ -41,7 +41,7 @@ module "hbase-rootdir-bucket" {
 
 # Set up Spark logs bucket
 module "spark-logs-bucket" {
-  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=0.1.0"
+  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.0.0"
   bucket_name        = "test-spark-logs-bucket"
   read_write_actions = local.tamr_vm_s3_actions
   read_write_paths   = [""] # r/w policy permitting specified rw actions on entire bucket
@@ -87,7 +87,7 @@ module "tamr_ec2_key_pair" {
 }
 
 module "tamr-vm" {
-  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=1.0.0"
+  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=1.0.1"
   source                      = "../.."
   aws_role_name               = "test-tamr-ec2-role"
   aws_instance_profile_name   = "test-tamr-ec2-instance-profile"

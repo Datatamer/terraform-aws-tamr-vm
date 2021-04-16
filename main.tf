@@ -35,7 +35,9 @@ module "aws-security-groups" {
 }
 
 module "tamr_instance" {
-  source                   = "./modules/aws-ec2-instance"
+  source     = "./modules/aws-ec2-instance"
+  depends_on = [module.aws-iam-policies]
+
   ami                      = var.ami
   availability_zone        = var.availability_zone
   instance_type            = var.instance_type
