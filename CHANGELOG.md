@@ -1,5 +1,9 @@
 # Tamr VM Terraform Module
 
+## v1.0.1 - April 16th 2021
+* Fixes a bug where policy does not attach if you taint the module
+* Simplifies example by creating fewer buckets and adding a 'name-prefix' variable
+
 ## v1.0.0 - April 12th 2021
 * Updates minimum Terraform version to 13
 * Updates minimum AWS provider version to 3.36.0
