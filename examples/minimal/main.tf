@@ -66,12 +66,13 @@ resource "tls_private_key" "tamr_ec2_private_key" {
 
 module "tamr_ec2_key_pair" {
   source     = "terraform-aws-modules/key-pair/aws"
+  version    = "1.0.0"
   key_name   = format("%s-tamr-ec2-test-key", var.name-prefix)
   public_key = tls_private_key.tamr_ec2_private_key.public_key_openssh
 }
 
 module "tamr-vm" {
-  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=1.0.1"
+  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=1.0.2"
   source                      = "../.."
   aws_role_name               = format("%s-tamr-ec2-role", var.name-prefix)
   aws_instance_profile_name   = format("%s-tamr-ec2-instance-profile", var.name-prefix)
@@ -81,7 +82,7 @@ module "tamr-vm" {
   ]
   ami                 = var.ami_id
   instance_type       = "m4.2xlarge"
-  key_name            = module.tamr_ec2_key_pair.this_key_pair_key_name
+  key_name            = module.tamr_ec2_key_pair.key_pair_key_name
   availability_zone   = local.az
   vpc_id              = aws_vpc.tamr_vm_vpc.id
   subnet_id           = aws_subnet.tamr_vm_subnet.id
