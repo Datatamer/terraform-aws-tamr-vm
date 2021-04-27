@@ -6,7 +6,7 @@ This terraform module spins up an EC2 instance for Tamr, as well as additional d
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "basic" {
-source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=1.0.1"
+source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=1.0.2"
   aws_role_name                    = "name-for-tamr-role"
   aws_instance_profile_name        = "name-for-tamr-instance-profile"
   s3_policy_arns = [

@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v1.0.2 - April 27th 2021
+* Upgrades and pins `terraform-aws-modules/key-pair/aws` to version 1.0.0
+
 ## v1.0.1 - April 16th 2021
 * Fixes a bug where policy does not attach if you taint the module
 * Simplifies example by creating fewer buckets and adding a 'name-prefix' variable

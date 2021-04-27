@@ -15,6 +15,7 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | ami\_id | AMI to use for Tamr EC2 instance | `string` | n/a | yes |
+| name-prefix | A string to prepend to names of resources created by this example | `string` | n/a | yes |
 
 ## Outputs
 

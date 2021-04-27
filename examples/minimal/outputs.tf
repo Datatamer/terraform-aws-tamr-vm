@@ -7,7 +7,7 @@ output "subnet_id" {
 }
 
 output "tamr_key_pair_name" {
-  value       = module.tamr_ec2_key_pair.this_key_pair_key_name
+  value       = module.tamr_ec2_key_pair.key_pair_key_name
   description = "Name of EC2 key pair created for Tamr instance"
 }
 
