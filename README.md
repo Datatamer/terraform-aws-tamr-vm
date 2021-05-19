@@ -72,26 +72,16 @@ No provider.
 | bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
 | egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
 | egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
-| enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |
-| enable\_kibana\_port | If set to true, opens the kibana port for ingress | `bool` | `true` | no |
-| enable\_ping | If set to true, enables ping | `bool` | `true` | no |
-| enable\_ssh | If set to true, enables SSH | `bool` | `true` | no |
 | enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
-| grafana\_port | Default Grafana port | `number` | `31101` | no |
 | ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
 | ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
-| kibana\_port | Default Kibana port | `number` | `5601` | no |
+| ports | Destination ports to create network rules for | `list(number)` | <pre>[<br>  22,<br>  9100,<br>  9200,<br>  9020,<br>  9080,<br>  21281,<br>  5601,<br>  31101<br>]</pre> | no |
 | security\_group\_tags | Additional tags to be attached to the security group created | `map(string)` | <pre>{<br>  "Author": "Tamr"<br>}</pre> | no |
 | sg\_name | Security Group to create | `string` | `"tamr-instance-security-group"` | no |
-| tamr\_auth\_port | Port for Tamr auth | `number` | `9020` | no |
-| tamr\_es\_port | Port for Tamr elasticsearch | `number` | `9200` | no |
 | tamr\_instance\_tags | Additional tags to be attached to the Tamr EC2 instance | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Name": "Tamr VM"<br>}</pre> | no |
-| tamr\_persistence\_port | Port for Tamr persistence | `number` | `9080` | no |
-| tamr\_ui\_port | Port for Tamr UI and proxying Tamr services | `number` | `9100` | no |
 | volume\_size | The size of the root block volume to attach to the EC2 instance | `number` | `100` | no |
 | volume\_type | The type of root block volume to attach to the EC2 instance | `string` | `"gp2"` | no |
-| zk\_port | Port for accessing Zookeeper on the Tamr instance | `number` | `21281` | no |
 
 ## Outputs
 

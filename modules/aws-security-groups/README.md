@@ -44,27 +44,18 @@ enables HTTP on port `80` and TLS on `443`, and opens egress, which allows Tamr 
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | additional\_tags | Additional tags to be attached to the resources created | `map(string)` | <pre>{<br>  "Author": "Tamr"<br>}</pre> | no |
 | egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
-| egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
-| enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |
-| enable\_kibana\_port | If set to true, opens the kibana port for ingress | `bool` | `true` | no |
-| enable\_ping | If set to true, enables ping | `bool` | `true` | no |
-| enable\_ssh | If set to true, enables SSH | `bool` | `true` | no |
-| grafana\_port | Default Grafana port | `number` | `31101` | no |
+| egress\_security\_groups | Existing security groups to attach to new security groups for egress | `list(string)` | `[]` | no |
 | ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
 | ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
-| kibana\_port | Default Kibana port | `number` | `5601` | no |
+| ports | Destination ports to create network rules for | `list(number)` | <pre>[<br>  22,<br>  9100,<br>  9200,<br>  9020,<br>  9080,<br>  21281,<br>  5601,<br>  31101<br>]</pre> | no |
 | sg\_name | Security Group to create | `string` | `"tamr-instance-security-group"` | no |
-| tamr\_auth\_port | Port for Tamr auth | `number` | `9020` | no |
-| tamr\_es\_port | Port for Tamr elasticsearch | `number` | `9200` | no |
-| tamr\_persistence\_port | Port for Tamr persistence | `number` | `9080` | no |
-| tamr\_ui\_port | Port for Tamr UI and proxying Tamr services | `number` | `9100` | no |
-| zk\_port | Port for accessing Zookeeper on the Tamr instance | `number` | `21281` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| tamr\_security\_group\_id | ID of the security group created |
+| security\_groups | Security groups created by this module |
+| security\_groups\_ids | IDs of the security groups created by this module |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
