@@ -53,3 +53,9 @@ variable "ports" {
     31101, // grafana
   ]
 }
+
+variable "maximum_rules_per_sg" {
+  type        = number
+  description = "Maximum number of rules for each security group"
+  default     = 50
+}

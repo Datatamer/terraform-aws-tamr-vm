@@ -4,17 +4,17 @@ locals {
   num_rules_egress_sg    = length(var.egress_security_groups)
   num_rules_egress_cidr  = length(var.egress_cidr_blocks)
 
-  num_security_groups_ingress_sg   = ceil(local.num_rules_ingress_sg / 50)
-  num_security_groups_ingress_cidr = ceil(local.num_rules_ingress_cidr / 50)
-  num_security_groups_egress_sg    = ceil(local.num_rules_egress_sg / 50)
-  num_security_groups_egress_cidr  = ceil(local.num_rules_egress_cidr / 50)
+  num_security_groups_ingress_sg   = ceil(local.num_rules_ingress_sg / var.maximum_rules_per_sg)
+  num_security_groups_ingress_cidr = ceil(local.num_rules_ingress_cidr / var.maximum_rules_per_sg)
+  num_security_groups_egress_sg    = ceil(local.num_rules_egress_sg / var.maximum_rules_per_sg)
+  num_security_groups_egress_cidr  = ceil(local.num_rules_egress_cidr / var.maximum_rules_per_sg)
 }
 
 // Ingress security groups
 resource "aws_security_group" "security-groups-ingress-cidr" {
   count       = local.num_security_groups_ingress_cidr
   name        = format("%s-ingress-cidr-%s", var.sg_name, count.index)
-  description = "Security group for tamr"
+  description = "Ingress security group for Tamr (CIDR)"
   vpc_id      = var.vpc_id
   tags        = var.additional_tags
 }
@@ -22,7 +22,7 @@ resource "aws_security_group" "security-groups-ingress-cidr" {
 resource "aws_security_group" "security-groups-ingress-sg" {
   count       = local.num_security_groups_ingress_sg
   name        = format("%s-ingress-sg-%s", var.sg_name, count.index)
-  description = "Security group for tamr"
+  description = "Ingress security group for Tamr (SG)"
   vpc_id      = var.vpc_id
   tags        = var.additional_tags
 }
@@ -31,7 +31,7 @@ resource "aws_security_group" "security-groups-ingress-sg" {
 resource "aws_security_group" "security-groups-egress-cidr" {
   count       = local.num_security_groups_egress_cidr
   name        = format("%s-egress-cidr-%s", var.sg_name, count.index)
-  description = "Security group for tamr"
+  description = "Egress security group for Tamr (CIDR)"
   vpc_id      = var.vpc_id
   tags        = var.additional_tags
 }
@@ -39,7 +39,7 @@ resource "aws_security_group" "security-groups-egress-cidr" {
 resource "aws_security_group" "security-groups-egress-sg" {
   count       = local.num_security_groups_egress_sg
   name        = format("%s-egress-sg-%s", var.sg_name, count.index)
-  description = "Security group for tamr"
+  description = "Egress security group for Tamr (SG)"
   vpc_id      = var.vpc_id
   tags        = var.additional_tags
 }
