@@ -1,5 +1,12 @@
 # Tamr VM Terraform Module
 
+## v2.0.0 - June 8th 2021
+* Revamp of security group nested module to create a variable number of security groups based on 
+  the number of rules.
+* Output changed from `tamr_security_group_id` to `security_group_ids`
+* Inputs `enable_*` and `*_port` removed from the security group module
+* Input variable `ports` added to replace functionality of the removed variables.
+
 ## v1.0.2 - April 27th 2021
 * Upgrades and pins `terraform-aws-modules/key-pair/aws` to version 1.0.0
 

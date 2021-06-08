@@ -47,6 +47,7 @@ enables HTTP on port `80` and TLS on `443`, and opens egress, which allows Tamr 
 | egress\_security\_groups | Existing security groups to attach to new security groups for egress | `list(string)` | `[]` | no |
 | ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
 | ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
+| maximum\_rules\_per\_sg | Maximum number of rules for each security group | `number` | `50` | no |
 | ports | Destination ports to create network rules for | `list(number)` | <pre>[<br>  22,<br>  9100,<br>  9200,<br>  9020,<br>  9080,<br>  21281,<br>  5601,<br>  31101<br>]</pre> | no |
 | sg\_name | Security Group to create | `string` | `"tamr-instance-security-group"` | no |
 
@@ -54,8 +55,8 @@ enables HTTP on port `80` and TLS on `443`, and opens egress, which allows Tamr 
 
 | Name | Description |
 |------|-------------|
+| security\_group\_ids | IDs of the security groups created by this module |
 | security\_groups | Security groups created by this module |
-| security\_groups\_ids | IDs of the security groups created by this module |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
