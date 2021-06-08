@@ -8,7 +8,7 @@ output "security_groups" {
 
   description = "Security groups created by this module"
 }
-output "security_groups_ids" {
+output "security_group_ids" {
   value = concat(
     length(aws_security_group.security-groups-ingress-cidr) > 0 ?
     aws_security_group.security-groups-ingress-cidr[*].id : [],

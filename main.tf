@@ -33,7 +33,7 @@ module "tamr_instance" {
   instance_type            = var.instance_type
   iam_instance_profile     = module.aws-iam-role.tamr_instance_profile_id
   key_name                 = var.key_name
-  security_group_ids       = module.aws-security-groups.security_groups_ids
+  security_group_ids       = module.aws-security-groups.security_group_ids
   subnet_id                = var.subnet_id
   volume_type              = var.volume_type
   volume_size              = var.volume_size
