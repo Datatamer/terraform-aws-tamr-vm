@@ -4,6 +4,24 @@ locals {
   num_rules_egress_sg    = length(var.egress_security_groups)
   num_rules_egress_cidr  = length(var.egress_cidr_blocks)
 
+  rules_ingress_cidr = flatten([
+    for port in var.ports : [
+      for cidr in var.ingress_cidr_blocks : {
+        port = port
+        cidr = cidr
+      }
+    ]
+  ])
+
+  rules_ingress_sg = flatten([
+    for port in var.ports : [
+      for sg in var.ingress_security_groups : {
+        port = port
+        sg   = sg
+      }
+    ]
+  ])
+
   num_security_groups_ingress_sg   = ceil(local.num_rules_ingress_sg / var.maximum_rules_per_sg)
   num_security_groups_ingress_cidr = ceil(local.num_rules_ingress_cidr / var.maximum_rules_per_sg)
   num_security_groups_egress_sg    = ceil(local.num_rules_egress_sg / var.maximum_rules_per_sg)
@@ -47,24 +65,24 @@ resource "aws_security_group" "security-groups-egress-sg" {
 // Ingress Rules
 resource "aws_security_group_rule" "ingress_cidr_rules" {
   count             = local.num_rules_ingress_cidr
-  description       = format("Tamr ingress CIDR rule %s for port %s", count.index, var.ports[(count.index % length(var.ports))])
+  description       = format("Tamr ingress CIDR rule %s for port %s", count.index, local.rules_ingress_cidr[count.index]["port"])
   security_group_id = aws_security_group.security-groups-ingress-cidr[(count.index % length(aws_security_group.security-groups-ingress-cidr))].id
   type              = "ingress"
-  from_port         = var.ports[(count.index % length(var.ports))]
-  to_port           = var.ports[(count.index % length(var.ports))]
+  from_port         = local.rules_ingress_cidr[count.index]["port"]
+  to_port           = local.rules_ingress_cidr[count.index]["port"]
   protocol          = "tcp"
-  cidr_blocks       = [var.ingress_cidr_blocks[(count.index % length(var.ingress_cidr_blocks))]]
+  cidr_blocks       = [local.rules_ingress_cidr[count.index]["cidr"]]
 }
 
 resource "aws_security_group_rule" "ingress_sg_rules" {
   count                    = local.num_rules_ingress_sg
-  description              = format("Tamr ingress SG rule %s", count.index)
+  description              = format("Tamr ingress SG rule %s for port %s", count.index, local.rules_ingress_sg[count.index]["port"])
   security_group_id        = aws_security_group.security-groups-ingress-sg[(count.index % length(aws_security_group.security-groups-ingress-sg))].id
   type                     = "ingress"
-  from_port                = var.ports[(count.index % length(var.ports))]
-  to_port                  = var.ports[(count.index % length(var.ports))]
+  from_port                = local.rules_ingress_sg[count.index]["port"]
+  to_port                  = local.rules_ingress_sg[count.index]["port"]
   protocol                 = "tcp"
-  source_security_group_id = var.ingress_security_groups[(count.index % length(var.ingress_security_groups))]
+  source_security_group_id = local.rules_ingress_sg[count.index]["sg"]
 }
 
 // Egress Rules
