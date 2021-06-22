@@ -83,60 +83,15 @@ variable "key_name" {
   description = "The key name to attach to the EC2 instance for SSH access"
 }
 
-variable "sg_name" {
-  type        = string
-  description = "Security Group to create"
-  default     = "tamr-instance-security-group"
+variable "security_group_ids" {
+  type        = list(string)
+  description = "Security groups to associate with the ec2 instance"
+  default     = []
 }
 
 variable "subnet_id" {
   type        = string
   description = "The subnet to create the EC2 instance in"
-}
-
-variable "ports" {
-  type        = list(number)
-  description = "Destination ports to create network rules for"
-  default = [
-    22,
-    9100,  // UI
-    9200,  // ES
-    9020,  // auth
-    9080,  // persistence
-    21281, // zookeeper
-    5601,  // kibana
-    31101, // grafana
-  ]
-}
-
-variable "ingress_cidr_blocks" {
-  type        = list(string)
-  description = "CIDR blocks to attach to security groups for ingress"
-  default     = []
-}
-
-variable "ingress_security_groups" {
-  type        = list(string)
-  description = "Existing security groups to attch to new security groups for ingress"
-  default     = []
-}
-
-variable "egress_cidr_blocks" {
-  type        = list(string)
-  description = "CIDR blocks to attach to security groups for egress"
-  default     = []
-}
-
-variable "egress_security_groups" {
-  type        = list(string)
-  description = "Existing security groups to attch to new security groups for egress"
-  default     = []
-}
-
-variable "security_group_tags" {
-  type        = map(string)
-  description = "Additional tags to be attached to the security group created"
-  default     = { Author : "Tamr" }
 }
 
 variable "bootstrap_scripts" {

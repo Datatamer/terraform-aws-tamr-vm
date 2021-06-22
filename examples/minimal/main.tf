@@ -71,6 +71,24 @@ module "tamr_ec2_key_pair" {
   public_key = tls_private_key.tamr_ec2_private_key.public_key_openssh
 }
 
+module "aws-vm-sg-ports" {
+  #source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-security-groups?ref=2.0.0"
+  source = "../../modules/aws-security-groups"
+}
+
+module "aws-sg" {
+  source = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=0.1.0"
+  vpc_id = aws_vpc.tamr_vm_vpc.id
+  ingress_cidr_blocks = [
+    "1.2.3.0/24"
+  ]
+  egress_cidr_blocks = [
+    "0.0.0.0/0"
+  ]
+  ingress_ports  = module.aws-vm-sg-ports.ingress_ports
+  sg_name_prefix = var.name-prefix
+}
+
 module "tamr-vm" {
   # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=2.0.0"
   source                      = "../.."
@@ -80,13 +98,12 @@ module "tamr-vm" {
   s3_policy_arns = [
     module.s3-bucket.rw_policy_arn,
   ]
-  ami                 = var.ami_id
-  instance_type       = "m4.2xlarge"
-  key_name            = module.tamr_ec2_key_pair.key_pair_key_name
-  availability_zone   = local.az
-  vpc_id              = aws_vpc.tamr_vm_vpc.id
-  subnet_id           = aws_subnet.tamr_vm_subnet.id
-  ingress_cidr_blocks = [aws_vpc.tamr_vm_vpc.cidr_block]
+  ami               = var.ami_id
+  instance_type     = "m4.2xlarge"
+  key_name          = module.tamr_ec2_key_pair.key_pair_key_name
+  availability_zone = local.az
+  vpc_id            = aws_vpc.tamr_vm_vpc.id
+  subnet_id         = aws_subnet.tamr_vm_subnet.id
   bootstrap_scripts = [
     # NOTE: If you would like to use local scripts, you can use terraform's file() function
     # file("./test-bootstrap-scripts/install-pip.sh"),
@@ -94,4 +111,6 @@ module "tamr-vm" {
     data.aws_s3_bucket_object.bootstrap_script.body,
     data.aws_s3_bucket_object.bootstrap_script_2.body
   ]
+
+  security_group_ids = module.aws-sg.security_group_ids
 }

@@ -36,12 +36,6 @@ This modules creates:
 * an IAM policy with permissions for creating a cluster
 * an IAM role policy attachment resource, to attach the newly created policy to an existing IAM role
 * an IAM role for use by the Tamr VM
-* a security group for EC2 allowing access to the Tamr VM.
-* additonal security group rules. By default, opens required Tamr ports,
-enables HTTP on port `80` and TLS on `443`, and opens egress, which allows Tamr to operate and recreates
-AWS's default ALLOW ALL egress rules. These ports can be changed if desired. Additional
-ports for basic monitoring (Kibana and Grafana), as well as SSH, and ping,
-can be enabled using boolean variables. Additional rules can be added manually.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -70,15 +64,9 @@ No provider.
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
 | bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
-| egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
-| egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
 | enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
-| ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
-| ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
-| ports | Destination ports to create network rules for | `list(number)` | <pre>[<br>  22,<br>  9100,<br>  9200,<br>  9020,<br>  9080,<br>  21281,<br>  5601,<br>  31101<br>]</pre> | no |
-| security\_group\_tags | Additional tags to be attached to the security group created | `map(string)` | <pre>{<br>  "Author": "Tamr"<br>}</pre> | no |
-| sg\_name | Security Group to create | `string` | `"tamr-instance-security-group"` | no |
+| security\_group\_ids | Security groups to associate with the ec2 instance | `list(string)` | `[]` | no |
 | tamr\_instance\_tags | Additional tags to be attached to the Tamr EC2 instance | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Name": "Tamr VM"<br>}</pre> | no |
 | volume\_size | The size of the root block volume to attach to the EC2 instance | `number` | `100` | no |
 | volume\_type | The type of root block volume to attach to the EC2 instance | `string` | `"gp2"` | no |

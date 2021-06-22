@@ -1,5 +1,5 @@
 output "tamr_security_groups" {
-  value = module.aws-security-groups
+  value = var.security_group_ids
 }
 
 output "tamr_instance" {
