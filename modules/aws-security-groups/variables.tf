@@ -15,6 +15,6 @@ variable "ports" {
 
 variable "additional_ports" {
   type        = list(number)
-  description = "Additional ports that should be added to the output of this module"
+  description = "Additional ports to add to the output of this module"
   default     = []
 }

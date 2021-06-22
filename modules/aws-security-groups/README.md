@@ -26,7 +26,7 @@ No provider.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| additional\_ports | Additional ports that should be added to the output of this module | `list(number)` | `[]` | no |
+| additional\_ports | Additional ports to add to the output of this module | `list(number)` | `[]` | no |
 | ports | Ports used by the Tamr software | `list(number)` | <pre>[<br>  22,<br>  9100,<br>  9200,<br>  9020,<br>  9080,<br>  21281,<br>  5601,<br>  31101<br>]</pre> | no |
 
 ## Outputs
