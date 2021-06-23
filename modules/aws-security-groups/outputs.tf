@@ -1,4 +1,7 @@
-output "tamr_security_group_id" {
-  value       = aws_security_group.tamr-vm-sg.id
-  description = "ID of the security group created"
+output "ingress_ports" {
+  value = concat(
+    var.ports,
+    var.additional_ports,
+  )
+  description = "List of ingress ports"
 }

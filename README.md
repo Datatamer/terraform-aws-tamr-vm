@@ -6,7 +6,7 @@ This terraform module spins up an EC2 instance for Tamr, as well as additional d
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "basic" {
-source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=1.0.2"
+source                           = "git::https://github.com/Datatamer/terraform-aws-tamr-vm?ref=2.0.0"
   aws_role_name                    = "name-for-tamr-role"
   aws_instance_profile_name        = "name-for-tamr-instance-profile"
   s3_policy_arns = [
@@ -36,12 +36,6 @@ This modules creates:
 * an IAM policy with permissions for creating a cluster
 * an IAM role policy attachment resource, to attach the newly created policy to an existing IAM role
 * an IAM role for use by the Tamr VM
-* a security group for EC2 allowing access to the Tamr VM.
-* additonal security group rules. By default, opens required Tamr ports,
-enables HTTP on port `80` and TLS on `443`, and opens egress, which allows Tamr to operate and recreates
-AWS's default ALLOW ALL egress rules. These ports can be changed if desired. Additional
-ports for basic monitoring (Kibana and Grafana), as well as SSH, and ping,
-can be enabled using boolean variables. Additional rules can be added manually.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -70,28 +64,12 @@ No provider.
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
 | bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
-| egress\_cidr\_blocks | CIDR blocks to attach to security groups for egress | `list(string)` | `[]` | no |
-| egress\_security\_groups | Existing security groups to attch to new security groups for egress | `list(string)` | `[]` | no |
-| enable\_grafana\_port | If set to true, opens the grafana port for ingress | `bool` | `true` | no |
-| enable\_kibana\_port | If set to true, opens the kibana port for ingress | `bool` | `true` | no |
-| enable\_ping | If set to true, enables ping | `bool` | `true` | no |
-| enable\_ssh | If set to true, enables SSH | `bool` | `true` | no |
 | enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
-| grafana\_port | Default Grafana port | `number` | `31101` | no |
-| ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
-| ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
-| kibana\_port | Default Kibana port | `number` | `5601` | no |
-| security\_group\_tags | Additional tags to be attached to the security group created | `map(string)` | <pre>{<br>  "Author": "Tamr"<br>}</pre> | no |
-| sg\_name | Security Group to create | `string` | `"tamr-instance-security-group"` | no |
-| tamr\_auth\_port | Port for Tamr auth | `number` | `9020` | no |
-| tamr\_es\_port | Port for Tamr elasticsearch | `number` | `9200` | no |
+| security\_group\_ids | Security groups to associate with the ec2 instance | `list(string)` | `[]` | no |
 | tamr\_instance\_tags | Additional tags to be attached to the Tamr EC2 instance | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Name": "Tamr VM"<br>}</pre> | no |
-| tamr\_persistence\_port | Port for Tamr persistence | `number` | `9080` | no |
-| tamr\_ui\_port | Port for Tamr UI and proxying Tamr services | `number` | `9100` | no |
 | volume\_size | The size of the root block volume to attach to the EC2 instance | `number` | `100` | no |
 | volume\_type | The type of root block volume to attach to the EC2 instance | `string` | `"gp2"` | no |
-| zk\_port | Port for accessing Zookeeper on the Tamr instance | `number` | `21281` | no |
 
 ## Outputs
 

@@ -1,5 +1,31 @@
 # Tamr VM Terraform Module
 
+## v2.0.0 - June 22nd 2021
+* Nested security group module refactored to only return the list of ingress ports instead of creating the security groups
+* Output changed from `tamr_security_group_id` to `security_group_ids`
+* New input variables for the main module:
+  * `security_group_ids`
+* Removed input variables from the main module:
+  * `ingress_cidr_blocks`
+  * `ingress_security_groups`
+  * `egress_cidr_blocks`
+  * `egress_security_groups`
+  * `ports`
+  * `security_group_tags`
+  * `sg_name`
+* New input variables for the security group module:
+  * `additional_ports`
+* Removed input variables from the security group module:
+  * `*_port`
+  * `additional_tags`
+  * `ingress_cidr_blocks`
+  * `ingress_security_groups`
+  * `egress_cidr_blocks`
+  * `egress_security_groups`
+  * `enable_*`
+  * `sg_name`
+  * `vpc_id`
+
 ## v1.0.2 - April 27th 2021
 * Upgrades and pins `terraform-aws-modules/key-pair/aws` to version 1.0.0
 
