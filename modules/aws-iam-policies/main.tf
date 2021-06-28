@@ -25,7 +25,11 @@ data "aws_iam_policy_document" "emr_creator_policy" {
       "iam:PassRole"
     ]
     resources = flatten(
-                  "arn:${var.arn_partition}:iam::${data.aws_caller_identity.current.account_id}:role/*",
+                  length(var.tamr_emr_role_arns)==0 ?
+                      "arn:${var.arn_partition}:iam::${data.aws_caller_identity.current.account_id}:role/*":
+                      [ for emr_role_arn in var.tamr_emr_role_arns :
+                        emr_role_arns
+                      ],
                   length(var.tamr_emr_cluster_ids)==0 ?
                       "arn:${var.arn_partition}:elasticmapreduce:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:cluster/*" :
                       [ for emr_id in var.tamr_emr_cluster_ids :
