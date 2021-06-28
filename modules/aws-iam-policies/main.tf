@@ -40,7 +40,14 @@ data "aws_iam_policy_document" "emr_creator_policy" {
   statement {
     effect = "Allow"
     actions = [
-      "elasticmapreduce:Describe*",
+      "elasticmapreduce:DescribeCluster",
+      "elasticmapreduce:DescribeEditor",
+      "elasticmapreduce:DescribeJobFlows",
+      "elasticmapreduce:DescribeNotebookExecution",
+      "elasticmapreduce:DescribeRepository",
+      "elasticmapreduce:DescribeSecurityConfiguration",
+      "elasticmapreduce:DescribeStep",
+      "elasticmapreduce:DescribeStudio",
       "elasticmapreduce:ListClusters"
     ]
     resources = ["*"]
