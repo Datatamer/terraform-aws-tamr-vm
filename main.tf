@@ -11,6 +11,7 @@ module "aws-iam-policies" {
   aws_emr_creator_policy_name = var.aws_emr_creator_policy_name
   s3_policy_arns              = var.s3_policy_arns
   tamr_emr_cluster_ids        = var.tamr_emr_cluster_ids
+  tamr_emr_role_arns          = var.tamr_emr_role_arns
 }
 
 module "tamr_instance" {
