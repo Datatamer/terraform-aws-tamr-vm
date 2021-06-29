@@ -64,11 +64,11 @@ No provider.
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
 | bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
-| tamr\_emr\_cluster\_ids | List of IDs for Static EMR clusters | `list(string)` | `[]` | no |
-| tamr\_emr\_role\_arns | List of ARNs for EMR Service and EMR EC2 roles | `list(string)` | `[]` | no |
 | enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
 | security\_group\_ids | Security groups to associate with the ec2 instance | `list(string)` | `[]` | no |
+| tamr\_emr\_cluster\_ids | List of IDs for Static EMR clusters | `list(string)` | `[]` | no |
+| tamr\_emr\_role\_arns | List of ARNs for EMR Service and EMR EC2 roles | `list(string)` | `[]` | no |
 | tamr\_instance\_tags | Additional tags to be attached to the Tamr EC2 instance | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Name": "Tamr VM"<br>}</pre> | no |
 | volume\_size | The size of the root block volume to attach to the EC2 instance | `number` | `100` | no |
 | volume\_type | The type of root block volume to attach to the EC2 instance | `string` | `"gp2"` | no |
