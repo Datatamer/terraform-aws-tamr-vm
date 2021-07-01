@@ -99,3 +99,15 @@ variable "bootstrap_scripts" {
   default     = []
   description = "List of body content of bootstrap shell scripts."
 }
+
+variable "tamr_emr_cluster_ids" {
+  type        = list(string)
+  default     = []
+  description = "List of IDs for Static EMR clusters"
+}
+
+variable "tamr_emr_role_arns" {
+  type        = list(string)
+  default     = []
+  description = "List of ARNs for EMR Service and EMR EC2 roles"
+}

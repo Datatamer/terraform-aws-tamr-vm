@@ -6,7 +6,7 @@ This terraform modules creates a policy role in AWS with permissions to create a
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "aws-emr-creator-iam" {
-  source         = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-policies?ref=1.0.0"
+  source         = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-policies?ref=x.y.z"
   aws_role_name  = "iam-role-name"
   s3_policy_arns = [
     arn:aws:iam::aws:policy/HBaseRootDirReadWrite,
@@ -43,6 +43,8 @@ This modules creates:
 | s3\_policy\_arns | List of S3 policy ARNs to attach to Tamr role. | `list(string)` | n/a | yes |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
+| tamr\_emr\_cluster\_ids | List of IDs for Static EMR clusters | `list(string)` | `[]` | no |
+| tamr\_emr\_role\_arns | List of ARNs for EMR Service and EMR EC2 roles | `list(string)` | `[]` | no |
 
 ## Outputs
 

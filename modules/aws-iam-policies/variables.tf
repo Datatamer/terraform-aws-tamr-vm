@@ -26,3 +26,15 @@ variable "arn_partition" {
   EOF
   default     = "aws"
 }
+
+variable "tamr_emr_cluster_ids" {
+  type        = list(string)
+  description = "List of IDs for Static EMR clusters"
+  default     = []
+}
+
+variable "tamr_emr_role_arns" {
+  type        = list(string)
+  description = "List of ARNs for EMR Service and EMR EC2 roles"
+  default     = []
+}
