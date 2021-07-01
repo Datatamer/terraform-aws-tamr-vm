@@ -1,5 +1,11 @@
 # Tamr VM Terraform Module
 
+## v3.0.0 - July 1st 2021
+* Update to policy to remove wildcards wherever possible
+* New configuration variables:
+  * `tamr_emr_cluster_ids`
+  * `tamr_emr_role_arns`
+
 ## v2.0.0 - June 22nd 2021
 * Nested security group module refactored to only return the list of ingress ports instead of creating the security groups
 * Output changed from `tamr_security_group_id` to `security_group_ids`

@@ -90,7 +90,7 @@ module "aws-sg" {
 }
 
 module "tamr-vm" {
-  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=2.0.0"
+  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=3.0.0"
   source                      = "../.."
   aws_role_name               = format("%s-tamr-ec2-role", var.name-prefix)
   aws_instance_profile_name   = format("%s-tamr-ec2-instance-profile", var.name-prefix)
