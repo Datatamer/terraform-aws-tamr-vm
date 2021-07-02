@@ -3,6 +3,7 @@ module "aws-iam-role" {
   source                    = "./modules/aws-iam-role"
   aws_role_name             = var.aws_role_name
   aws_instance_profile_name = var.aws_instance_profile_name
+  permissions_boundary      = var.permissions_boundary
 }
 
 module "aws-iam-policies" {
