@@ -111,3 +111,9 @@ variable "tamr_emr_role_arns" {
   default     = []
   description = "List of ARNs for EMR Service and EMR EC2 roles"
 }
+
+variable "permissions_boundary" {
+  type        = string
+  description = "ARN of the policy that will be used to set the permissions boundary for the IAM Role"
+  default     = null
+}

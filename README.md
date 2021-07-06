@@ -66,6 +66,7 @@ No provider.
 | bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
 | enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
+| permissions\_boundary | ARN of the policy that will be used to set the permissions boundary for the IAM Role | `string` | `null` | no |
 | security\_group\_ids | Security groups to associate with the ec2 instance | `list(string)` | `[]` | no |
 | tamr\_emr\_cluster\_ids | List of IDs for Static EMR clusters | `list(string)` | `[]` | no |
 | tamr\_emr\_role\_arns | List of ARNs for EMR Service and EMR EC2 roles | `list(string)` | `[]` | no |

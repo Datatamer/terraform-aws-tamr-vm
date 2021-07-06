@@ -35,6 +35,7 @@ This modules creates:
 |------|-------------|------|---------|:--------:|
 | aws\_instance\_profile\_name | IAM Instance Profile to create | `string` | `"tamr-instance-profile"` | no |
 | aws\_role\_name | IAM Role to create | `string` | `"tamr-instance-role"` | no |
+| permissions\_boundary | ARN of the policy that will be used to set the permissions boundary for the IAM Role | `string` | `null` | no |
 
 ## Outputs
 

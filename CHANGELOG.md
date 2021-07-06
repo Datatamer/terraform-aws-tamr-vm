@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v3.1.0 - July 6th 2021
+*  Adds new variable `permissions_boundary` to set the permissions boundary for the IAM Role used by the Tamr EC2 Instance
+
 ## v3.0.0 - July 1st 2021
 * Update to policy to remove wildcards wherever possible
 * New configuration variables:

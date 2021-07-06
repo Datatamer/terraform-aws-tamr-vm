@@ -9,3 +9,9 @@ variable "aws_instance_profile_name" {
   description = "IAM Instance Profile to create"
   default     = "tamr-instance-profile"
 }
+
+variable "permissions_boundary" {
+  type        = string
+  description = "ARN of the policy that will be used to set the permissions boundary for the IAM Role"
+  default     = null
+}
