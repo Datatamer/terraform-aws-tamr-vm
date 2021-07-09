@@ -4,6 +4,7 @@ module "aws-iam-role" {
   aws_role_name             = var.aws_role_name
   aws_instance_profile_name = var.aws_instance_profile_name
   permissions_boundary      = var.permissions_boundary
+  additional_tags           = var.additional_tags
 }
 
 module "aws-iam-policies" {
@@ -13,6 +14,7 @@ module "aws-iam-policies" {
   s3_policy_arns              = var.s3_policy_arns
   tamr_emr_cluster_ids        = var.tamr_emr_cluster_ids
   tamr_emr_role_arns          = var.tamr_emr_role_arns
+  additional_tags             = var.additional_tags
 }
 
 module "tamr_instance" {
