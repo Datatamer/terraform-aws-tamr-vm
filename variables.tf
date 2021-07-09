@@ -75,7 +75,7 @@ variable "enable_volume_encryption" {
 variable "tamr_instance_tags" {
   type        = map(string)
   description = "Additional tags to be attached to the Tamr EC2 instance"
-  default     = { Name : "Tamr VM" }
+  default     = { Author : "Tamr", Name : "Tamr VM" }
 }
 
 variable "key_name" {
@@ -121,5 +121,5 @@ variable "permissions_boundary" {
 variable "additional_tags" {
   type        = map(string)
   description = "Additional tags to be attached to the resources created"
-  default     = { Author : "Tamr" }
+  default     = {}
 }
