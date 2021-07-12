@@ -1,6 +1,6 @@
 # Tamr VM Terraform Module
 
-## v3.2.0 - July 12th 2021
+## v3.2.0 - July 12nd 2021
 * Adds new variable `tags` to set tags for all resources
 * Deprecates `additional_tags` in favor of `tags`
 
