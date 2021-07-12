@@ -16,7 +16,7 @@ variable "permissions_boundary" {
   default     = null
 }
 
-variable "additional_tags" {
+variable "tags" {
   type        = map(string)
   description = "Additional tags to be attached to the IAM resources created"
   default     = {}

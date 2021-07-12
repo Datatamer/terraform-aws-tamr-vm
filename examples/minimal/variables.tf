@@ -8,7 +8,7 @@ variable "name-prefix" {
   description = "A string to prepend to names of resources created by this example"
 }
 
-variable "additional_tags" {
+variable "tags" {
   type        = map(string)
   description = "Additional tags for resources created by this example"
   default     = { 

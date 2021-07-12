@@ -39,7 +39,7 @@ variable "tamr_emr_role_arns" {
   default     = []
 }
 
-variable "additional_tags" {
+variable "tags" {
   type        = map(string)
   description = "Additional tags to be attached to the IAM resources created"
   default     = {}

@@ -15,14 +15,14 @@ locals {
 # Set up VPC & subnet
 resource "aws_vpc" "tamr_vm_vpc" {
   cidr_block = "1.2.3.0/24"
-  tags       = var.additional_tags
+  tags       = var.tags
 }
 
 resource "aws_subnet" "tamr_vm_subnet" {
   vpc_id            = aws_vpc.tamr_vm_vpc.id
   cidr_block        = "1.2.3.0/24"
   availability_zone = local.az
-  tags              = var.additional_tags
+  tags              = var.tags
 }
 
 # Set up HBase logs bucket
@@ -31,7 +31,7 @@ module "s3-bucket" {
   bucket_name        = format("%s-tamr-module-test-bucket", var.name-prefix)
   read_write_actions = local.tamr_vm_s3_actions
   read_write_paths   = [""] # r/w policy permitting specified rw actions on entire bucket
-  additional_tags    = var.additional_tags
+  additional_tags    = var.tags
 }
 
 # Upload bootstrap scripts to S3
@@ -41,7 +41,7 @@ resource "aws_s3_bucket_object" "install_pip_bootstrap_script" {
   source                 = "./test-bootstrap-scripts/install-pip.sh"
   content_type           = "text/x-shellscript"
   server_side_encryption = "AES256"
-  tags                   = var.additional_tags
+  tags                   = var.tags
 }
 
 resource "aws_s3_bucket_object" "check_pip_install_script" {
@@ -50,7 +50,7 @@ resource "aws_s3_bucket_object" "check_pip_install_script" {
   source                 = "./test-bootstrap-scripts/check-install.sh"
   content_type           = "text/x-shellscript"
   server_side_encryption = "AES256"
-  tags                   = var.additional_tags
+  tags                   = var.tags
 }
 
 # Retrieve content of bootstrap script S3 objects
@@ -74,7 +74,7 @@ module "tamr_ec2_key_pair" {
   version    = "1.0.0"
   key_name   = format("%s-tamr-ec2-test-key", var.name-prefix)
   public_key = tls_private_key.tamr_ec2_private_key.public_key_openssh
-  tags       = var.additional_tags
+  tags       = var.tags
 }
 
 module "aws-vm-sg-ports" {
@@ -93,7 +93,7 @@ module "aws-sg" {
   ]
   ingress_ports  = module.aws-vm-sg-ports.ingress_ports
   sg_name_prefix = var.name-prefix
-  tags           = var.additional_tags
+  tags           = var.tags
 }
 
 module "tamr-vm" {
@@ -120,5 +120,5 @@ module "tamr-vm" {
   ]
 
   security_group_ids = module.aws-sg.security_group_ids
-  additional_tags    = var.additional_tags
+  tags    = var.tags
 }

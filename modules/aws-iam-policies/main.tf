@@ -5,7 +5,7 @@ while others must have access to all EMR in order to operate correctly.
 resource "aws_iam_policy" "emr_creator_minimal_policy" {
   name   = var.aws_emr_creator_policy_name
   policy = data.aws_iam_policy_document.emr_creator_policy.json
-  tags   = var.additional_tags
+  tags   = var.tags
 }
 
 data "aws_caller_identity" "current" {}

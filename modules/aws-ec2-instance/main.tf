@@ -15,7 +15,7 @@ resource "aws_instance" "tamr-instance" {
 
   user_data = length(var.bootstrap_scripts) == 0 ? "" : data.template_cloudinit_config.bootstrap-scripts[0].rendered
 
-  tags = var.additional_tags
+  tags = var.tags
 }
 
 data "template_cloudinit_config" "bootstrap-scripts" {

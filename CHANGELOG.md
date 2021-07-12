@@ -1,7 +1,8 @@
 # Tamr VM Terraform Module
 
-## v3.2.0 - July 8th 2021
-* Adds new variable `additional_tags` to set tags on all taggable resources.
+## v3.2.0 - July 12th 2021
+* Adds new variable `tags` to set tags for all resources
+* Deprecates `additional_tags` in favor of `tags`
 
 ## v3.1.0 - July 6th 2021
 *  Adds new variable `permissions_boundary` to set the permissions boundary for the IAM Role used by the Tamr EC2 Instance
