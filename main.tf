@@ -32,5 +32,5 @@ module "tamr_instance" {
   volume_size              = var.volume_size
   enable_volume_encryption = var.enable_volume_encryption
   bootstrap_scripts        = var.bootstrap_scripts
-  tags                     = merge(var.tamr_instance_tags, var.tags)
+  tags                     = merge(var.tags, var.tamr_instance_tags)
 }
