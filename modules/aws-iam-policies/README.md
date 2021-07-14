@@ -41,9 +41,9 @@ This modules creates:
 |------|-------------|------|---------|:--------:|
 | aws\_role\_name | IAM Role to which the policy will be attached | `string` | n/a | yes |
 | s3\_policy\_arns | List of S3 policy ARNs to attach to Tamr role. | `list(string)` | n/a | yes |
-| additional\_tags | Additional tags to be attached to the IAM resources created | `map(string)` | `{}` | no |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
+| tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 | tamr\_emr\_cluster\_ids | List of IDs for Static EMR clusters | `list(string)` | `[]` | no |
 | tamr\_emr\_role\_arns | List of ARNs for EMR Service and EMR EC2 roles | `list(string)` | `[]` | no |
 
