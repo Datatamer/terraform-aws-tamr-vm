@@ -27,7 +27,7 @@ resource "aws_subnet" "tamr_vm_subnet" {
 
 # Set up HBase logs bucket
 module "s3-bucket" {
-  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.0.0"
+  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.1.0"
   bucket_name        = format("%s-tamr-module-test-bucket", var.name-prefix)
   read_write_actions = local.tamr_vm_s3_actions
   read_write_paths   = [""] # r/w policy permitting specified rw actions on entire bucket
