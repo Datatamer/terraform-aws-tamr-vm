@@ -16,6 +16,7 @@ No requirements.
 |------|-------------|------|---------|:--------:|
 | ami\_id | AMI to use for Tamr EC2 instance | `string` | n/a | yes |
 | name-prefix | A string to prepend to names of resources created by this example | `string` | n/a | yes |
+| tags | A map of tags to add to all resources created by this example. | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Environment": "Example"<br>}</pre> | no |
 
 ## Outputs
 

@@ -68,6 +68,7 @@ No provider.
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
 | permissions\_boundary | ARN of the policy that will be used to set the permissions boundary for the IAM Role | `string` | `null` | no |
 | security\_group\_ids | Security groups to associate with the ec2 instance | `list(string)` | `[]` | no |
+| tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 | tamr\_emr\_cluster\_ids | List of IDs for Static EMR clusters | `list(string)` | `[]` | no |
 | tamr\_emr\_role\_arns | List of ARNs for EMR Service and EMR EC2 roles | `list(string)` | `[]` | no |
 | tamr\_instance\_tags | Additional tags to be attached to the Tamr EC2 instance | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Name": "Tamr VM"<br>}</pre> | no |

@@ -38,3 +38,9 @@ variable "tamr_emr_role_arns" {
   description = "List of ARNs for EMR Service and EMR EC2 roles"
   default     = []
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "A map of tags to add to all resources."
+  default     = {}
+}

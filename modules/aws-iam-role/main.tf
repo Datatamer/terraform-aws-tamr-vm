@@ -18,9 +18,11 @@ resource "aws_iam_role" "tamr_user_iam_role" {
   name                 = var.aws_role_name
   assume_role_policy   = data.aws_iam_policy_document.instance-assume-role-policy.json
   permissions_boundary = var.permissions_boundary
+  tags                 = var.tags
 }
 
 resource "aws_iam_instance_profile" "tamr_user_instance_profile" {
   name = var.aws_instance_profile_name
   role = aws_iam_role.tamr_user_iam_role.name
+  tags = var.tags
 }

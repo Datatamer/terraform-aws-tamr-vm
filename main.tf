@@ -4,6 +4,7 @@ module "aws-iam-role" {
   aws_role_name             = var.aws_role_name
   aws_instance_profile_name = var.aws_instance_profile_name
   permissions_boundary      = var.permissions_boundary
+  tags                      = var.tags
 }
 
 module "aws-iam-policies" {
@@ -13,6 +14,7 @@ module "aws-iam-policies" {
   s3_policy_arns              = var.s3_policy_arns
   tamr_emr_cluster_ids        = var.tamr_emr_cluster_ids
   tamr_emr_role_arns          = var.tamr_emr_role_arns
+  tags                        = var.tags
 }
 
 module "tamr_instance" {
@@ -30,5 +32,5 @@ module "tamr_instance" {
   volume_size              = var.volume_size
   enable_volume_encryption = var.enable_volume_encryption
   bootstrap_scripts        = var.bootstrap_scripts
-  additional_tags          = var.tamr_instance_tags
+  tags                     = merge(var.tags, var.tamr_instance_tags)
 }
