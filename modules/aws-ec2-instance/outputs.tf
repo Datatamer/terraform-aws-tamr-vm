@@ -12,3 +12,8 @@ output "bootstrap_scripts" {
   value       = length(var.bootstrap_scripts) == 0 ? "" : data.template_cloudinit_config.bootstrap-scripts[0].rendered
   description = "The final rendered multi-part cloud-init config."
 }
+
+output "tamr_instance_eni" {
+  value       = aws_network_interface.tamr-instance-network.id
+  description = "The eni ID of the EC2 instance created"
+}
