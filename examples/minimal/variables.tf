@@ -13,6 +13,7 @@ variable "tags" {
   description = "A map of tags to add to all resources created by this example."
   default = {
     Author      = "Tamr"
-    Environment = "Example"
+    Name = "fdTamrExamples"
   }
 }
+
