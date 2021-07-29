@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v4.0.0 - July 29th 2021
+* Adds `tags` variable to set tags on root EBS volume and root ENI (network interface).
+
 ## v3.2.0 - July 12nd 2021
 * Adds new variable `tags` to set tags for all resources
 * Deprecates `additional_tags` in favor of `tags`

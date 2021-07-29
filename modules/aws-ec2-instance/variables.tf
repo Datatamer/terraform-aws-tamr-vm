@@ -64,4 +64,3 @@ variable "bootstrap_scripts" {
   default     = []
   description = "List of body content of bootstrap shell scripts."
 }
-

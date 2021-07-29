@@ -1,23 +1,21 @@
 resource "aws_instance" "tamr-instance" {
-  ami                    = var.ami
-  availability_zone      = var.availability_zone
-  iam_instance_profile   = var.iam_instance_profile
-  instance_type          = var.instance_type
-  key_name               = var.key_name
- # vpc_security_group_ids = var.security_group_ids
-  #subnet_id              = var.subnet_id
+  ami                  = var.ami
+  availability_zone    = var.availability_zone
+  iam_instance_profile = var.iam_instance_profile
+  instance_type        = var.instance_type
+  key_name             = var.key_name
 
   root_block_device {
     volume_type = var.volume_type
     volume_size = var.volume_size
     encrypted   = var.enable_volume_encryption
-    tags = var.tags
+    tags        = var.tags
   }
 
- network_interface {
-   network_interface_id  = aws_network_interface.tamr-instance-network.id
-   device_index          = 0
- }
+  network_interface {
+    network_interface_id = aws_network_interface.tamr-instance-network.id
+    device_index         = 0
+  }
 
   user_data = length(var.bootstrap_scripts) == 0 ? "" : data.template_cloudinit_config.bootstrap-scripts[0].rendered
 
@@ -25,9 +23,9 @@ resource "aws_instance" "tamr-instance" {
 }
 
 resource "aws_network_interface" "tamr-instance-network" {
-  subnet_id   = var.subnet_id
+  subnet_id       = var.subnet_id
   security_groups = var.security_group_ids
-  tags = var.tags
+  tags            = var.tags
 }
 
 data "template_cloudinit_config" "bootstrap-scripts" {

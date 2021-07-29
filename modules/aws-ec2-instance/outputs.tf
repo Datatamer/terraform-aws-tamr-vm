@@ -13,7 +13,7 @@ output "bootstrap_scripts" {
   description = "The final rendered multi-part cloud-init config."
 }
 
-output "tamr_instance_eni" {
+output "tamr_instance_eni_id" {
   value       = aws_network_interface.tamr-instance-network.id
-  description = "The eni ID of the EC2 instance created"
+  description = "The ID of the network interface attached to the created EC2 instance."
 }
