@@ -14,13 +14,13 @@ locals {
 
 # Set up VPC & subnet
 resource "aws_vpc" "tamr_vm_vpc" {
-  cidr_block = "1.2.3.4/24"
+  cidr_block = "1.2.3.0/24"
   tags       = var.tags
 }
 
 resource "aws_subnet" "tamr_vm_subnet" {
   vpc_id            = aws_vpc.tamr_vm_vpc.id
-  cidr_block        = "1.2.3.4/24"
+  cidr_block        = "1.2.3.0/24"
   availability_zone = local.az
   tags              = var.tags
 }
