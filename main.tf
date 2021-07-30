@@ -15,6 +15,7 @@ module "aws-iam-policies" {
   tamr_emr_cluster_ids        = var.tamr_emr_cluster_ids
   tamr_emr_role_arns          = var.tamr_emr_role_arns
   tags                        = var.tags
+  emr_abac_valid_tags         = var.emr_abac_valid_tags
 }
 
 module "tamr_instance" {
