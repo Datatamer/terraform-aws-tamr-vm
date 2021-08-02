@@ -57,6 +57,7 @@ This module creates:
 |------|-------------|
 | bootstrap\_scripts | The final rendered multi-part cloud-init config. |
 | ec2\_instance\_id | The ID of the instance created |
+| tamr\_instance\_eni\_id | The ID of the network interface attached to the created EC2 instance. |
 | tamr\_instance\_ip | The private IP address of the EC2 instance created |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

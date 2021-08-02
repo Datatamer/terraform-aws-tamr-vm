@@ -1,5 +1,10 @@
 # Tamr VM Terraform Module
 
+## v4.0.0 - July 30th 2021
+* Adds tags to the EC2 instance's root EBS volume
+* Adds network interface resource used as the default network interface on the EC2 instance in order to support tags
+  (Major version note: Tamr VM recreates as a new taggable network interface is created and assigned at `device_index = 0`)
+
 ## v3.2.0 - July 12nd 2021
 * Adds new variable `tags` to set tags for all resources
 * Deprecates `additional_tags` in favor of `tags`
