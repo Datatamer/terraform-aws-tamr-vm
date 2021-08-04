@@ -88,28 +88,6 @@ data "aws_iam_policy_document" "emr_creator_policy" {
     resources = ["*"]
   }
 
-  statement {
-    effect = "Allow"
-    actions = [
-      "elasticmapreduce:AddTags"
-    ]
-    resources = (
-      length(var.tamr_emr_cluster_ids) == 0 ?
-      ["${local.arn_prefix_elasticmapreduce}:cluster/*"] :
-      [for emr_id in var.tamr_emr_cluster_ids :
-        "${local.arn_prefix_elasticmapreduce}:cluster/${emr_id}"
-      ]
-    )
-    dynamic "condition" {
-      for_each = var.emr_abac_valid_tags
-      content {
-        test     = "ForAnyValue:StringEquals"
-        variable = "aws:RequestTag/${condition.key}"
-        values   = condition.value
-      }
-    }
-  }
-
 }
 
 //Attach the above policy to an existing user
