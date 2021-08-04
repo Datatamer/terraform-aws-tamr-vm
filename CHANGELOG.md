@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v3.3.0 - August 4th 2021
+* Adds new variable `emr_abac_valid_tags` to be used in IAM Policies conditions for creating EMR Resources using ABAC
+
 ## v3.2.0 - July 12nd 2021
 * Adds new variable `tags` to set tags for all resources
 * Deprecates `additional_tags` in favor of `tags`
