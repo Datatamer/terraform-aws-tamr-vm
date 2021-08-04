@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v4.1.0 - August 9th 2021
+* Adds new variable `emr_abac_valid_tags` to be used in IAM Policies conditions for creating EMR Resources using ABAC
+
 ## v4.0.0 - July 30th 2021
 * Adds tags to the EC2 instance's root EBS volume
 * Adds network interface resource used as the default network interface on the EC2 instance in order to support tags
