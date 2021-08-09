@@ -64,6 +64,7 @@ No provider.
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
 | bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
+| emr\_abac\_valid\_tags | A map of valid tags for maintaining EMR resources when using ABAC IAM Policies with Tag Conditions. Make sure your tamr-config.yml file specifies tags key values. Refer to tamr-config module examples for more info. | `map(list(string))` | `{}` | no |
 | enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
 | permissions\_boundary | ARN of the policy that will be used to set the permissions boundary for the IAM Role | `string` | `null` | no |
