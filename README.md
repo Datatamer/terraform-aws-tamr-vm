@@ -68,6 +68,7 @@ No provider.
 | enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
 | permissions\_boundary | ARN of the policy that will be used to set the permissions boundary for the IAM Role | `string` | `null` | no |
+| private\_ips | List of private IPs to assign to the ENI attached to the Tamr EC2 Instance | `list(string)` | `[]` | no |
 | security\_group\_ids | Security groups to associate with the ec2 instance | `list(string)` | `[]` | no |
 | tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 | tamr\_emr\_cluster\_ids | List of IDs for Static EMR clusters | `list(string)` | `[]` | no |
