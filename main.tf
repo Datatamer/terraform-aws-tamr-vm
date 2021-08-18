@@ -29,6 +29,7 @@ module "tamr_instance" {
   key_name                 = var.key_name
   security_group_ids       = var.security_group_ids
   subnet_id                = var.subnet_id
+  private_ips              = var.private_ips
   volume_type              = var.volume_type
   volume_size              = var.volume_size
   enable_volume_encryption = var.enable_volume_encryption

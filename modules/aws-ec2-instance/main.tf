@@ -15,6 +15,7 @@ resource "aws_instance" "tamr-instance" {
   network_interface {
     network_interface_id = aws_network_interface.tamr-instance-network.id
     device_index         = 0
+    private_ips = var.private_ips
   }
 
   user_data = length(var.bootstrap_scripts) == 0 ? "" : data.template_cloudinit_config.bootstrap-scripts[0].rendered

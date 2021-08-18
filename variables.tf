@@ -129,3 +129,9 @@ variable "emr_abac_valid_tags" {
   description = "A map of valid tags for maintaining EMR resources when using ABAC IAM Policies with Tag Conditions. Make sure your tamr-config.yml file specifies tags key values. Refer to tamr-config module examples for more info."
   default     = {}
 }
+
+variable "private_ips" {
+  type        = list(string)
+  default     = []
+  description = "List of private IPs to assign to the ENI attached to the Tamr EC2 Instance"
+}
