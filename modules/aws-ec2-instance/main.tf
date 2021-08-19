@@ -24,7 +24,7 @@ resource "aws_instance" "tamr-instance" {
 
 resource "aws_network_interface" "tamr-instance-network" {
   subnet_id       = var.subnet_id
-  private_ips = var.private_ips
+  private_ips     = var.private_ips
   security_groups = var.security_group_ids
   tags            = var.tags
 }
