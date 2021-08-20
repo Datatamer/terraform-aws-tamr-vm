@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v4.2.0 - August 20th 2021
+* Adds new variable `private_ips` to limit which private IPs can be assigned to the ENI attached to the Tamr EC2 Instance
+
 ## v4.1.0 - August 10th 2021
 * Adds new variable `emr_abac_valid_tags` to be used in IAM Policies conditions for creating EMR Resources using ABAC
 
