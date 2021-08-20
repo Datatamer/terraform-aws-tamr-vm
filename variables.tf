@@ -132,6 +132,6 @@ variable "emr_abac_valid_tags" {
 
 variable "private_ips" {
   type        = list(string)
-  default     = []
   description = "List of private IPs to assign to the ENI attached to the Tamr EC2 Instance"
+  default     = null
 }
