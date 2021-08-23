@@ -47,6 +47,7 @@ This module creates:
 | bootstrap\_scripts | List of body content of bootstrap shell scripts. | `list(string)` | `[]` | no |
 | enable\_volume\_encryption | Whether to encrypt the root block device | `bool` | `true` | no |
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
+| private\_ips | List of private IPs to assign to the ENI attached to the Tamr EC2 Instance | `list(string)` | `null` | no |
 | tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 | volume\_size | The size of the root block volume to attach to the EC2 instance | `number` | `100` | no |
 | volume\_type | The type of root block volume to attach to the EC2 instance | `string` | `"gp2"` | no |
