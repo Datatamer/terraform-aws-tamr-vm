@@ -1,3 +1,7 @@
+locals {
+  arn_prefix_elasticmapreduce = "arn:${var.arn_partition}:elasticmapreduce:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}"
+}
+
 /*
 reduced permissions role for EMR. Some permissions can be limited to clusters,
 while others must have access to all EMR in order to operate correctly.
@@ -18,39 +22,64 @@ data "aws_iam_policy_document" "emr_creator_policy" {
     actions = [
       "elasticmapreduce:AddInstanceGroups",
       "elasticmapreduce:AddJobFlowSteps",
+      "elasticmapreduce:DescribeCluster",
+      "elasticmapreduce:DescribeJobFlows",
+      "elasticmapreduce:DescribeStep",
       "elasticmapreduce:ListBootstrapActions",
       "elasticmapreduce:ListInstances",
       "elasticmapreduce:ListInstanceGroups",
       "elasticmapreduce:ListSteps",
-      "elasticmapreduce:TerminateJobFlows",
-      "iam:PassRole"
+      "elasticmapreduce:TerminateJobFlows"
     ]
-    resources = flatten([
-      length(var.tamr_emr_role_arns) == 0 ?
-      ["arn:${var.arn_partition}:iam::${data.aws_caller_identity.current.account_id}:role/*"] :
-      [for emr_role_arn in var.tamr_emr_role_arns :
-        emr_role_arn
-      ],
+    resources = (
       length(var.tamr_emr_cluster_ids) == 0 ?
-      ["arn:${var.arn_partition}:elasticmapreduce:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:cluster/*"] :
+      ["${local.arn_prefix_elasticmapreduce}:cluster/*"] :
       [for emr_id in var.tamr_emr_cluster_ids :
-        "arn:${var.arn_partition}:elasticmapreduce:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:cluster/${emr_id}"
-      ]
+        "${local.arn_prefix_elasticmapreduce}:cluster/${emr_id}"
       ]
     )
+    dynamic "condition" {
+      for_each = var.emr_abac_valid_tags
+      content {
+        test     = "StringEquals"
+        variable = "aws:ResourceTag/${condition.key}"
+        values   = condition.value
+      }
+    }
   }
   statement {
     effect = "Allow"
     actions = [
       "elasticmapreduce:RunJobFlow",
-      "elasticmapreduce:DescribeRepository",
-      "elasticmapreduce:DescribeSecurityConfiguration",
     ]
     resources = [
-      "arn:${var.arn_partition}:elasticmapreduce:*"
+      "${local.arn_prefix_elasticmapreduce}:*"
     ]
+    dynamic "condition" {
+      for_each = var.emr_abac_valid_tags
+      content {
+        test     = "StringEquals"
+        variable = "aws:RequestTag/${condition.key}"
+        values   = condition.value
+      }
+    }
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:PassRole"
+    ]
+    resources = length(var.tamr_emr_role_arns) > 0 ? var.tamr_emr_role_arns : ["arn:${var.arn_partition}:iam::${data.aws_caller_identity.current.account_id}:role/*"]
   }
 
+  statement {
+    effect = "Allow"
+    actions = [
+      "elasticmapreduce:DescribeRepository",
+      "elasticmapreduce:DescribeSecurityConfiguration"
+    ]
+    resources = ["${local.arn_prefix_elasticmapreduce}:*"]
+  }
   statement {
     effect = "Allow"
     actions = [
@@ -59,21 +88,6 @@ data "aws_iam_policy_document" "emr_creator_policy" {
     resources = ["*"]
   }
 
-
-  statement {
-    effect = "Allow"
-    actions = [
-      "elasticmapreduce:DescribeCluster",
-      "elasticmapreduce:DescribeJobFlows",
-      "elasticmapreduce:DescribeStep"
-    ]
-    resources = flatten([length(var.tamr_emr_cluster_ids) == 0 ?
-      ["arn:${var.arn_partition}:elasticmapreduce:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:cluster/*"] :
-      [for emr_id in var.tamr_emr_cluster_ids :
-        "arn:${var.arn_partition}:elasticmapreduce:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:cluster/${emr_id}"
-      ]
-    ])
-  }
 }
 
 //Attach the above policy to an existing user

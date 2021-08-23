@@ -123,3 +123,9 @@ variable "tags" {
   description = "A map of tags to add to all resources."
   default     = {}
 }
+
+variable "emr_abac_valid_tags" {
+  type        = map(list(string))
+  description = "A map of valid tags for maintaining EMR resources when using ABAC IAM Policies with Tag Conditions. Make sure your tamr-config.yml file specifies tags key values. Refer to tamr-config module examples for more info."
+  default     = {}
+}

@@ -44,3 +44,9 @@ variable "tags" {
   description = "A map of tags to add to all resources."
   default     = {}
 }
+
+variable "emr_abac_valid_tags" {
+  type        = map(list(string))
+  description = "Valid tags for maintaining EMR resources when using ABAC IAM Policies with Tag Conditions."
+  default     = {}
+}
