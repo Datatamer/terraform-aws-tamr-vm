@@ -9,62 +9,91 @@ import (
 	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
+
+func initTestCases() []VmTestCase {
+	return []VmTestCase{
+		{
+			testName:         "Test1",
+			expectApplyError: false,
+			vars: map[string]interface{}{
+				"name-prefix": "",
+				"name_tag":    "Tamr_VM_Terratest",
+			},
+		},
+	}
+}
 
 // An example of how to test the Terraform module in examples/terraform-aws-example using Terratest.
 func TestTamrVM(t *testing.T) {
-	t.Parallel()
 
-	// Make a copy of the terraform module to a temporary directory. This allows running multiple tests in parallel
-	// against the same terraform module.
-	exampleFolder := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/test_minimal")
+	testCases := initTestCases()
 
-	namePrefix := fmt.Sprintf("terratest-%s", strings.ToLower(random.UniqueId()))
+	for _, testCase := range testCases {
+		testCase := testCase
 
-	// Pick a random AWS region to test in. This helps ensure your code works in these regions.
-	awsRegion := aws.GetRandomRegion(t, []string{"us-east-1", "us-east-2", "us-west-1", "us-west-2"}, nil)
+		t.Run(testCase.testName, func(t *testing.T) {
+			t.Parallel()
 
-	// Configure Terraform setting path to Terraform code, EC2 instance name, and AWS Region. We also
-	// configure the options with default retryable errors to handle the most common retryable errors encountered in
-	// terraform testing.
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		// The path to where our Terraform code is located
-		TerraformDir: exampleFolder,
+			// Make a copy of the terraform module to a temporary directory. This allows running multiple tests in parallel
+			// against the same terraform module.
+			tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "../", "test_examples/minimal")
 
-		// Variables to pass to our Terraform code using -var options
-		Vars: map[string]interface{}{
-			"name-prefix": namePrefix,
-		},
+			// this stage will generate a random `awsRegion` and a `uniqueId` to be used in tests.
+			test_structure.RunTestStage(t, "pick_new_randoms", func() {
+				usRegions := []string{"us-east-1", "us-east-2", "us-west-1", "us-west-2"}
+				// This function will first check for the Env Var TERRATEST_REGION and return its value if != ""
+				awsRegion := aws.GetRandomStableRegion(t, usRegions, nil)
 
-		// Environment variables to set when running Terraform
-		EnvVars: map[string]string{
-			"AWS_DEFAULT_REGION": awsRegion,
-		},
-	})
+				test_structure.SaveString(t, tempTestFolder, "region", awsRegion)
+				test_structure.SaveString(t, tempTestFolder, "unique_id", strings.ToLower(random.UniqueId()))
+			})
 
-	// At the end of the test, run `terraform destroy` to clean up any resources that were created
-	defer terraform.Destroy(t, terraformOptions)
+			test_structure.RunTestStage(t, "setup_options", func() {
+				awsRegion := test_structure.LoadString(t, tempTestFolder, "region")
+				uniqueID := test_structure.LoadString(t, tempTestFolder, "unique_id")
 
-	// Run `terraform init` and `terraform apply` and fail the test if there are any errors
-	terraform.InitAndApply(t, terraformOptions)
+				testCase.vars["name-prefix"] = fmt.Sprintf("terratest-%s", uniqueID)
 
-	// Run `terraform output` to get the value of an output variable
-	instanceID := terraform.Output(t, terraformOptions, "tamr_vm_id")
+				terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
+					TerraformDir: tempTestFolder,
+					Vars:         testCase.vars,
+					EnvVars: map[string]string{
+						"AWS_REGION": awsRegion,
+					},
+				})
 
-	aws.AddTagsToResource(t, awsRegion, instanceID, map[string]string{"testing": "testing-tag-value"})
+				test_structure.SaveTerraformOptions(t, tempTestFolder, terraformOptions)
+			})
 
-	// Look up the tags for the given Instance ID
-	instanceTags := aws.GetTagsForEc2Instance(t, awsRegion, instanceID)
+			test_structure.RunTestStage(t, "create_vm", func() {
+				terraformOptions := test_structure.LoadTerraformOptions(t, tempTestFolder)
+				_, err := terraform.InitAndApplyE(t, terraformOptions)
 
-	// Check if the EC2 instance with a given tag and name is set.
-	testingTag, containsTestingTag := instanceTags["testing"]
-	assert.True(t, containsTestingTag)
-	assert.Equal(t, "testing-tag-value", testingTag)
+				if testCase.expectApplyError {
+					require.Error(t, err)
+					// If it failed as expected, we should skip the rest (validate function).
+					t.SkipNow()
+				}
+			})
 
-	// Verify that our expected name tag is one of the tags
-	expectedNameTag := "Tamr VM"
-	nameTag, containsNameTag := instanceTags["Name"]
-	assert.True(t, containsNameTag)
-	assert.True(t, strings.Contains(nameTag, expectedNameTag))
+			// At the end of the test, run `terraform destroy` to clean up any resources that were created
+			defer test_structure.RunTestStage(t, "teardown", func() {
+				teraformOptions := test_structure.LoadTerraformOptions(t, tempTestFolder)
+				terraform.Destroy(t, teraformOptions)
+			})
+
+			test_structure.RunTestStage(t, "validate_vm", func() {
+				awsRegion := test_structure.LoadString(t, tempTestFolder, "region")
+				terraformOptions := test_structure.LoadTerraformOptions(t, tempTestFolder)
+				validateModule(
+					t,
+					terraformOptions,
+					awsRegion,
+					testCase.vars["name_tag"].(string),
+				)
+			})
+		})
+	}
 }

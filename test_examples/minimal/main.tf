@@ -17,10 +17,6 @@ locals {
 
 data "aws_region" "current" { }
 
-provider "aws" {
-
-}
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.1.0"
@@ -54,7 +50,7 @@ module "s3-bucket" {
 resource "aws_s3_bucket_object" "install_pip_bootstrap_script" {
   bucket                 = module.s3-bucket.bucket_name
   key                    = "bootstrap-script-tamr-vm/install-pip.sh"
-  source                 = "../minimal/test-bootstrap-scripts/install-pip.sh"
+  source                 = "${path.module}/test-bootstrap-scripts/install-pip.sh"
   content_type           = "text/x-shellscript"
   server_side_encryption = "AES256"
 }
@@ -62,7 +58,7 @@ resource "aws_s3_bucket_object" "install_pip_bootstrap_script" {
 resource "aws_s3_bucket_object" "check_pip_install_script" {
   bucket                 = module.s3-bucket.bucket_name
   key                    = "bootstrap-script-tamr-vm/check-install.sh"
-  source                 = "../minimal/test-bootstrap-scripts/check-install.sh"
+  source                 = "${path.module}/test-bootstrap-scripts/check-install.sh"
   content_type           = "text/x-shellscript"
   server_side_encryption = "AES256"
 }
@@ -132,6 +128,7 @@ module "tamr-vm" {
   ]
 
   security_group_ids = module.aws-sg.security_group_ids
+  tamr_instance_tags = {"Name": var.name_tag}
 }
 
 data "aws_ami" "ubuntu" {
