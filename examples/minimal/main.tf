@@ -1,5 +1,5 @@
 locals {
-  az = "us-east-1e"
+  az = "${data.aws_region.current.name}a"
   tamr_vm_s3_actions = [
     "s3:PutObject",
     "s3:GetObject",
@@ -12,15 +12,17 @@ locals {
   ]
 }
 
+data "aws_region" "current" {}
+
 # Set up VPC & subnet
 resource "aws_vpc" "tamr_vm_vpc" {
-  cidr_block = "1.2.3.0/24"
+  cidr_block = var.vpc_cidr_block
   tags       = var.tags
 }
 
 resource "aws_subnet" "tamr_vm_subnet" {
   vpc_id            = aws_vpc.tamr_vm_vpc.id
-  cidr_block        = "1.2.3.0/24"
+  cidr_block        = var.vm_subnet_cidr_block
   availability_zone = local.az
   tags              = var.tags
 }
@@ -121,4 +123,5 @@ module "tamr-vm" {
 
   security_group_ids = module.aws-sg.security_group_ids
   tags               = var.tags
+  tamr_instance_tags = var.tamr_instance_tags
 }

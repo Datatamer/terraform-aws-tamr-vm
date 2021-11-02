@@ -18,8 +18,10 @@ func initTestCases() []VmTestCase {
 			testName:         "Test1",
 			expectApplyError: false,
 			vars: map[string]interface{}{
-				"name-prefix": "",
-				"name_tag":    "Tamr_VM_Terratest",
+				"name-prefix":          "",
+				"name_tag":             "Tamr_VM_Terratest",
+				"vpc_cidr_block":       "172.20.0.0/18",
+				"vm_subnet_cidr_block": "172.20.0.0/24",
 			},
 		},
 	}
