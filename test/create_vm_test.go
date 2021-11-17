@@ -12,6 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// initTestCases returns a list of VmTestCase. This is manually created by tester that will know what values should be applied in order to make the test run.
 func initTestCases() []VmTestCase {
 	return []VmTestCase{
 		{
@@ -27,7 +28,7 @@ func initTestCases() []VmTestCase {
 	}
 }
 
-// An example of how to test the Terraform module in examples/terraform-aws-example using Terratest.
+// TestTamrVM runs all test cases
 func TestTamrVM(t *testing.T) {
 
 	testCases := initTestCases()

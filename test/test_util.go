@@ -9,12 +9,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// VmTestCase defines a test case for a Tamr VM
 type VmTestCase struct {
 	testName         string
 	expectApplyError bool
 	vars             map[string]interface{}
 }
 
+// validateModule validates
 func validateModule(t *testing.T, terraformOptions *terraform.Options, awsRegion string, expectedNameTag string) {
 	// Run `terraform output` to get the value of an output variable
 	instanceID := terraform.Output(t, terraformOptions, "tamr_vm_id")
