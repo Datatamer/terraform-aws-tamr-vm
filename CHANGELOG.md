@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v4.2.1 - November 22th 2021
+* Fixes tfsec warning by enforcing http-tokens in EC2 Instance Metadata Service
+
 ## v4.2.0 - August 20th 2021
 * Adds new variable `private_ips` to limit which private IPs can be assigned to the ENI attached to the Tamr EC2 Instance
 
