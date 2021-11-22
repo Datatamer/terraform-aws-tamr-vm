@@ -17,6 +17,10 @@ resource "aws_instance" "tamr-instance" {
     device_index         = 0
   }
 
+  metadata_options {
+    http_tokens = "required"
+  }
+
   user_data = length(var.bootstrap_scripts) == 0 ? "" : data.template_cloudinit_config.bootstrap-scripts[0].rendered
 
   tags = var.tags
