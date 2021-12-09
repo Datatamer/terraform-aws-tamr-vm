@@ -72,8 +72,3 @@ case "$osversion" in
               *) echo "Not recognized OS, aborting..."
 
 esac
-
-echo "sarasa8" >>  ~/tamr/logs/unify-all.error.log
-echo "sarasa9" >>  ~/tamr/logs/unify-all.error.log
-echo "sarasa10" >>  ~/tamr/logs/unify-all.error.log
-echo "sarasanotamr" >> /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log
