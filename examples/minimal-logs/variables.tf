@@ -14,7 +14,7 @@ variable "tags" {
   default = {
     Author      = "Tamr"
     Environment = "Example"
-}
+  }
 }
 
 variable "ingress_protocol" {

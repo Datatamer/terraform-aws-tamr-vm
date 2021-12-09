@@ -23,15 +23,15 @@ data "aws_iam_policy" "cw-agent-server-policy" {
 # Attach CloudWatchAgentServerPolicy to tamr-vm
 resource "aws_iam_role_policy_attachment" "cw-agent-server-policy" {
   role       = module.tamr-vm.tamr_iam_role.tamr_instance_role_name
-  policy_arn = "${data.aws_iam_policy.cw-agent-server-policy.arn}"
+  policy_arn = data.aws_iam_policy.cw-agent-server-policy.arn
 }
 
 # Set up VPC & subnet
 resource "aws_vpc" "tamr_vm_vpc" {
-  cidr_block = "10.0.0.0/16"
-  enable_dns_support = true
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
   enable_dns_hostnames = true
-  tags       = var.tags
+  tags                 = var.tags
 }
 
 resource "aws_subnet" "tamr_vm_subnet" {
@@ -104,7 +104,7 @@ module "tamr-vm" {
   bootstrap_scripts = [
 
     # NOTE: If you would like to use local scripts, you can use terraform's file() function
-    templatefile("./test-bootstrap-scripts/cloudwatch-install.sh", {region = data.aws_region.current.name, endpoint = module.endpoints.endpoints["logs"].dns_entry[0]["dns_name"]}),
+    templatefile("./test-bootstrap-scripts/cloudwatch-install.sh", { region = data.aws_region.current.name, endpoint = module.endpoints.endpoints["logs"].dns_entry[0]["dns_name"] }),
   ]
 
   security_group_ids = module.aws-sg.security_group_ids
@@ -113,7 +113,7 @@ module "tamr-vm" {
 
 resource "aws_route_table" "example" {
   vpc_id = aws_vpc.tamr_vm_vpc.id
-  tags = var.tags
+  tags   = var.tags
 }
 
 resource "aws_route_table_association" "a" {
