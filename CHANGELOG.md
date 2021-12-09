@@ -1,5 +1,9 @@
 # Tamr VM Terraform Module
 
+## v4.2.1 - December 9th 2021
+* Adds `ingress_protocol` and `egress_protocol`variable.
+* Adds `minimal-logs`example which allows the use of clouudwatch in an automated fashion.
+
 ## v4.2.0 - August 20th 2021
 * Adds new variable `private_ips` to limit which private IPs can be assigned to the ENI attached to the Tamr EC2 Instance
 
