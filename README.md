@@ -56,6 +56,8 @@ No provider.
 | ami | The AMI to use for the EC2 instance | `string` | n/a | yes |
 | aws\_instance\_profile\_name | IAM Instance Profile to create | `string` | n/a | yes |
 | aws\_role\_name | IAM Role to create, and to which the policies will be attached | `string` | n/a | yes |
+| egress\_protocol | Protocol for egress rules. If not icmp, icmpv6, tcp, udp, or all use the protocol number. | `string` | n/a | yes |
+| ingress\_protocol | Protocol for ingress rules. If not icmp, icmpv6, tcp, udp, or all use the protocol number. | `string` | n/a | yes |
 | key\_name | The key name to attach to the EC2 instance for SSH access | `string` | n/a | yes |
 | s3\_policy\_arns | List of S3 policy ARNs to attach to Tamr role. | `list(string)` | n/a | yes |
 | subnet\_id | The subnet to create the EC2 instance in | `string` | n/a | yes |

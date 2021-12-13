@@ -1,5 +1,5 @@
 locals {
-  az = "us-east-1e"
+  az = data.aws_availability_zones.available.names[0]
   tamr_vm_s3_actions = [
     "s3:PutObject",
     "s3:GetObject",
@@ -10,6 +10,11 @@ locals {
     "s3:CreateJob",
     "s3:HeadBucket"
   ]
+}
+
+# Get available AZs
+data "aws_availability_zones" "available" {
+  state = "available"
 }
 
 # Set up VPC & subnet
@@ -83,7 +88,7 @@ module "aws-vm-sg-ports" {
 }
 
 module "aws-sg" {
-  source = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=0.1.0"
+  source = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=1.0.0"
   vpc_id = aws_vpc.tamr_vm_vpc.id
   ingress_cidr_blocks = [
     "1.2.3.0/24"
@@ -91,14 +96,15 @@ module "aws-sg" {
   egress_cidr_blocks = [
     "0.0.0.0/0"
   ]
-  ingress_ports  = module.aws-vm-sg-ports.ingress_ports
-  sg_name_prefix = var.name-prefix
-  tags           = var.tags
+  ingress_ports    = module.aws-vm-sg-ports.ingress_ports
+  ingress_protocol = var.ingress_protocol
+  egress_protocol  = "all"
+  sg_name_prefix   = var.name-prefix
+  tags             = var.tags
 }
 
 module "tamr-vm" {
-  # source                           = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=4.0.0"
-  source                      = "../.."
+  source                      = "git::git@github.com:Datatamer/terraform-aws-tamr-vm.git?ref=4.2.0"
   aws_role_name               = format("%s-tamr-ec2-role", var.name-prefix)
   aws_instance_profile_name   = format("%s-tamr-ec2-instance-profile", var.name-prefix)
   aws_emr_creator_policy_name = format("%sEmrCreatorPolicy", var.name-prefix)
