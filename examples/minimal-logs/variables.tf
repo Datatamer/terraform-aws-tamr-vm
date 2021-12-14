@@ -37,7 +37,6 @@ variable "log_group" {
   description = "The Cloudwatch log group name."
 }
 
-
 variable "log_stream" {
   type        = string
   description = "The Cloudwatch log stream name."
