@@ -40,4 +40,3 @@ module "tamr-vm" {
   security_group_ids = module.aws-sg.security_group_ids
   tags               = var.tags
 }
-
