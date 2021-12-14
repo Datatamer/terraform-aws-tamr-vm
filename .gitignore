@@ -38,3 +38,6 @@ terratest.tf.json
 
 # Ignore makefile
 ops-makefile
+
+# Ignore tfvars
+**/*.tfvars
