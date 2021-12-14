@@ -15,6 +15,7 @@ resource "tls_private_key" "tamr_ec2_private_key" {
   algorithm = "RSA"
 }
 
+# Creates the Tamr vm
 module "tamr-vm" {
   source                      = "../../"
   aws_role_name               = format("%s-tamr-ec2-role", var.name-prefix)
