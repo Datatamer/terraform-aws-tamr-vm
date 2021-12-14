@@ -31,6 +31,7 @@ variable "key_name" {
   type        = string
   description = "The key pair name."
 }
+<<<<<<< HEAD
 
 
 variable "log_group" {
@@ -43,3 +44,5 @@ variable "log_stream" {
   type        = string
   description = "The Cloudwatch log stream name."
 }
+=======
+>>>>>>> master
