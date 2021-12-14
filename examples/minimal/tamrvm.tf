@@ -1,5 +1,5 @@
 locals {
-  az = data.aws_availability_zones.available.names[0]
+  az = data.aws_availability_zones.available.names
 }
 
 # Get available AZs
@@ -31,7 +31,7 @@ module "tamr-vm" {
   ami               = var.ami_id
   instance_type     = "m4.2xlarge"
   key_name          = module.tamr_ec2_key_pair.key_pair_key_name
-  availability_zone = local.az
+  availability_zone = local.az[0]
   vpc_id            = aws_vpc.tamr_vm_vpc.id
   ingress_protocol  = "tcp"
   egress_protocol   = "all"

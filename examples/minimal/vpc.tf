@@ -7,7 +7,7 @@ resource "aws_vpc" "tamr_vm_vpc" {
 resource "aws_subnet" "tamr_vm_subnet" {
   vpc_id            = aws_vpc.tamr_vm_vpc.id
   cidr_block        = "1.2.3.0/24"
-  availability_zone = local.az
+  availability_zone = local.az[0]
   tags              = var.tags
 }
 
