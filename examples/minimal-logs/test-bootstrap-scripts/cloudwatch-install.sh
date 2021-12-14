@@ -25,26 +25,26 @@ sudo echo " {
                  \"collect_list\": [
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify-all.error.log\",
-                         \"log_group_name\": \"tamr.log\",
-                         \"log_stream_name\": \"unify\",
+                         \"log_group_name\": \"${log_group}\",
+                         \"log_stream_name\": \"${log_stream}\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify-all.out.log\",
-                         \"log_group_name\": \"tamr.log\",
-                         \"log_stream_name\": \"unify\",
+                         \"log_group_name\": \"${log_group}\",
+                         \"log_stream_name\": \"${log_stream}\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify-events.log\",
-                         \"log_group_name\": \"tamr.log\",
-                         \"log_stream_name\": \"unify\",
+                         \"log_group_name\": \"${log_group}\",
+                         \"log_stream_name\": \"${log_stream}\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify.log\",
-                         \"log_group_name\": \"tamr.log\",
-                         \"log_stream_name\": \"unify\",
+                         \"log_group_name\": \"${log_group}\",
+                         \"log_stream_name\": \"${log_stream}\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      }
                  ]

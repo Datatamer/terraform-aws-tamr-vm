@@ -37,25 +37,23 @@ module "aws-sg" {
 
 #Creates a security group for the VPC Interface Endpoint
 module "aws-endpoint-sg" {
-  source = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=1.0.0"
-  vpc_id = module.vpc.vpc_id
-  ingress_ports    = [443]
+  source                  = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=1.0.0"
+  vpc_id                  = module.vpc.vpc_id
+  ingress_ports           = [443]
   ingress_security_groups = [module.aws-sg.security_group_ids[1]]
-  sg_name_prefix   = format("%s-%s", var.name-prefix, "interface-endpoint-sg")
-  ingress_protocol = "tcp"
-  egress_protocol  = "tcp"
-  tags             = var.tags
+  sg_name_prefix          = format("%s-%s", var.name-prefix, "interface-endpoint-sg")
+  ingress_protocol        = "tcp"
+  egress_protocol         = "all"
+  tags                    = var.tags
 }
 
 #Create VPC Interface Endpoint for Cloudwatch
 module "endpoints" {
-
- source = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
-
- vpc_id = module.vpc.vpc_id
+  source = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
+  vpc_id = module.vpc.vpc_id
 
   endpoints = {
-     logs = {
+    logs = {
       service_type        = "Interface"
       service             = "logs"
       tags                = { Name = "cloudwatch-vpc-endpoint" }
@@ -65,4 +63,4 @@ module "endpoints" {
     },
   }
   tags = var.tags
- }
+}
