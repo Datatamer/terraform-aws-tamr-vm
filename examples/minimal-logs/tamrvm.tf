@@ -16,7 +16,7 @@ resource "tls_private_key" "tamr_ec2_private_key" {
 }
 
 module "tamr-vm" {
-  source = "../../"
+  source                      = "../../"
   aws_role_name               = format("%s-tamr-ec2-role", var.name-prefix)
   aws_instance_profile_name   = format("%s-tamr-ec2-instance-profile", var.name-prefix)
   aws_emr_creator_policy_name = format("%sEmrCreatorPolicy", var.name-prefix)
@@ -28,8 +28,8 @@ module "tamr-vm" {
   key_name          = var.key_name
   availability_zone = local.az[0]
   vpc_id            = module.vpc.vpc_id
-  ingress_protocol = var.ingress_protocol
-  egress_protocol  = "all"
+  ingress_protocol  = var.ingress_protocol
+  egress_protocol   = "all"
   subnet_id         = module.vpc.application_subnet_id
   bootstrap_scripts = [
 
