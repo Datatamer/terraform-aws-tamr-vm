@@ -22,14 +22,13 @@ module "tamr-vm" {
   aws_emr_creator_policy_name = format("%sEmrCreatorPolicy", var.name-prefix)
   s3_policy_arns = [
     module.s3-bucket.rw_policy_arn,
+    "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
   ]
   ami               = var.ami_id
   instance_type     = "r5.2xlarge"
   key_name          = var.key_name
   availability_zone = local.az[0]
   vpc_id            = module.vpc.vpc_id
-  ingress_protocol  = var.ingress_protocol
-  egress_protocol   = "all"
   subnet_id         = module.vpc.application_subnet_id
   bootstrap_scripts = [
 
