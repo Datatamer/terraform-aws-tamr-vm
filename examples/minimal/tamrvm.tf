@@ -33,8 +33,6 @@ module "tamr-vm" {
   key_name          = module.tamr_ec2_key_pair.key_pair_key_name
   availability_zone = local.az[0]
   vpc_id            = aws_vpc.tamr_vm_vpc.id
-  ingress_protocol  = "tcp"
-  egress_protocol   = "all"
   subnet_id         = aws_subnet.tamr_vm_subnet.id
   bootstrap_scripts = [
     # NOTE: If you would like to use local scripts, you can use terraform's file() function
