@@ -3,7 +3,7 @@ output "emr_creator_policy_arn" {
   description = "ARN of the EMR creator IAM policy created."
 }
 
-output "s3_policy_arns" {
-  value       = var.s3_policy_arns
-  description = "List of ARNs of S3 policies attached to Tamr user IAM role"
+output "additional_policy_arns" {
+  value       = var.additional_policy_arns
+  description = "List of policy ARNs to be attached to Tamr VM IAM role."
 }
