@@ -9,9 +9,9 @@ variable "aws_role_name" {
   description = "IAM Role to which the policy will be attached"
 }
 
-variable "s3_policy_arns" {
+variable "additional_policy_arns" {
   type        = list(string)
-  description = "List of S3 policy ARNs to attach to Tamr role."
+  description = "List of policy ARNs to be attached to Tamr VM IAM role."
 }
 
 variable "arn_partition" {
