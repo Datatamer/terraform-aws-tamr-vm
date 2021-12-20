@@ -54,49 +54,49 @@ echo " {
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify-all.error.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"${log_stream}\",
+                         \"log_stream_name\": \"unify\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify-all.out.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"${log_stream}\",
+                         \"log_stream_name\": \"unify\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify-events.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"${log_stream}\",
+                         \"log_stream_name\": \"unify\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"${log_stream}\",
+                         \"log_stream_name\": \"unify\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/auth.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"${log_stream}\",
+                         \"log_stream_name\": \"unify-auth\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/dataset.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"${log_stream}\",
+                         \"log_stream_name\": \"unify-dataset\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/recipe.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"${log_stream}\",
+                         \"log_stream_name\": \"unify-recipe\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/dedup.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"${log_stream}\",
+                         \"log_stream_name\": \"unify-dedup\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      }
                  ]
