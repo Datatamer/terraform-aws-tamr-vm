@@ -21,10 +21,10 @@ module "tamr-vm" {
   aws_instance_profile_name   = format("%s-tamr-ec2-instance-profile", var.name-prefix)
   aws_emr_creator_policy_name = format("%sEmrCreatorPolicy", var.name-prefix)
   additional_policy_arns = [
-   module.s3-bucket.rw_policy_arn,
-   "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+    module.s3-bucket.rw_policy_arn,
+    "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
   ]
-  s3_policy_arns = []
+  s3_policy_arns    = []
   ami               = var.ami_id
   instance_type     = "r5.2xlarge"
   key_name          = var.key_name
