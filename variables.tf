@@ -17,7 +17,7 @@ variable "aws_instance_profile_name" {
 variable "s3_policy_arns" {
   type        = list(string)
   description = "[DEPRECATED] List of S3 policy ARNs to attach to Tamr role."
-  default = []
+  default     = []
 }
 
 variable "additional_policy_arns" {
