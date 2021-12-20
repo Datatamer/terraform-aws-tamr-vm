@@ -2,20 +2,7 @@
 os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 
 case $os in
-        "\"Amazon Linux\"")
-              echo "********** Downloading Cloudwatch Agent **********"
-              curl https://s3.${region}.amazonaws.com/amazoncloudwatch-agent-${region}/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm --output agent.rpm
-              if [[ $(ls -la | grep agent) ]];
-              then
-              echo "Cloudwatch agent installation file was found."
-              else
-              echo "Could not download the Cloudwatch agent installation file."
-              exit 1
-              fi
-              echo "********** Installing Cloudwatch Agent **********"
-              yum install -y ./agent.rpm ;;
-        "\"Red Hat Enterprise Linux\"")
-              pwd
+        "\"Amazon Linux\"" | "\"Red Hat Enterprise Linux\"")
               echo "********** Downloading Cloudwatch Agent **********"
               curl https://s3.${region}.amazonaws.com/amazoncloudwatch-agent-${region}/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm --output agent.rpm
               if [[ $(ls -la | grep agent) ]];
@@ -105,17 +92,15 @@ echo " {
       }
   } " | tee cloudwatch-config.json
 
+  echo "********** Mounting Cloudwatch Agent config file to Cloduwatch Agent **********"
+  /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/etc/cloudwatch-config.json
+
 case $os in
-       "\"Amazon Linux\"")
-              echo "********** Mounting Cloudwatch Agent config file to Cloduwatch Agent **********"
-              /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/etc/cloudwatch-config.json
-              amazon-cloudwatch-agent-ctl -a start ;;
-       "\"Red Hat Enterprise Linux\"")
-              echo "********** Mounting Cloudwatch Agent config file to Cloduwatch Agent **********"
-              /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/etc/cloudwatch-config.json
+       "\"Amazon Linux\"" | "\"Red Hat Enterprise Linux\"")
+         echo "********** Starting Cloudwatch Agent **********"
               amazon-cloudwatch-agent-ctl -a start ;;
         "\"Ubuntu\"")
-              /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/etc/cloudwatch-config.json
+        echo "********** Starting Cloudwatch Agent **********"
               systemctl start amazon-cloudwatch-agent.service ;;
         *)    echo "Not recognized OS, aborting..."
 
