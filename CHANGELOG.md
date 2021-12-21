@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v4.3.0 - December 16th 2021
+* Adds `minimal-logs`example which allows the use of cloudwatch in an automated fashion.
+
 ## v4.2.0 - August 20th 2021
 * Adds new variable `private_ips` to limit which private IPs can be assigned to the ENI attached to the Tamr EC2 Instance
 
