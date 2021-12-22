@@ -31,13 +31,3 @@ variable "key_name" {
   type        = string
   description = "The key pair name."
 }
-
-variable "log_group" {
-  type        = string
-  description = "The Cloudwatch log group name."
-}
-
-variable "log_stream" {
-  type        = string
-  description = "The Cloudwatch log stream name."
-}

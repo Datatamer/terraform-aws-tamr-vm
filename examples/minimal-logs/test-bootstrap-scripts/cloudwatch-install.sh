@@ -41,19 +41,19 @@ echo " {
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify-all.error.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"unify\",
+                         \"log_stream_name\": \"unify-all.error\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify-all.out.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"unify\",
+                         \"log_stream_name\": \"unify-all.out\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
                          \"file_path\": \"/home/ubuntu/tamr/logs/unify-events.log\",
                          \"log_group_name\": \"${log_group}\",
-                         \"log_stream_name\": \"unify\",
+                         \"log_stream_name\": \"unify-events\",
                          \"timestamp_format\": \"%H: %M: %S%y%b%-d\"
                      },
                      {
