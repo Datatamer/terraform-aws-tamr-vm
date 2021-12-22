@@ -24,7 +24,6 @@ module "tamr-vm" {
     module.s3-bucket.rw_policy_arn,
     "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
   ]
-  s3_policy_arns    = []
   ami               = var.ami_id
   instance_type     = "r5.2xlarge"
   key_name          = var.key_name
