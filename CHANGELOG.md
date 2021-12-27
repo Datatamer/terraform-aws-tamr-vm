@@ -3,7 +3,7 @@
 
 ## v4.4.0 - December 20th 2021
 * Deprecates `s3_policy_arns` in favor of `additional_policy_arns`.
-* Permits the ability to create the cloudwatch log group and pass it to the shell script.
+* Allows the creation of the Cloudwatch log group and passes it to the shell script.
 
 ## v4.3.0 - December 17th 2021
 * Adds `minimal-logs`example which allows the use of cloudwatch in an automated fashion.
