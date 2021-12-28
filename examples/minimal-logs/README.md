@@ -25,8 +25,6 @@ No requirements.
 | egress\_protocol | Protocol for egress rules. If not icmp, icmpv6, tcp, udp, or all use the protocol number. | `string` | n/a | yes |
 | ingress\_protocol | Protocol for ingress rules. If not icmp, icmpv6, tcp, udp, or all use the protocol number. | `string` | n/a | yes |
 | key\_name | The key pair name. | `string` | n/a | yes |
-| log\_group | The Cloudwatch log group name. | `string` | n/a | yes |
-| log\_stream | The Cloudwatch log stream name. | `string` | n/a | yes |
 | name-prefix | A string to prepend to names of resources created by this example | `string` | n/a | yes |
 | tags | A map of tags to add to all resources created by this example. | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Environment": "Example"<br>}</pre> | no |
 

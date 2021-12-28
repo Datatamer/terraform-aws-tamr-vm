@@ -1,7 +1,6 @@
 locals {
   arn_prefix_elasticmapreduce = "arn:${var.arn_partition}:elasticmapreduce:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}"
 }
-
 /*
 reduced permissions role for EMR. Some permissions can be limited to clusters,
 while others must have access to all EMR in order to operate correctly.
@@ -96,9 +95,9 @@ resource "aws_iam_role_policy_attachment" "emr_creator_policy_attachment" {
   policy_arn = aws_iam_policy.emr_creator_minimal_policy.arn
 }
 
-// IAM role policy attachment(s) that attach s3 policy ARNs to Tamr user IAM role
-resource "aws_iam_role_policy_attachment" "emrfs_user_s3_policy" {
-  count      = length(var.s3_policy_arns)
+// IAM role policy attachment(s) that attach additional policy ARNs to Tamr user IAM role
+resource "aws_iam_role_policy_attachment" "additional_user_policies" {
+  count      = length(var.additional_policy_arns)
   role       = var.aws_role_name
-  policy_arn = element(var.s3_policy_arns, count.index)
+  policy_arn = element(var.additional_policy_arns, count.index)
 }

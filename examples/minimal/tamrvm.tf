@@ -25,7 +25,7 @@ module "tamr-vm" {
   aws_role_name               = format("%s-tamr-ec2-role", var.name-prefix)
   aws_instance_profile_name   = format("%s-tamr-ec2-instance-profile", var.name-prefix)
   aws_emr_creator_policy_name = format("%sEmrCreatorPolicy", var.name-prefix)
-  s3_policy_arns = [
+  additional_policy_arns = [
     module.s3-bucket.rw_policy_arn,
   ]
   ami               = var.ami_id

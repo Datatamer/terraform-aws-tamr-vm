@@ -57,9 +57,9 @@ No provider.
 | aws\_instance\_profile\_name | IAM Instance Profile to create | `string` | n/a | yes |
 | aws\_role\_name | IAM Role to create, and to which the policies will be attached | `string` | n/a | yes |
 | key\_name | The key name to attach to the EC2 instance for SSH access | `string` | n/a | yes |
-| s3\_policy\_arns | List of S3 policy ARNs to attach to Tamr role. | `list(string)` | n/a | yes |
 | subnet\_id | The subnet to create the EC2 instance in | `string` | n/a | yes |
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
+| additional\_policy\_arns | List of policy ARNs to be attached to Tamr VM IAM role. | `list(string)` | `[]` | no |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | availability\_zone | The availability zone to use for the EC2 instance | `string` | `"us-east-1a"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
@@ -69,6 +69,7 @@ No provider.
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
 | permissions\_boundary | ARN of the policy that will be used to set the permissions boundary for the IAM Role | `string` | `null` | no |
 | private\_ips | List of private IPs to assign to the ENI attached to the Tamr EC2 Instance | `list(string)` | `null` | no |
+| s3\_policy\_arns | [DEPRECATED] List of S3 policy ARNs to attach to Tamr role. Use 'additional\_policy\_arns' instead. | `list(string)` | `[]` | no |
 | security\_group\_ids | Security groups to associate with the ec2 instance | `list(string)` | `[]` | no |
 | tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 | tamr\_emr\_cluster\_ids | List of IDs for Static EMR clusters | `list(string)` | `[]` | no |
