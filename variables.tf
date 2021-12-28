@@ -23,6 +23,7 @@ variable "s3_policy_arns" {
 variable "additional_policy_arns" {
   type        = list(string)
   description = "List of policy ARNs to be attached to Tamr VM IAM role."
+  default     = []
 }
 
 variable "arn_partition" {
