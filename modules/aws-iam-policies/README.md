@@ -39,8 +39,8 @@ This modules creates:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| additional\_policy\_arns | List of policy ARNs to be attached to Tamr VM IAM role. | `list(string)` | n/a | yes |
 | aws\_role\_name | IAM Role to which the policy will be attached | `string` | n/a | yes |
-| s3\_policy\_arns | List of S3 policy ARNs to attach to Tamr role. | `list(string)` | n/a | yes |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_emr\_creator\_policy\_name | The name to give to the policy regarding EMR permissions | `string` | `"emrCreatorMinimalPolicy"` | no |
 | emr\_abac\_valid\_tags | Valid tags for maintaining EMR resources when using ABAC IAM Policies with Tag Conditions. | `map(list(string))` | `{}` | no |
@@ -52,8 +52,8 @@ This modules creates:
 
 | Name | Description |
 |------|-------------|
+| additional\_policy\_arns | List of policy ARNs to be attached to Tamr VM IAM role. |
 | emr\_creator\_policy\_arn | ARN of the EMR creator IAM policy created. |
-| s3\_policy\_arns | List of ARNs of S3 policies attached to Tamr user IAM role |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
