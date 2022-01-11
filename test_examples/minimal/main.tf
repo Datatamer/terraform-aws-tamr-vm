@@ -14,7 +14,8 @@ module "examples_minimal" {
   name-prefix          = var.name-prefix
   vpc_cidr_block       = var.vpc_cidr_block
   vm_subnet_cidr_block = var.vm_subnet_cidr_block
-  tags                 = local.all_tags
+
+  tamr_instance_tags   = local.all_tags
 
   ami_id = data.aws_ami.ubuntu.id
 }

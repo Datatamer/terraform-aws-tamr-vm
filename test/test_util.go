@@ -1,7 +1,6 @@
 package test
 
 import (
-	"strings"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/aws"
@@ -39,6 +38,6 @@ func validateModule(t *testing.T, terraformOptions *terraform.Options, awsRegion
 		// Verify that our expected name tag is one of the tags
 		nameTag, containsNameTag := instanceTags["Name"]
 		assert.True(t, containsNameTag)
-		assert.True(t, strings.Contains(nameTag, expectedNameTag))
+		assert.Equal(t, expectedNameTag, nameTag)
 	})
 }
