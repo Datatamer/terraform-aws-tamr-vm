@@ -1,6 +1,6 @@
 # Tamr VM Terraform Module
 
-## v4.4.1 - Februaryr 7th 2022
+## v4.4.1 - February 7th 2022
 * Updates examples to use new versions of modules.
 
 ## v4.4.0 - December 20th 2021
