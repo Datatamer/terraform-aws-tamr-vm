@@ -1,5 +1,7 @@
 # Tamr VM Terraform Module
 
+## v4.4.1 - February 7th 2022
+* Updates examples to use new versions of modules.
 
 ## v4.4.0 - December 20th 2021
 * Deprecates `s3_policy_arns` in favor of `additional_policy_arns`.
