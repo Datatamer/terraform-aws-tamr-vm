@@ -1,5 +1,5 @@
 # Terraform AWS Tamr EC2 Instance Template
-Tis terraform module spins up an EC2 instance for Tamr, as well as additional dependencies.
+This terraform module spins up an EC2 instance for Tamr, as well as additional dependencies.
 
 # Examples
 ## Basic
