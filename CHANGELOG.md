@@ -1,6 +1,5 @@
 # Tamr VM Terraform Module
 
-
 ## v4.4.2 - February 15th 2022
 * Updates version file to prevent the major upgrade to the AWS provider version 4.0.
 * Updates examples to use the newest version of the s3-module.
