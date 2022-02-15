@@ -1,10 +1,10 @@
 # Set up VPC & subnet
 module "vpc" {
-  source                        = "git::https://github.com/Datatamer/terraform-aws-networking.git?ref=1.1.1"
-  availability_zones            = [local.az[0], local.az[1]]
-  name_prefix                   = var.name-prefix
-  tags                          = var.tags
-   # Cidr Blocks
+  source             = "git::https://github.com/Datatamer/terraform-aws-networking.git?ref=1.1.1"
+  availability_zones = [local.az[0], local.az[1]]
+  name_prefix        = var.name-prefix
+  tags               = var.tags
+  # Cidr Blocks
   vpc_cidr_block                = "10.0.0.0/16"
   application_subnet_cidr_block = "10.0.0.0/24"
   data_subnet_cidr_blocks       = ["10.0.2.0/24", "10.0.3.0/24"]
