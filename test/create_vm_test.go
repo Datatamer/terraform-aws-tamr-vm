@@ -16,7 +16,7 @@ import (
 func initTestCases() []VmTestCase {
 	return []VmTestCase{
 		{
-			testName:         "Test1",
+			testName:         "TestMinimal",
 			expectApplyError: false,
 			vars: map[string]interface{}{
 				"name-prefix":          "",
