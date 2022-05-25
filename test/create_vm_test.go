@@ -2,10 +2,14 @@ package test
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"testing"
 
+	terratestutils "github.com/Datatamer/go-terratest-functions/pkg/terratest_utils"
+	"github.com/Datatamer/go-terratest-functions/pkg/types"
 	"github.com/gruntwork-io/terratest/modules/aws"
+	"github.com/gruntwork-io/terratest/modules/logger"
 	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
@@ -17,6 +21,7 @@ func initTestCases() []VmTestCase {
 	return []VmTestCase{
 		{
 			testName:         "TestMinimal",
+			tfDir:            "test_examples/minimal",
 			expectApplyError: false,
 			vars: map[string]interface{}{
 				"name-prefix":          "",
@@ -30,9 +35,11 @@ func initTestCases() []VmTestCase {
 
 // TestTamrVM runs all test cases
 func TestTamrVM(t *testing.T) {
-
+	const MODULE_NAME = "terraform-aws-tamr-vm"
 	testCases := initTestCases()
-
+	// Generate file containing GCS URL to be used on Jenkins.
+	// TERRATEST_BACKEND_BUCKET_NAME and TERRATEST_URL_FILE_NAME are both set on Jenkins declaration.
+	gcsTestExamplesURL := terratestutils.GenerateUrlFile(t, MODULE_NAME, os.Getenv("TERRATEST_BACKEND_BUCKET_NAME"), os.Getenv("TERRATEST_URL_FILE_NAME"))
 	for _, testCase := range testCases {
 		testCase := testCase
 
@@ -41,7 +48,7 @@ func TestTamrVM(t *testing.T) {
 
 			// Make a copy of the terraform module to a temporary directory. This allows running multiple tests in parallel
 			// against the same terraform module.
-			tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "../", "test_examples/minimal")
+			tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "../", testCase.tfDir)
 
 			// this stage will generate a random `awsRegion` and a `uniqueId` to be used in tests.
 			test_structure.RunTestStage(t, "pick_new_randoms", func() {
@@ -56,6 +63,7 @@ func TestTamrVM(t *testing.T) {
 			test_structure.RunTestStage(t, "setup_options", func() {
 				awsRegion := test_structure.LoadString(t, tempTestFolder, "region")
 				uniqueID := test_structure.LoadString(t, tempTestFolder, "unique_id")
+				backendConfig := terratestutils.ParseBackendConfig(t, gcsTestExamplesURL, testCase.testName, testCase.tfDir)
 
 				testCase.vars["name-prefix"] = fmt.Sprintf("terratest-%s", uniqueID)
 
@@ -65,6 +73,8 @@ func TestTamrVM(t *testing.T) {
 					EnvVars: map[string]string{
 						"AWS_REGION": awsRegion,
 					},
+					BackendConfig: backendConfig,
+					MaxRetries:    5,
 				})
 
 				test_structure.SaveTerraformOptions(t, tempTestFolder, terraformOptions)
@@ -72,6 +82,14 @@ func TestTamrVM(t *testing.T) {
 
 			test_structure.RunTestStage(t, "create_vm", func() {
 				terraformOptions := test_structure.LoadTerraformOptions(t, tempTestFolder)
+				terraformConfig := &types.TerraformData{
+					TerraformBackendConfig: terraformOptions.BackendConfig,
+					TerraformVars:          terraformOptions.Vars,
+					TerraformEnvVars:       terraformOptions.EnvVars,
+				}
+				if _, err := terratestutils.UploadFilesE(t, terraformConfig); err != nil {
+					logger.Log(t, err)
+				}
 				_, err := terraform.InitAndApplyE(t, terraformOptions)
 
 				if testCase.expectApplyError {
@@ -83,8 +101,14 @@ func TestTamrVM(t *testing.T) {
 
 			// At the end of the test, run `terraform destroy` to clean up any resources that were created
 			defer test_structure.RunTestStage(t, "teardown", func() {
-				teraformOptions := test_structure.LoadTerraformOptions(t, tempTestFolder)
-				terraform.Destroy(t, teraformOptions)
+				terraformOptions := test_structure.LoadTerraformOptions(t, tempTestFolder)
+				terraformOptions.MaxRetries = 5
+
+				_, err := terraform.DestroyE(t, terraformOptions)
+				if err != nil {
+					// If there is an error on destroy, it will be logged.
+					logger.Log(t, err)
+				}
 			})
 
 			test_structure.RunTestStage(t, "validate_vm", func() {
