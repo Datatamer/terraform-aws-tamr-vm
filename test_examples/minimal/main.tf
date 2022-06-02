@@ -9,15 +9,14 @@ locals {
 }
 
 module "examples_minimal" {
-  source = "../../examples/minimal"
-
-  name-prefix          = var.name-prefix
-  vpc_cidr_block       = var.vpc_cidr_block
-  vm_subnet_cidr_block = var.vm_subnet_cidr_block
-
-  tamr_instance_tags = local.all_tags
-
-  ami_id = data.aws_ami.ubuntu.id
+  source                    = "../../examples/minimal"
+  name-prefix               = var.name-prefix
+  vpc_cidr_block            = var.vpc_cidr_block
+  vm_subnet_cidr_block      = var.vm_subnet_cidr_block
+  tamr_instance_tags        = local.all_tags
+  ami_id                    = data.aws_ami.ubuntu.id
+  install_script_path       = var.install_script_path
+  check_install_script_path = var.check_install_script_path
 }
 
 data "aws_ami" "ubuntu" {

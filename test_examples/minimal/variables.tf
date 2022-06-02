@@ -21,3 +21,11 @@ variable "tags" {
   description = "A map of tags to add to all resources created by this example."
   default     = {}
 }
+
+variable "install_script_path" {
+  type = string
+}
+
+variable "check_install_script_path" {
+  type = string
+}

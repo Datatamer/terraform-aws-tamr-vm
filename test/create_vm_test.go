@@ -24,10 +24,12 @@ func initTestCases() []VmTestCase {
 			tfDir:            "test_examples/minimal",
 			expectApplyError: false,
 			vars: map[string]interface{}{
-				"name-prefix":          "",
-				"name_tag":             "Tamr_VM_Terratest",
-				"vpc_cidr_block":       "172.20.0.0/18",
-				"vm_subnet_cidr_block": "172.20.0.0/24",
+				"name-prefix":               "",
+				"name_tag":                  "Tamr_VM_Terratest",
+				"vpc_cidr_block":            "172.20.0.0/18",
+				"vm_subnet_cidr_block":      "172.20.0.0/24",
+				"install_script_path":       "./install-pip.sh",
+				"check_install_script_path": "./check-install.sh",
 			},
 		},
 	}
@@ -74,7 +76,7 @@ func TestTamrVM(t *testing.T) {
 						"AWS_REGION": awsRegion,
 					},
 					BackendConfig: backendConfig,
-					MaxRetries:    5,
+					MaxRetries:    2,
 				})
 
 				test_structure.SaveTerraformOptions(t, tempTestFolder, terraformOptions)
