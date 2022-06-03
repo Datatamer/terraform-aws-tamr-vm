@@ -33,3 +33,13 @@ variable "vpc_cidr_block" {
 variable "vm_subnet_cidr_block" {
   type = string
 }
+
+variable "install_script_path" {
+  type = string
+  default = "./test-bootstrap-scripts/install-pip.sh"
+}
+
+variable "check_install_script_path" {
+  type = string
+  default = "./test-bootstrap-scripts/check-install.sh"
+}

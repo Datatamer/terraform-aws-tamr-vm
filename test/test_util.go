@@ -11,6 +11,7 @@ import (
 // VmTestCase defines a test case for a Tamr VM
 type VmTestCase struct {
 	testName         string
+	tfDir            string
 	expectApplyError bool
 	vars             map[string]interface{}
 }

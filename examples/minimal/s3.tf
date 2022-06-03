@@ -24,7 +24,7 @@ module "s3-bucket" {
 resource "aws_s3_bucket_object" "install_pip_bootstrap_script" {
   bucket                 = module.s3-bucket.bucket_name
   key                    = "bootstrap-script-tamr-vm/install-pip.sh"
-  source                 = "./test-bootstrap-scripts/install-pip.sh"
+  source                 = var.install_script_path
   content_type           = "text/x-shellscript"
   server_side_encryption = "AES256"
   tags                   = var.tags
@@ -33,7 +33,7 @@ resource "aws_s3_bucket_object" "install_pip_bootstrap_script" {
 resource "aws_s3_bucket_object" "check_pip_install_script" {
   bucket                 = module.s3-bucket.bucket_name
   key                    = "bootstrap-script-tamr-vm/check-install.sh"
-  source                 = "./test-bootstrap-scripts/check-install.sh"
+  source                 = var.check_install_script_path
   content_type           = "text/x-shellscript"
   server_side_encryption = "AES256"
   tags                   = var.tags
