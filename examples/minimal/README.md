@@ -18,6 +18,8 @@ No requirements.
 | name-prefix | A string to prepend to names of resources created by this example | `string` | n/a | yes |
 | vm\_subnet\_cidr\_block | n/a | `string` | n/a | yes |
 | vpc\_cidr\_block | n/a | `string` | n/a | yes |
+| check\_install\_script\_path | n/a | `string` | `"./test-bootstrap-scripts/check-install.sh"` | no |
+| install\_script\_path | n/a | `string` | `"./test-bootstrap-scripts/install-pip.sh"` | no |
 | tags | A map of tags to add to all resources created by this example. | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Environment": "Example"<br>}</pre> | no |
 | tamr\_instance\_tags | A map of tags to add to the EC2 resource created by this example. | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Environment": "Example"<br>}</pre> | no |
 
