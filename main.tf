@@ -2,7 +2,6 @@ locals {
   effective_policy_arns = length(var.additional_policy_arns) > 0 ? var.additional_policy_arns : var.s3_policy_arns
 }
 
-//working example for Tamr EMR account
 module "aws-iam-role" {
   source                    = "./modules/aws-iam-role"
   aws_role_name             = var.aws_role_name
