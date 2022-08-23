@@ -1,15 +1,5 @@
 # Tamr User IAM Role Module
-This terraform module creates an IAM role for the EC2 instance where Tamr is running. This role will have permissions attached to it using the [aws-emr-tamr-user-policies](https://github.com/Datatamer/ops/tree/master/terraform/shared_files/modules/aws-emr-tamr-user-policies) module.
-
-# Examples
-## Basic
-Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
-```
-module "aws-tamr-user-role" {
-  source        = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-role?ref=x.y.z"
-  aws_role_name = "iam-role-name"
-}
-```
+This Terraform module creates an IAM role for the EC2 instance where Tamr is running. This role will have permissions attached to it using the [aws-emr-tamr-user-policies](https://github.com/Datatamer/ops/tree/master/terraform/shared_files/modules/aws-emr-tamr-user-policies) module.
 
 # Resources Created
 This modules creates:
