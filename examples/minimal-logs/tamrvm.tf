@@ -28,7 +28,6 @@ module "tamr-vm" {
   instance_type     = "r5.2xlarge"
   key_name          = var.key_name
   availability_zone = local.az[0]
-  vpc_id            = module.vpc.vpc_id
   subnet_id         = module.vpc.application_subnet_id
   bootstrap_scripts = [
 
