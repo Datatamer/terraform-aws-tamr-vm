@@ -13,7 +13,7 @@ locals {
 
 # Set up HBase logs bucket
 module "s3-bucket" {
-  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.1.1"
+  source             = "git::git@github.com:Datatamer/terraform-aws-s3.git?ref=1.3.2"
   bucket_name        = format("%s-tamr-module-test-bucket", var.name-prefix)
   read_write_actions = local.tamr_vm_s3_actions
   read_write_paths   = [""] # r/w policy permitting specified rw actions on entire bucket

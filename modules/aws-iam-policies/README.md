@@ -1,20 +1,5 @@
 # Tamr VM IAM Policies Module
-This terraform modules creates a policy role in AWS with permissions to create a new EMR cluster.
-
-# Examples
-## Basic
-Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
-```
-module "aws-emr-creator-iam" {
-  source         = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-iam-policies?ref=x.y.z"
-  aws_role_name  = "iam-role-name"
-  s3_policy_arns = [
-    arn:aws:iam::aws:policy/HBaseRootDirReadWrite,
-    arn:aws:iam::aws:policy/HBaseLogsReadWrite,
-    arn:aws:iam::aws:policy/SparkLogsReadWrite
-  ]
-}
-```
+This Terraform modules creates a policy role in AWS with permissions to create a new EMR cluster.
 
 # Resources Created
 This modules creates:

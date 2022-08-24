@@ -26,24 +26,6 @@ variable "additional_policy_arns" {
   default     = []
 }
 
-variable "arn_partition" {
-  type        = string
-  description = <<EOF
-  The partition in which the resource is located. A partition is a group of AWS Regions.
-  Each AWS account is scoped to one partition.
-  The following are the supported partitions:
-    aws -AWS Regions
-    aws-cn - China Regions
-    aws-us-gov - AWS GovCloud (US) Regions
-  EOF
-  default     = "aws"
-}
-
-variable "vpc_id" {
-  type        = string
-  description = "The ID of the VPC in which to attach the security group"
-}
-
 variable "ami" {
   type        = string
   description = "The AMI to use for the EC2 instance"

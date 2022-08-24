@@ -1,5 +1,11 @@
 # Tamr VM Terraform Module
 
+## v5.0.0 - August 23rd 2022
+* Removes the following input variables from the main module:
+  * `arn_partition`
+  * `vpc_id`
+* Removes unused variables from examples
+
 ## v4.4.3 - August 4th 2022
 * Adjusts AWS provider constraints to allow newer versions
 

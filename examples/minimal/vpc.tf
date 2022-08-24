@@ -17,7 +17,7 @@ module "aws-vm-sg-ports" {
 }
 
 module "aws-sg" {
-  source = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=1.0.0"
+  source = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=1.0.1"
   vpc_id = aws_vpc.tamr_vm_vpc.id
   ingress_cidr_blocks = [
     "1.2.3.0/24"

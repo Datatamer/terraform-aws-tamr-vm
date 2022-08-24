@@ -1,19 +1,5 @@
 # Tamr EMR Creator Permissions Module
-This terraform module creates an EC2 instance on which Tamr will run.
-
-# Examples
-## Basic
-Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
-```
-module "aws-tamr-instance" {
-  source               = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-ec2-instance?ref=x.y.z"
-  ami                  = "ami-123456789"
-  iam_instance_profile = "iam-profile-id"
-  key_name             = "my-key"
-  security_group_ids   = ["security-group-1-id", "security-group-2-id"]
-  subnet_id            = "subnet-123"
-}
-```
+This Terraform module creates an EC2 instance on which Tamr will run.
 
 # Resources Created
 This module creates:

@@ -24,7 +24,7 @@ module "aws-vm-sg-ports" {
 
 #Creates a security group for the Tamr VM
 module "aws-sg" {
-  source = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=1.0.0"
+  source = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=1.0.1"
   vpc_id = module.vpc.vpc_id
   ingress_cidr_blocks = [
     "10.0.0.0/24"

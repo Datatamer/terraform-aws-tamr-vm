@@ -1,15 +1,6 @@
 # Tamr VM Security Groups Module
 This module returns a list of ports used by the Tamr software.
 
-# Examples
-## Basic
-Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
-```
-module "aws-vm-sg" {
-  source = "git::https://github.com/Datatamer/terraform-aws-tamr-vm.git//modules/aws-security-groups?ref=x.y.z"
-}
-```
-
 # Resources Created
 This module creates no resources.
 
