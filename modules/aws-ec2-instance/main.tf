@@ -18,7 +18,7 @@ resource "aws_instance" "tamr-instance" {
   }
 
   metadata_options {
-    http_tokens                 = "required"
+    http_tokens                 = var.require_http_tokens ? "required" : "optional"
     http_endpoint               = "enabled"
     http_put_response_hop_limit = 1
   }

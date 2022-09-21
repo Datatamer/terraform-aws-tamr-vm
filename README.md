@@ -42,6 +42,7 @@ No provider.
 | instance\_type | The instance type to use for the EC2 instance | `string` | `"c5.9xlarge"` | no |
 | permissions\_boundary | ARN of the policy that will be used to set the permissions boundary for the IAM Role | `string` | `null` | no |
 | private\_ips | List of private IPs to assign to the ENI attached to the Tamr EC2 Instance | `list(string)` | `null` | no |
+| require\_http\_tokens | Whether to enable IMDSv2 on the Tamr EC2 Instance | `bool` | `true` | no |
 | s3\_policy\_arns | [DEPRECATED] List of S3 policy ARNs to attach to Tamr role. Use 'additional\_policy\_arns' instead. | `list(string)` | `[]` | no |
 | security\_group\_ids | Security groups to associate with the ec2 instance | `list(string)` | `[]` | no |
 | tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
