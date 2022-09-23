@@ -124,3 +124,9 @@ variable "private_ips" {
   description = "List of private IPs to assign to the ENI attached to the Tamr EC2 Instance"
   default     = null
 }
+
+variable "require_http_tokens" {
+  type        = bool
+  description = "Whether to enable IMDSv2 on the Tamr EC2 Instance"
+  default     = true
+}

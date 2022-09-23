@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v5.1.0 - September 21st 2022
+* Adds the variable `require_http_tokens` to control enabling of IMDSv2
+
 ## v5.0.0 - August 23rd 2022
 * Removes the following input variables from the main module:
   * `arn_partition`

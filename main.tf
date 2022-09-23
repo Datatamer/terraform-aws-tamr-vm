@@ -38,4 +38,5 @@ module "tamr_instance" {
   enable_volume_encryption = var.enable_volume_encryption
   bootstrap_scripts        = var.bootstrap_scripts
   tags                     = merge(var.tags, var.tamr_instance_tags)
+  require_http_tokens      = var.require_http_tokens
 }
