@@ -76,3 +76,9 @@ variable "require_http_tokens" {
   description = "Whether to enable IMDSv2 on the Tamr EC2 Instance"
   default     = true
 }
+
+variable "unused" {
+  type        = bool
+  description = "Testing tflint"
+  default     = true
+}
