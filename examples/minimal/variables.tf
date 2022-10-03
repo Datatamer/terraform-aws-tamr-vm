@@ -43,3 +43,7 @@ variable "check_install_script_path" {
   type    = string
   default = "./test-bootstrap-scripts/check-install.sh"
 }
+
+variable "unused" {
+  type = bool
+}
