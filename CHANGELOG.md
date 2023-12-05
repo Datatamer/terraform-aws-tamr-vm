@@ -1,5 +1,8 @@
 # Tamr VM Terraform Module
 
+## v5.1.1 - Decmber 5th 2023
+* Grants permissions to add tags when tag value is set
+
 ## v5.1.0 - September 21st 2022
 * Adds the variable `require_http_tokens` to control enabling of IMDSv2
 
