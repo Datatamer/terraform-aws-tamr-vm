@@ -5,9 +5,9 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 3.36, !=4.0.0, !=4.1.0, !=4.2.0, !=4.3.0, !=4.4.0, !=4.5.0, !=4.6.0, !=4.7.0, !=4.8.0"
     }
-    template = {
-      source  = "hashicorp/template"
-      version = ">= 2.0.0"
+    tls = {
+      source  = "hashicorp/tls"
+      version = ">= 3.0.0"
     }
   }
 }

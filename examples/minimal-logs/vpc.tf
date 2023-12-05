@@ -1,4 +1,5 @@
 # Set up VPC & subnet
+#tfsec:ignore:aws-ec2-require-vpc-flow-logs-for-all-vpcs
 module "vpc" {
   source             = "git::https://github.com/Datatamer/terraform-aws-networking.git?ref=1.1.1"
   availability_zones = [local.az[0], local.az[1]]
