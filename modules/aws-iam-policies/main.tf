@@ -21,6 +21,7 @@ data "aws_iam_policy_document" "emr_creator_policy" {
     actions = [
       "elasticmapreduce:AddInstanceGroups",
       "elasticmapreduce:AddJobFlowSteps",
+      "elasticmapreduce:AddTags",
       "elasticmapreduce:DescribeCluster",
       "elasticmapreduce:DescribeJobFlows",
       "elasticmapreduce:DescribeStep",
