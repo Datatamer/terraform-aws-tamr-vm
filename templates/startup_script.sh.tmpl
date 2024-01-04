@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# create tamr user, to run tamr
+adduser --shell /bin/bash --home /home/tamr tamr
+sudo apt-get update
+sudo apt-get install awscli unzip -y
+
+# make tamr_home_directory directory if it doesn't already exist
+sudo /bin/bash -c 'mkdir -p ${tamr_home_directory} ; chown -R tamr:tamr ${tamr_home_directory}'
+
+
+
+TAMR_CONFIG=$(cat <<EOF
+${tamr_config}
+EOF
+)
+
+
+
+# check if tamr has been installed on the VM, if not download and install it
+if [[ ! -f ${tamr_home_directory}/tamr/start-unify.sh ]]; then
+    # run any custom commands to prepare VM
+    ${pre_install_bash}
+    # download tamr install
+    sudo -S -u tamr -i /bin/bash -c 'aws s3 cp ${tamr_zip_uri} ${tamr_home_directory}/unify.zip'
+    # unzip and install unify
+    sudo -S -u tamr -i /bin/bash -c 'unzip ${tamr_home_directory}/unify.zip -d ${tamr_home_directory}'
+
+    # apply custom config
+    TAMR_CONFIG=$TAMR_CONFIG sudo -Eu tamr /bin/bash -c 'echo -e "$${TAMR_CONFIG}" > ${tamr_home_directory}/tamr/conf/unify-custom-config.yaml'
+    chown -R tamr:tamr ${tamr_home_directory}/tamr/conf/unify-custom-config.yaml
+fi
+
+# start tamr
+USER=tamr sudo -S -u tamr -i /bin/bash -c '${tamr_home_directory}/tamr/start-dependencies.sh; ${tamr_home_directory}/tamr/start-unify.sh'
+
+if [[ ! -f ${tamr_home_directory}/tamr/conf/unify-custom-config.yaml ]]; then
+    # move the config overrides to a backup file to prevent perpetual override
+    mv  ${tamr_home_directory}/tamr/conf/unify-custom-config.yaml ${tamr_home_directory}/tamr/conf/unify-custom-config.yaml.bak
+fi
