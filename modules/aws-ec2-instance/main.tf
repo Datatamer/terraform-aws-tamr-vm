@@ -1,10 +1,10 @@
 locals {
   startup_script = templatefile("${path.module}/../../templates/startup_script.sh.tmpl", {
-      tamr_zip_uri        = var.tamr_zip_uri
-      tamr_config         = var.tamr_config_file
-      tamr_home_directory = var.tamr_instance_install_directory
-    })
-  
+    tamr_zip_uri        = var.tamr_zip_uri
+    tamr_config         = var.tamr_config_file
+    tamr_home_directory = var.tamr_instance_install_directory
+  })
+
   rendered_user_data = <<-EOF
   #! /bin/bash
 
@@ -18,9 +18,9 @@ locals {
 }
 
 resource "aws_s3_bucket_object" "startup_script" {
-  bucket = var.tamr_filesystem_bucket
-  key    = "tamr_aws_startup.sh"
-  content = local.startup_script
+  bucket                 = var.tamr_filesystem_bucket
+  key                    = "tamr_aws_startup.sh"
+  content                = local.startup_script
   server_side_encryption = "AES256"
 }
 

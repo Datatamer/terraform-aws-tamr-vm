@@ -37,4 +37,8 @@ module "tamr-vm" {
 
   security_group_ids = module.aws-sg.security_group_ids
   tags               = var.tags
+
+  tamr_config_file       = ""
+  tamr_zip_uri           = ""
+  tamr_filesystem_bucket = module.s3-bucket.bucket_name
 }

@@ -1,5 +1,10 @@
 # Tamr VM Terraform Module
 
+## v6.0.0 - January 4th 2024
+* Installs Tamr on VM
+* Adds required variables `tamr_config_file`, `tamr_zip_uri`, and `tamr_filesystem_bucket`
+* Adds optional variable `tamr_instance_install_directory`
+
 ## v5.1.1 - Decmber 5th 2023
 * Grants permissions to add tags when tag value is set
 
