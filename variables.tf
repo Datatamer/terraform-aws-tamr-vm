@@ -141,7 +141,7 @@ variable "tamr_config_file" {
 
 variable "tamr_zip_uri" {
   type        = string
-  description = "gcs location to download tamr zip from"
+  description = "s3 location to download tamr zip from"
 }
 
 variable "tamr_instance_install_directory" {
