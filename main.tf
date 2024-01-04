@@ -40,7 +40,6 @@ module "tamr_instance" {
   bootstrap_scripts                    = var.bootstrap_scripts
   tags                                 = merge(var.tags, var.tamr_instance_tags)
   require_http_tokens                  = var.require_http_tokens
-  pre_install_bash                     = var.pre_install_bash
   tamr_zip_uri                         = var.tamr_zip_uri
   tamr_config_file                     = var.tamr_config_file
   tamr_instance_install_directory      = var.tamr_instance_install_directory

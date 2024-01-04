@@ -131,23 +131,12 @@ variable "require_http_tokens" {
   default     = true
 }
 
-
 #
 # Startup Script
 #
 variable "tamr_config_file" {
   type        = string
   description = "Override generated tamr configuration. The tamr configuration is specified using a yaml file, in the format that is documented (https://docs.tamr.com/previous/docs/configuration-configuring-unify#section-setting-configuration-variables) for configuring “many variables” at once."
-}
-
-variable "pre_install_bash" {
-  default     = ""
-  type        = string
-  description = <<EOF
-  Bash to be run before Tamr is installed.
-  Likely to be used to meet Tamr's prerequisites, if not already met by the image. (https://docs.tamr.com/new/docs/requirements )
-   This will only be run once before Tamr is installed, unless Tamr fails to install. This bash will also be run on subsequent attempts to install Tamr, so it is recommended that this bash is idempotent.
-  EOF
 }
 
 variable "tamr_zip_uri" {

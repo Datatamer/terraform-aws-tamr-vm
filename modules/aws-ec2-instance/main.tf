@@ -1,6 +1,5 @@
 locals {
   startup_script = templatefile("${path.module}/../../templates/startup_script.sh.tmpl", {
-      pre_install_bash    = var.pre_install_bash
       tamr_zip_uri        = var.tamr_zip_uri
       tamr_config         = var.tamr_config_file
       tamr_home_directory = var.tamr_instance_install_directory
@@ -10,8 +9,7 @@ locals {
   #! /bin/bash
 
   sudo apt-get update
-  sudo apt-get install awscli postgresql -y
-  sudo sysctl -w vm.max_map_count=262144
+  sudo apt-get install awscli -y
 
   aws s3 cp s3://${var.tamr_filesystem_bucket}/${aws_s3_bucket_object.startup_script.key} /tmp/startup_script.sh
   /bin/bash /tmp/startup_script.sh
