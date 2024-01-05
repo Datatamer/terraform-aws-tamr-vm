@@ -8,9 +8,6 @@ locals {
   rendered_user_data = <<-EOF
   #! /bin/bash
 
-  sudo apt-get update
-  sudo apt-get install awscli -y
-
   aws s3 cp s3://${var.tamr_filesystem_bucket}/${aws_s3_bucket_object.startup_script.key} /tmp/startup_script.sh
   /bin/bash /tmp/startup_script.sh
 
@@ -62,7 +59,7 @@ resource "aws_network_interface" "tamr-instance-network" {
 }
 
 data "template_cloudinit_config" "bootstrap-scripts" {
-  count         = length(var.bootstrap_scripts) + 1
+  count         = 1
   base64_encode = true
 
   dynamic "part" {

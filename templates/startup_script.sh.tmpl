@@ -2,8 +2,6 @@
 
 # create tamr user, to run tamr
 adduser --shell /bin/bash --home /home/tamr tamr
-sudo apt-get update
-sudo apt-get install awscli unzip -y
 
 # make tamr_home_directory directory if it doesn't already exist
 sudo /bin/bash -c 'mkdir -p ${tamr_home_directory} ; chown -R tamr:tamr ${tamr_home_directory}'
