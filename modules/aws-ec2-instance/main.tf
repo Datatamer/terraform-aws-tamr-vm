@@ -46,7 +46,7 @@ resource "aws_instance" "tamr-instance" {
     http_put_response_hop_limit = 1
   }
 
-  user_data = data.template_cloudinit_config.bootstrap-scripts[0].rendered
+  user_data = data.template_cloudinit_config.bootstrap-scripts.rendered
 
   tags = var.tags
 }
@@ -59,7 +59,6 @@ resource "aws_network_interface" "tamr-instance-network" {
 }
 
 data "template_cloudinit_config" "bootstrap-scripts" {
-  count         = 1
   base64_encode = true
 
   dynamic "part" {
