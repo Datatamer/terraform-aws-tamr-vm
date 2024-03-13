@@ -9,7 +9,7 @@ output "tamr_instance_ip" {
 }
 
 output "bootstrap_scripts" {
-  value       = length(var.bootstrap_scripts) == 0 ? "" : data.template_cloudinit_config.bootstrap-scripts[0].rendered
+  value       = length(var.bootstrap_scripts) == 0 ? "" : data.template_cloudinit_config.bootstrap-scripts.rendered
   description = "The final rendered multi-part cloud-init config."
 }
 

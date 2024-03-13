@@ -130,3 +130,31 @@ variable "require_http_tokens" {
   description = "Whether to enable IMDSv2 on the Tamr EC2 Instance"
   default     = true
 }
+
+#
+# Startup Script
+#
+variable "tamr_config_file" {
+  type        = string
+  description = "Override generated tamr configuration. The tamr configuration is specified using a yaml file, in the format that is documented (https://docs.tamr.com/previous/docs/configuration-configuring-unify#section-setting-configuration-variables) for configuring “many variables” at once."
+}
+
+variable "tamr_zip_uri" {
+  type        = string
+  description = "s3 location to download tamr zip from"
+}
+
+variable "tamr_instance_install_directory" {
+  # Get it?, DataTamer :p
+  default     = "/data/tamr"
+  type        = string
+  description = "directory to install tamr into"
+}
+
+#
+# file system
+#
+variable "tamr_filesystem_bucket" {
+  type        = string
+  description = "S3 bucket to use for the tamr default file system"
+}
